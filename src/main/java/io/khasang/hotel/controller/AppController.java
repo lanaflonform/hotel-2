@@ -10,7 +10,7 @@ public class AppController {
     // http://localhost:8080/
     @RequestMapping("/")
     public String helloPage(Model model){
-        model.addAttribute("name", "Jack Vorobei");
+        model.addAttribute("name", "Алексей Листаренков");
         return "hello";
     }
 }
