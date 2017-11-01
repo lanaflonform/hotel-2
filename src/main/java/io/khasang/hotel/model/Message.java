@@ -11,7 +11,6 @@ public class Message {
     }
 
     public String getName() {
-
         return name;
     }
 
