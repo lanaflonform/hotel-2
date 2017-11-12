@@ -4,7 +4,7 @@
     <title>Title</title>
 </head>
 <body>
-<h1>Try to create table</h1>
+<h1>Try to ${operation}</h1>
 <p>${status}</p>
 </body>
 </html>

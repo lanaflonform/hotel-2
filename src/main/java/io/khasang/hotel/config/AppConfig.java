@@ -1,6 +1,6 @@
 package io.khasang.hotel.config;
 
-import io.khasang.hotel.model.CreateTable;
+import io.khasang.hotel.model.TableUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,7 +33,7 @@ public class AppConfig {
     }
 
     @Bean
-    public CreateTable createTable() {
-        return new CreateTable(jdbcTemplate());
+    public TableUtils tableUtils() {
+        return new TableUtils(jdbcTemplate());
     }
 }
