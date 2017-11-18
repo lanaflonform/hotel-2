@@ -1,19 +1,12 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: List
-  Date: 06.11.2017
-  Time: 0:25
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
     <title>Ключевые моменты</title>
 </head>
 <body>
-<h3>основные аннотации для компонентов</h3>
+<h3>основные аннотации Spring для компонентов</h3>
 <p>@Component // основная аннотация для создания бина</p>
-<p>@Service   // по суте это то жу, что и компонент. просто уточняет назначение этого компонента</p>
+<p>@Service   // по сути это то же, что и компонент. просто уточняет назначение этого компонента</p>
 <p>@Repository // аннотация для работы с базами данных</p>
 <p>@Controller</p>
 <p>@Configuration</p>
@@ -31,11 +24,13 @@
 <p>1. через xml файл;</p>
 <p>2. через аннотацию;</p>
 <p>3. через кофигурационный класс Java ( см. класс io.khasang.hotel.config.application.AppConfig.java)</p>
+<p>4. через Groovy</p>
 <p></p>
 <h3>Бин - обычный java класс к которому предъявляются следующие требования:</h3>
 <p>1. наличие пустого конструктора</p>
 <p>2. для всех полей класса должны быть геттеры и сеттеры</p>
 <p>3. обычно переопределяют метод toString()</p>
 <p>4. иногда переопределяют equals() и hashCode()</p>
+
 </body>
 </html>
