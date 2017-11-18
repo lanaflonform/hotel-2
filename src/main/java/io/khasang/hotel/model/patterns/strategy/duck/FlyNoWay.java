@@ -1,4 +1,4 @@
-package io.khasang.hotel.model;
+package io.khasang.hotel.model.patterns.strategy.duck;
 
 public class FlyNoWay implements Flyable {
     @Override
