@@ -26,4 +26,18 @@ public interface BasicDao<T> {
      * @return specify entity
      * */
     T getById(long id);
+
+    /**
+     * @param entity - entity id
+     *
+     * @return specify entity
+     * */
+    T add(T entity);
+
+    /**
+     * @param entity - entity id
+     *
+     * @return specify entity
+     * */
+    T update(T entity);
 }

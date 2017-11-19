@@ -4,10 +4,7 @@ import io.khasang.hotel.entity.Cat;
 import io.khasang.hotel.service.CatService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,7 +23,25 @@ public class CatController {
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Cat getCatById(@PathVariable(value = "id") String id){
+    public Cat getCatById(@PathVariable(value = "id") String id) {
         return catService.getCatById(Long.parseLong(id));
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    public Cat addCat(@RequestBody Cat cat) {
+        return catService.addCat(cat);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    public Cat updateCat(@RequestBody Cat cat) {
+        return catService.updateCat(cat);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET)
+    public List<Cat> getCatsByName(@PathVariable("name") String name) {
+        return catService.getCatsByName(name);
     }
 }

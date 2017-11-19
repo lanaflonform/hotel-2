@@ -9,13 +9,31 @@ public interface CatService {
      * method for receiving all cats
      *
      * @return all cats
-     * */
+     */
     List<Cat> getAllCats();
 
     /**
      * @param id = cat id
-     *
      * @return Cat by id
-     * */
+     */
     Cat getCatById(long id);
+
+    /**
+     * @param cat - cat that should be added to DB
+     * @return cat
+     */
+    Cat addCat(Cat cat);
+
+
+    /**
+     * @param cat - cat that should be updated to DB
+     * @return cat
+     */
+    Cat updateCat(Cat cat);
+
+    /**
+     * @param name - name of cats
+     * @return list of cats with specify name
+     */
+    List<Cat> getCatsByName(String name);
 }
