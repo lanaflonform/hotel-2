@@ -14,8 +14,6 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
 
-import javax.jws.soap.SOAPBinding;
-
 @Configuration
 @PropertySource(value = "classpath:util.properties")
 @PropertySource(value = "classpath:auth.properties")
@@ -34,7 +32,7 @@ public class AppConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         JdbcDaoImpl jdbcDao = new JdbcDaoImpl();
         jdbcDao.setDataSource(dataSource());
         jdbcDao.setUsersByUsernameQuery(environment.getRequiredProperty("usersByQuery"));
@@ -43,7 +41,7 @@ public class AppConfig {
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate(){
+    public JdbcTemplate jdbcTemplate() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
@@ -55,7 +53,7 @@ public class AppConfig {
     }
 
     @Bean
-    public CatDao catDao(){
+    public CatDao catDao() {
         return new CatDaoImpl(Cat.class);
     }
 }
