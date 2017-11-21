@@ -36,4 +36,10 @@ public interface CatService {
      * @return list of cats with specify name
      */
     List<Cat> getCatsByName(String name);
+
+    /**
+     * @param id - cat id for remove
+     * @return  deleted cat
+     * */
+    Cat deleteCat(long id);
 }

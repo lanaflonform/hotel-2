@@ -2,15 +2,19 @@ package io.khasang.hotel.controller;
 
 import io.khasang.hotel.entity.Cat;
 import org.junit.Test;
+import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import java.util.List;
+
+import static org.junit.Assert.*;
 
 public class CatControllerIntegrationTest {
     private final String ROOT = "http://localhost:8080/cat";
     private final String ADD = "/add";
+    private final String ALL = "/all";
+    private final String DELETE = "/delete";
     private final String UPDATE = "/update";
     private final String GET_BY_ID = "/get";
 
@@ -29,6 +33,55 @@ public class CatControllerIntegrationTest {
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         Cat receivedCat = responseEntity.getBody();
         assertNotNull(receivedCat.getDescription());
+    }
+
+    @Test
+    public void catDelete() {
+        Cat cat = createCat();
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Cat> responseEntity = restTemplate.exchange(
+                ROOT + DELETE + "?id=" + "{id}",
+                HttpMethod.DELETE,
+                null,
+                Cat.class,
+                cat.getId()
+        );
+
+        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
+        Cat receivedCat = responseEntity.getBody();
+        assertNotNull(receivedCat.getDescription());
+
+        ResponseEntity<Cat> responseEntityForDeletedCat = restTemplate.exchange(
+                ROOT + GET_BY_ID + "/{id}",
+                HttpMethod.GET,
+                null,
+                Cat.class,
+                cat.getId()
+        );
+
+        assertEquals("OK", responseEntityForDeletedCat.getStatusCode().getReasonPhrase());
+        assertNull(responseEntityForDeletedCat.getBody());
+
+    }
+
+    @Test
+    public void getAllCats() {
+        createCat();
+        createCat();
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List<Cat>> responseEntity = restTemplate.exchange(
+                ROOT + ALL,
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Cat>>() {
+                }
+        );
+
+        List<Cat> catList = responseEntity.getBody();
+        assertNotNull(catList.get(0));
+        assertNotNull(catList.get(1));
+
     }
 
     private Cat createCat() {
@@ -52,7 +105,7 @@ public class CatControllerIntegrationTest {
     }
 
     @Test
-    public void updateCat(){
+    public void updateCat() {
         Cat cat = createCat();
         cat.setName("Snegok");
 

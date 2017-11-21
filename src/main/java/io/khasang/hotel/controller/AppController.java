@@ -29,9 +29,8 @@ public class AppController {
 
     // http://localhost:8080/
     @RequestMapping("/")
-    public String helloPage(Model model) {
-        model.addAttribute("name", messageService.getMessageInfo("Jack Vorobei"));
-        return "hello";
+    public String helloPage() {
+        return "cat";
     }
 
     @RequestMapping("/create")

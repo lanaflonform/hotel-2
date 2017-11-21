@@ -38,6 +38,12 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
     }
 
     @Override
+    public T delete(T entity) {
+        sessionFactory.getCurrentSession().delete(entity);
+        return entity;
+    }
+
+    @Override
     public T update(T entity) {
         sessionFactory.getCurrentSession().update(entity);
         return entity;
