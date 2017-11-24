@@ -1,8 +1,11 @@
 package io.khasang.hotel.config;
 
 import io.khasang.hotel.dao.CatDao;
+import io.khasang.hotel.dao.TaskDao;
 import io.khasang.hotel.dao.impl.CatDaoImpl;
+import io.khasang.hotel.dao.impl.TaskDaoImpl;
 import io.khasang.hotel.entity.Cat;
+import io.khasang.hotel.entity.Task;
 import io.khasang.hotel.model.CreateTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -13,8 +16,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
-
-import javax.jws.soap.SOAPBinding;
 
 @Configuration
 @PropertySource(value = "classpath:util.properties")
@@ -57,5 +58,10 @@ public class AppConfig {
     @Bean
     public CatDao catDao(){
         return new CatDaoImpl(Cat.class);
+    }
+
+    @Bean
+    public TaskDao taskDao() {
+        return new TaskDaoImpl(Task.class);
     }
 }
