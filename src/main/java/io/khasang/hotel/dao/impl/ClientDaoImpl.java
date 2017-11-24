@@ -13,8 +13,8 @@ public class ClientDaoImpl extends BasicDaoImpl<Client> implements ClientDao{
     }
 
     @Override
-    public List<Client> getClientsByFamilie(String name) {
+    public List<Client> getClientsByFamilie(String family) {
         return (List<Client>) sessionFactory.getCurrentSession().
-                createQuery("from Client as c where c.name = ?").setParameter(0, name).list();
+                createQuery("from Client as c where c.family = ?").setParameter(0, family).list();
     }
 }

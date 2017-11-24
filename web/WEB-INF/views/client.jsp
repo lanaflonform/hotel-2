@@ -15,7 +15,7 @@
 
 <script>
     var service = 'http://localhost:8080/client';
-    var RestPut = function (name, description) {
+    var RestPut = function (family, name, secondName, dateOfBirth, phone, level) {
         var JSONObject = {
             'family': family,
             'name': name,
@@ -51,7 +51,7 @@
     </tr>
     <tr>
         <td>
-            Add Cat <code><strong> PUT</strong></code>
+            Add Client <code><strong> PUT</strong></code>
         </td>
         <td>
             <code> /client/add</code>
