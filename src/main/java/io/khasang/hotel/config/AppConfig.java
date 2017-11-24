@@ -53,6 +53,11 @@ public class AppConfig {
     }
 
     @Bean
+    public CreateTable createTable() {
+        return new CreateTable(jdbcTemplate());
+    }
+
+    @Bean
     public ClientDao clientDao(){
         return new ClientDaoImpl(Client.class);
     }

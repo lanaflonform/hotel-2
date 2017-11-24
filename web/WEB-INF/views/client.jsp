@@ -14,11 +14,15 @@
 </head>
 
 <script>
-    var service = 'http://localhost:8080/cat';
+    var service = 'http://localhost:8080/client';
     var RestPut = function (name, description) {
         var JSONObject = {
+            'family': family,
             'name': name,
-            'description': description
+            'secondName': secondName,
+            'dateOfBirth': dateOfBirth,
+            'phone': phone,
+            'level': level
         };
 
         $.ajax({
@@ -50,13 +54,17 @@
             Add Cat <code><strong> PUT</strong></code>
         </td>
         <td>
-            <code> /cat/add</code>
+            <code> /client/add</code>
         </td>
         <td>
             <form class="form-inline">
-                name: <input type="text" id="putName" value="catName">
-                description: <input type="text" id="putDescription" value="catDescription">
-                <button type="button" onclick="RestPut($('#putName').val(), $('#putDescription').val())">Try</button>
+                family: <input type="text" id="putFamily" value="clientFamily">
+                name: <input type="text" id="putName" value="clientName">
+                secondName: <input type="text" id="putSecondName" value="clientSecondName">
+                dateOfBirth: <input type="date" id="putDateOfBirth" value="clientDateOfBirth">
+                phone: <input type="text" id="putPhone" value="clientPhone">
+                level: <input type="text" id="putLevel" value="clientLevel">
+                <button type="button" onclick="RestPut($('#putFamily').val(),$('#putName').val(),$('#putSecondName').val(),$('#putDateOfBirth').val(),$('#putPhone').val(),$('#putLevel').val())">Try</button>
             </form>
         </td>
     </tr>

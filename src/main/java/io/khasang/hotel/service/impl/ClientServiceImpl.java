@@ -4,9 +4,11 @@ import io.khasang.hotel.dao.ClientDao;
 import io.khasang.hotel.entity.Client;
 import io.khasang.hotel.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service("ClientService")
 public class ClientServiceImpl implements ClientService {
     @Autowired
     private ClientDao clientDao;

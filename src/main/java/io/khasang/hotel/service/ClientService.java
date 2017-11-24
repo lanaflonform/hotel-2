@@ -29,10 +29,10 @@ public interface ClientService {
     Client updateClient(Client client);
 
     /**
-     * @param name - familie of client
+     * @param family - familie of client
      * @return list od clients with specify name = name
      */
-    List<Client> getClientByFamilie(String name);
+    List<Client> getClientByFamilie(String family);
     /**
      * @param id - client id for remove
      * @return deleted client

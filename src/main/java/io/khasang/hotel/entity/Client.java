@@ -3,19 +3,29 @@ package io.khasang.hotel.entity;
 import javax.persistence.*;
 import java.util.Date;
 
+
 @Entity
 @Table(name = "clients")
 public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    public long id;
+    private long id;
     @Column(name = "family")
     private String family;
     @Column(name = "name")
     private String name;
     private String secondName;
     private Date dateOfBirth;
-    private String telefon;
+    private String phone;
+    private int level;
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setLevel(int level) {
+        this.level = level;
+    }
 
     public long getId() {
         return id;
@@ -54,14 +64,15 @@ public class Client {
     }
 
     public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth =  dateOfBirth;
     }
 
-    public String getTelefon() {
-        return telefon;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setTelefon(String telefon) {
-        this.telefon = telefon;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
+
 }
