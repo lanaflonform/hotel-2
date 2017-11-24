@@ -31,7 +31,7 @@
             contentType: 'application/json;utf-8',
             data: JSON.stringify(JSONObject),
             dataType: 'json',
-            async: false,
+            async: true,
             success: function (result) {
                 $('#response').html(JSON.stringify(result));
             },
@@ -61,7 +61,7 @@
                 family: <input type="text" id="putFamily" value="clientFamily">
                 name: <input type="text" id="putName" value="clientName">
                 secondName: <input type="text" id="putSecondName" value="clientSecondName">
-                dateOfBirth: <input type="date" id="putDateOfBirth" value="clientDateOfBirth">
+                dateOfBirth: <input type="text" id="putDateOfBirth" value="clientDateOfBirth">
                 phone: <input type="text" id="putPhone" value="clientPhone">
                 level: <input type="text" id="putLevel" value="clientLevel">
                 <button type="button" onclick="RestPut($('#putFamily').val(),$('#putName').val(),$('#putSecondName').val(),$('#putDateOfBirth').val(),$('#putPhone').val(),$('#putLevel').val())">Try</button>
