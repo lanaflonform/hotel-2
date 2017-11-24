@@ -6,11 +6,10 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class TaskControllerIntegrationTest {
     private final String ROOT = "http://localhost:8080/task";
@@ -133,7 +132,8 @@ public class TaskControllerIntegrationTest {
         Task toDo = new Task();
         toDo.setName(name);
         toDo.setBid("To DO");
+        toDo.setCreatedAt(new Date());
+        toDo.setCompleted(new Date());
         return toDo;
     }
-
 }
