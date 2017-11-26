@@ -23,7 +23,7 @@ public class Document {
 
     private String description;
 
-//    private List<DocFile> docFiles;
+    // TODO: create DocFile entity, then add field List<DocFile> docFiles;
 
     @Type(type = "timestamp")
     @Column(name = "creation_date")
@@ -34,7 +34,6 @@ public class Document {
     private Date modificationDate;
 
     @Column(name = "is_valid", columnDefinition = "boolean default true", nullable = false)
-    /** Denotes whether the document is legally or officially acceptable */
     private boolean valid;
 
     public long getId() {
