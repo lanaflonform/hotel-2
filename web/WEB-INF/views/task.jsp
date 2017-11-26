@@ -8,10 +8,12 @@
 
 <script>
     var service = 'http://localhost:8080/task';
-    var RestPut = function (name, bid) {
+    var RestPut = function (name, bid, completed,createdAt) {
         var JSONObject = {
             'name': name,
-            "bid": bid
+            'bid': bid,
+            'completed': completed,
+            'createdAt': createdAt
         };
 
         $.ajax({
@@ -51,7 +53,10 @@
             <form class="form-inline">
                 name: <input type="text" id="putName" value="taskName">
                 request: <input type="text" id="putBid" value="taskBid">
-                <button type="button" onclick="RestPut($('#putName').val(), $('#putBid').val())">Try</button>
+                completed: <input class="form-control" type="date" value="2017-11-19" id="putCompleted">
+                createdAt: <input class="form-control" type="date" value="2017-11-19" id="putCreatedAt">
+                <button type="button" onclick="RestPut($('#putName').val(), $('#putBid').val(),
+                                    $('#putCompleted').val(), $('#putCreatedAt').val())">Try</button>
             </form>
         </td>
     </tr>
