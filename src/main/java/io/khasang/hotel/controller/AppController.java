@@ -30,7 +30,17 @@ public class AppController {
     // http://localhost:8080/
     @RequestMapping("/")
     public String helloPage() {
+        return "hello";
+    }
+
+    @RequestMapping("/cat")
+    public String catPage() {
         return "cat";
+    }
+
+    @RequestMapping("/room")
+    public String roomPage() {
+        return "room";
     }
 
     @RequestMapping("/create")

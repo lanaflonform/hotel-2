@@ -1,8 +1,11 @@
 package io.khasang.hotel.config;
 
 import io.khasang.hotel.dao.CatDao;
+import io.khasang.hotel.dao.RoomDao;
 import io.khasang.hotel.dao.impl.CatDaoImpl;
+import io.khasang.hotel.dao.impl.RoomDaoImpl;
 import io.khasang.hotel.entity.Cat;
+import io.khasang.hotel.entity.Room;
 import io.khasang.hotel.model.CreateTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -57,5 +60,10 @@ public class AppConfig {
     @Bean
     public CatDao catDao(){
         return new CatDaoImpl(Cat.class);
+    }
+
+    @Bean
+    public RoomDao roomDao(){
+        return new RoomDaoImpl(Room.class);
     }
 }

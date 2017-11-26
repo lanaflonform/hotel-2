@@ -4,6 +4,13 @@
     <title>Title</title>
 </head>
 <body>
-<p>${name}</p>
+<table class="table">
+    <tr>
+        <td><a href="/cat">Cat Controller</a></td>
+    </tr>
+    <tr>
+        <td><a href="/room">Room Controller</a></td>
+    </tr>
+</table>
 </body>
 </html>
