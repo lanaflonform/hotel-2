@@ -6,6 +6,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -173,6 +174,7 @@ public class UserControllerIntegrationTest {
         user.setEmail(login + "@test.com");
         user.setFirstName("testFirstName");
         user.setLastName("testLastName");
+        user.setBirthday(LocalDate.of(2017,11,26));
         return user;
     }
 }
