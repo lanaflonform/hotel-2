@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 public class UserControllerIntegrationTest {
-    private final String ROOT = "http://localhost:8080/user";
+    private final String ROOT = "http://localhost:8080/admin/user";
     private final String ADD = "/add";
     private final String ALL = "/all";
     private final String DELETE = "/delete";
