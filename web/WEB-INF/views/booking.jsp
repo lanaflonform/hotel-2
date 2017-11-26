@@ -7,11 +7,13 @@
 </head>
 
 <script>
-    var service = 'http://localhost:8080/cat';
-    var RestPut = function (name, description) {
+    var service = 'http://localhost:8080/booking';
+    var RestPut = function (name, room, startDate, endDate) {
         var JSONObject = {
             'name': name,
-            'description': description
+            'room': room,
+            'startDate': startDate,
+            'endDate': endDate
         };
 
         $.ajax({
@@ -32,7 +34,7 @@
 </script>
 
 <body>
-<h1>Admin menu</h1>
+<h1>Booking menu</h1>
 
 <table class="table">
     <tr>
@@ -42,16 +44,19 @@
     </tr>
     <tr>
         <td>
-            Add Cat <code><strong>PUT</strong></code>
+            Add Booking <code><strong>PUT</strong></code>
         </td>
         <td>
-            <code>/cat/add</code>
+            <code>/booking/add</code>
         </td>
         <td>
             <form class="form-inline">
-                name: <input type="text" id="putName" value="catName">
-                description: <input type="text" id="putDescription" value="catDescription">
-                <button type="button" onclick="RestPut($('#putName').val(), $('#putDescription').val())">Try</button>
+                name: <input type="text" id="putName" value="bookingName">
+                room: <input type="text" id="putRoom" value="bookingRoom">
+                startDate: <input class="form-control" type="date" value="2017-11-19" id="putStartDate">
+                endDate: <input class="form-control" type="date" value="2017-11-19" id="putEndDate">
+                <button type="button" onclick="RestPut($('#putName').val(),
+                        $('#putRoom').val(),$('#putStartDate').val(),$('#putEndDate').val())">Try</button>
             </form>
         </td>
     </tr>
