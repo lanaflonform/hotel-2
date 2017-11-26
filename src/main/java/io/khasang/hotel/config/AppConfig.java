@@ -1,6 +1,9 @@
 package io.khasang.hotel.config;
 
 import io.khasang.hotel.dao.CatDao;
+import io.khasang.hotel.dao.DocumentDao;
+import io.khasang.hotel.dao.impl.DocumentDaoImpl;
+import io.khasang.hotel.entity.Document;
 import io.khasang.hotel.dao.RoleDao;
 import io.khasang.hotel.dao.impl.CatDaoImpl;
 import io.khasang.hotel.dao.impl.RoleDaoImpl;
@@ -58,6 +61,11 @@ public class AppConfig {
     @Bean
     public CatDao catDao(){
         return new CatDaoImpl(Cat.class);
+    }
+
+    @Bean
+    public DocumentDao documentDao() {
+        return new DocumentDaoImpl(Document.class);
     }
 
     @Bean
