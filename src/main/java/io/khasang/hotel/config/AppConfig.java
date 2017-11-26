@@ -2,10 +2,13 @@ package io.khasang.hotel.config;
 
 import io.khasang.hotel.dao.CatDao;
 import io.khasang.hotel.dao.DocumentDao;
-import io.khasang.hotel.dao.impl.CatDaoImpl;
 import io.khasang.hotel.dao.impl.DocumentDaoImpl;
-import io.khasang.hotel.entity.Cat;
 import io.khasang.hotel.entity.Document;
+import io.khasang.hotel.dao.RoleDao;
+import io.khasang.hotel.dao.impl.CatDaoImpl;
+import io.khasang.hotel.dao.impl.RoleDaoImpl;
+import io.khasang.hotel.entity.Cat;
+import io.khasang.hotel.entity.Role;
 import io.khasang.hotel.model.CreateTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +19,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
-
-import javax.jws.soap.SOAPBinding;
 
 @Configuration
 @PropertySource(value = "classpath:util.properties")
@@ -65,5 +66,10 @@ public class AppConfig {
     @Bean
     public DocumentDao documentDao() {
         return new DocumentDaoImpl(Document.class);
+    }
+
+    @Bean
+    public RoleDao roleDao(){
+        return new RoleDaoImpl(Role.class);
     }
 }

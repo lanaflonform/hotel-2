@@ -1,30 +1,17 @@
 package io.khasang.hotel.entity;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
-@Table(name = "cats")
-public class Cat {
+@Table(name = "roles")
+public class Role {
 
     @Id
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     private String name;
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<CatWoman> catWomanList = new ArrayList<>();
-    @Column(name = "info")
     private String description;
-
-    public List<CatWoman> getCatWomanList() {
-        return catWomanList;
-    }
-
-    public void setCatWomanList(List<CatWoman> catWomanList) {
-        this.catWomanList = catWomanList;
-    }
 
     public String getDescription() {
         return description;
