@@ -1,5 +1,7 @@
 package io.khasang.hotel.entity;
 
+import org.hibernate.annotations.Type;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,6 +17,7 @@ public class Client {
     @Column(name = "name")
     private String name;
     private String secondName;
+    @Type(type = "date")
     private Date dateOfBirth;
     private String phone;
     private int level;
