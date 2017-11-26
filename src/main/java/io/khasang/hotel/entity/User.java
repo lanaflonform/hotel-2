@@ -3,6 +3,7 @@ package io.khasang.hotel.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Data
 @Entity
@@ -20,6 +21,16 @@ public class User {
 
     @Column(unique = true)
     private String email;
+
+    private String phone;
+    private String country;
+    private String city;
+    private String address;
+    private String postcode;
+    private String passport;
+
+    @Column(columnDefinition = "DATE")
+    private LocalDate birthday;
 
     @Column(unique = true)
     private String login;
