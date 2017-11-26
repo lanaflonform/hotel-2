@@ -1,8 +1,11 @@
 package io.khasang.hotel.config;
 
 import io.khasang.hotel.dao.CatDao;
+import io.khasang.hotel.dao.DocumentDao;
 import io.khasang.hotel.dao.impl.CatDaoImpl;
+import io.khasang.hotel.dao.impl.DocumentDaoImpl;
 import io.khasang.hotel.entity.Cat;
+import io.khasang.hotel.entity.Document;
 import io.khasang.hotel.model.CreateTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -57,5 +60,10 @@ public class AppConfig {
     @Bean
     public CatDao catDao(){
         return new CatDaoImpl(Cat.class);
+    }
+
+    @Bean
+    public DocumentDao documentDao() {
+        return new DocumentDaoImpl(Document.class);
     }
 }
