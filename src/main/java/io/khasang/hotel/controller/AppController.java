@@ -33,6 +33,11 @@ public class AppController {
         return "cat";
     }
 
+    @RequestMapping("/task")
+    public String taskPage() {
+        return "task";
+    }
+
     @RequestMapping("/booking")
     public String bookingPage() {
         return "booking";

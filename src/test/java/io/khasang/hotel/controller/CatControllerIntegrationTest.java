@@ -1,11 +1,13 @@
 package io.khasang.hotel.controller;
 
 import io.khasang.hotel.entity.Cat;
+import io.khasang.hotel.entity.CatWoman;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -131,6 +133,19 @@ public class CatControllerIntegrationTest {
         Cat barsik = new Cat();
         barsik.setName(name);
         barsik.setDescription("Angry Cat");
+
+        CatWoman catWoman = new CatWoman();
+        catWoman.setName("Murka");
+
+        CatWoman catWoman1 = new CatWoman();
+        catWoman1.setName("Riska");
+
+        List<CatWoman> list = new ArrayList<>();
+        list.add(catWoman);
+        list.add(catWoman1);
+
+        barsik.setCatWomanList(list);
+
         return barsik;
     }
 
