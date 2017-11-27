@@ -24,7 +24,6 @@ public class AppController {
         return "status";
     }
 
-    // http://localhost:8080/
     @RequestMapping("/")
     public String helloPage(){
        // model.addAttribute("hello", "Hello");

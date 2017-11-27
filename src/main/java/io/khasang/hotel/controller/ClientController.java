@@ -44,7 +44,6 @@ public class ClientController {
         return clientService.getClientByFamilie(name);
     }
 
-    // localhost:8080/client/delete?id=5
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     @ResponseBody
     public Client deleteClient(@RequestParam(value = "id") String id) {
