@@ -1,6 +1,8 @@
 package io.khasang.hotel.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "cats")
@@ -9,17 +11,18 @@ public class Cat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-
     private String name;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<CatWoman> catWomanList = new ArrayList<>();
     @Column(name = "info")
     private String description;
 
-    public String getDescription() {
-        return description;
+    public long getId() {
+        return id;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -30,11 +33,19 @@ public class Cat {
         this.name = name;
     }
 
-    public long getId() {
-        return id;
+    public List<CatWoman> getCatWomanList() {
+        return catWomanList;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setCatWomanList(List<CatWoman> catWomanList) {
+        this.catWomanList = catWomanList;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }
