@@ -38,6 +38,11 @@ public class AppController {
         return "task";
     }
 
+    @RequestMapping("/booking")
+    public String bookingPage() {
+        return "booking";
+    }
+
     @RequestMapping("/create")
     public String tableCreationInfo(Model model) {
         model.addAttribute("status", createTable.createTableStatus());
