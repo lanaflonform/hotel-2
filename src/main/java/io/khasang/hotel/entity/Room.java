@@ -45,6 +45,4 @@ public class Room {
     public void setDescription(String description) {
         this.description = description;
     }
-
-
 }

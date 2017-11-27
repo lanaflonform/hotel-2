@@ -45,7 +45,6 @@ public class RoomController {
         return roomService.getRoomByNum(number);
     }
 
-    // localhost:8080/room/delete?id=5
     @ResponseBody
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
     public Room deleteRoom(@RequestParam(value = "id") String id) {

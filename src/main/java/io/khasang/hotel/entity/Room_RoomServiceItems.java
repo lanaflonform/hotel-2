@@ -9,8 +9,11 @@ public class Room_RoomServiceItems {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    private long room_id;
-    private long roomService_id;
+    @Column(name = "room_id")
+    private long roomId;
+
+    @Column(name = "roomService_Id")
+    private long roomServiceId;
 
     public long getId() {
         return id;
@@ -20,19 +23,19 @@ public class Room_RoomServiceItems {
         this.id = id;
     }
 
-    public long getRoom_id() {
-        return room_id;
+    public long getRoomId() {
+        return roomId;
     }
 
-    public void setRoom_id(long room_id) {
-        this.room_id = room_id;
+    public void setRoomId(long roomId) {
+        this.roomId = roomId;
     }
 
-    public long getRoomService_id() {
-        return roomService_id;
+    public long getRoomServiceId() {
+        return roomServiceId;
     }
 
-    public void setRoomService_id(long roomService_id) {
-        this.roomService_id = roomService_id;
+    public void setRoomServiceId(long roomServiceId) {
+        this.roomServiceId = roomServiceId;
     }
 }

@@ -24,7 +24,6 @@ public interface RoomService {
      */
     Room addRoom(Room room);
 
-
     /**
      * @param room - room that should be updated to DB
      * @return room
@@ -42,5 +41,4 @@ public interface RoomService {
      * @return  deleted room
      * */
     Room deleteRoom(long id);
-    
 }
