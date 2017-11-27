@@ -14,6 +14,12 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
+    @Autowired
+    public ClientController(){}
+    @RequestMapping("/")
+    public String clientPage(){
+        return "client";
+    }
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public List<Client> getAllClients() {

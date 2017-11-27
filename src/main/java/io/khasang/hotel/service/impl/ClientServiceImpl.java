@@ -42,4 +42,5 @@ public class ClientServiceImpl implements ClientService {
     public Client deleteClient(long id) {
         return clientDao.delete(getClientById(id));
     }
+
 }

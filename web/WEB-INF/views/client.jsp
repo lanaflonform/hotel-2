@@ -31,7 +31,7 @@
             contentType: 'application/json;utf-8',
             data: JSON.stringify(JSONObject),
             dataType: 'json',
-            async: true,
+            async: false,
             success: function (result) {
                 $('#response').html(JSON.stringify(result));
             },

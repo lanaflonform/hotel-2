@@ -38,4 +38,5 @@ public interface ClientService {
      * @return deleted client
      */
     Client deleteClient(long id);
+
 }
