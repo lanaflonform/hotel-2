@@ -20,6 +20,7 @@ public class ClientController {
     public String clientPage(){
         return "client";
     }
+
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public List<Client> getAllClients() {

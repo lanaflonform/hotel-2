@@ -3,7 +3,9 @@ package io.khasang.hotel.entity;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -19,7 +21,8 @@ public class Client {
     private String secondName;
     @Type(type = "date")
     private Date dateOfBirth;
-    private String phone;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Phone> phoneList = new ArrayList<>();
     private int level;
 
     public int getLevel() {
@@ -32,6 +35,14 @@ public class Client {
 
     public long getId() {
         return id;
+    }
+
+    public List<Phone> getPhoneList() {
+        return phoneList;
+    }
+
+    public void setPhoneList(List<Phone> phoneList) {
+        this.phoneList = phoneList;
     }
 
     public void setId(long id) {
@@ -68,14 +79,6 @@ public class Client {
 
     public void setDateOfBirth(Date dateOfBirth) {
         this.dateOfBirth =  dateOfBirth;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
 }

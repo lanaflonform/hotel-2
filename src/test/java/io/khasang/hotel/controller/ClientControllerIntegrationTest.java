@@ -1,12 +1,15 @@
 package io.khasang.hotel.controller;
 
 import io.khasang.hotel.entity.Client;
+import io.khasang.hotel.entity.Phone;
 import javafx.scene.input.DataFormat;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -39,7 +42,7 @@ public class ClientControllerIntegrationTest {
 
         Assert.assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         Client receivedClient = responseEntity.getBody();
-        assertNotNull(receivedClient.getFamily());
+        assertNotNull(receivedClient.getSecondName());
     }
 
     @Test
@@ -77,9 +80,9 @@ public class ClientControllerIntegrationTest {
         );
 
         Assert.assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-        Client receivedCat = responseEntity.getBody();
-        assertNotNull(receivedCat.getFamily());
-        assertEquals("Bobi", receivedCat.getName());
+        Client receivedClient = responseEntity.getBody();
+        assertNotNull(receivedClient.getFamily());
+        assertEquals("Bobi", receivedClient.getName());
     }
 
     @Test
@@ -94,8 +97,8 @@ public class ClientControllerIntegrationTest {
                 client.getId()
         );
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-        Client receivedCat = responseEntity.getBody();
-        assertNotNull(receivedCat.getFamily());
+        Client receivedClient = responseEntity.getBody();
+        assertNotNull(receivedClient.getFamily());
 
         ResponseEntity<Client> responseEntityForDeletedCat = restTemplate.exchange(
                 ROOT + GET_BY_ID + "/{id}",
@@ -113,35 +116,38 @@ public class ClientControllerIntegrationTest {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        Client client = null;
-        try {
-            client = prefillCall("Ivanov", "Bob" , "Petrovich", "01.01.1990", "888-999-888");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        Client client = prefillCall("Ivanov", "Bob" , "Petrovich", "01.01.1990", "888-999-888");
 
         HttpEntity<Client> httpEntity = new HttpEntity<>(client, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
-        Client createClient = restTemplate.exchange(
+        Client createdClient = restTemplate.exchange(
                 ROOT + ADD,
                 HttpMethod.PUT,
                 httpEntity,
                 Client.class
         ).getBody();
-        assertNotNull(createClient);
-        Assert.assertEquals(client.getFamily(), createClient.getFamily());
-        return createClient;
+        assertNotNull(createdClient);
+        Assert.assertEquals(client.getName(), createdClient.getName());
+        return createdClient;
     }
 
-    private Client prefillCall(String family,String name, String secondName, String date, String phone ) throws ParseException {
+    private Client prefillCall(String family,String name, String secondName, String date, String phone ) {
         Client bob = new Client();
+        Phone phone1 = new Phone();
+        phone1.setNumber(phone);
+        Phone phone2 = new Phone();
+        phone2.setNumber("222-33-66");
+        List<Phone> list = new ArrayList<>();
+        list.add(phone1);
+        list.add(phone2);
+
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT);
-        Date dateOfBirth =  format.parse(date);
+       // Date dateOfBirth =  format.parse(date);
         bob.setFamily(family);
         bob.setName(name);
         bob.setSecondName(secondName);
-        bob.setDateOfBirth(dateOfBirth);
-        bob.setPhone(phone);
+        bob.setDateOfBirth(new Date());
+        bob.setPhoneList(list);
         bob.setLevel(5);
         return bob;
     }

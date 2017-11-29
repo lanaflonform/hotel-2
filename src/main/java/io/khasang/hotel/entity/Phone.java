@@ -8,19 +8,19 @@ import javax.persistence.Id;
 public class Phone {
 
     @Id
-    private Long id;
+    private long id;
 
-    @Column(name = "`number`")
+    @Column(name = "phone_number")
     private String number;
 
     public Phone() {
     }
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 
