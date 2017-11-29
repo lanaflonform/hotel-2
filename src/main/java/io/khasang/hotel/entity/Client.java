@@ -21,12 +21,22 @@ public class Client {
     private String secondName;
     @Type(type = "date")
     private Date dateOfBirth;
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    private List<Address> addresses = new ArrayList<>();
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Phone> phoneList = new ArrayList<>();
     private int level;
 
     public int getLevel() {
         return level;
+    }
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 
     public void setLevel(int level) {

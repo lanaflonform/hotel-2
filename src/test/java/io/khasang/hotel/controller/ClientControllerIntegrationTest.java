@@ -1,5 +1,6 @@
 package io.khasang.hotel.controller;
 
+import io.khasang.hotel.entity.Address;
 import io.khasang.hotel.entity.Client;
 import io.khasang.hotel.entity.Phone;
 import javafx.scene.input.DataFormat;
@@ -140,6 +141,11 @@ public class ClientControllerIntegrationTest {
         List<Phone> list = new ArrayList<>();
         list.add(phone1);
         list.add(phone2);
+        Address address1 = new Address( "Koroleva", "10" );
+        Address address2 = new Address( "Simonova", "1" );
+        List<Address> addressList = new ArrayList<>();
+        addressList.add(address1);
+        addressList.add(address2);
 
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT);
        // Date dateOfBirth =  format.parse(date);
@@ -149,6 +155,8 @@ public class ClientControllerIntegrationTest {
         bob.setDateOfBirth(new Date());
         bob.setPhoneList(list);
         bob.setLevel(5);
+        bob.setAddresses(addressList);
+
         return bob;
     }
 }
