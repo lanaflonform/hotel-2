@@ -18,11 +18,14 @@ public class Client {
     private String family;
     @Column(name = "name")
     private String name;
+    @Column(name = "secondname")
     private String secondName;
     @Type(type = "date")
     private Date dateOfBirth;
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+    @Column(name = "address")
+    @ManyToMany(cascade = {CascadeType.ALL, CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Address> addresses = new ArrayList<>();
+    @Column(name = "phone")
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Phone> phoneList = new ArrayList<>();
     private int level;
