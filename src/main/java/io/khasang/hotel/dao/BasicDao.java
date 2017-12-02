@@ -4,6 +4,7 @@ import io.khasang.hotel.entity.Cat;
 import org.hibernate.Session;
 
 import java.util.List;
+import java.util.Set;
 
 public interface BasicDao<T> {
 
@@ -18,6 +19,13 @@ public interface BasicDao<T> {
      * @return all entity
      */
     List<T> getList();
+
+    /**
+     * method for receiving all entity
+     *
+     * @return all entity
+     */
+    Set<T> getSet();
 
     /**
      * receive entity by id
