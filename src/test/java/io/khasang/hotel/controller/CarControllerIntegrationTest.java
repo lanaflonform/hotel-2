@@ -1,18 +1,15 @@
 package io.khasang.hotel.controller;
 
+import io.khasang.hotel.dto.CarDTO;
 import io.khasang.hotel.entity.Car;
-import io.khasang.hotel.entity.Cat;
 import io.khasang.hotel.entity.Employee;
-import io.khasang.hotel.service.CarService;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
-import javax.xml.ws.Service;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -31,20 +28,20 @@ public class CarControllerIntegrationTest {
     }
 
     @Test
-    public void getCars(){
+    public void getCars() {
         createCar();
         createCar();
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Set<Car>> responseEntity = restTemplate.exchange(
+        ResponseEntity<Set<CarDTO>> responseEntity = restTemplate.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<Set<Car>>() {
+                new ParameterizedTypeReference<Set<CarDTO>>() {
                 }
         );
 
-        Set<Car> catSet = (Set<Car>) responseEntity.getBody();
+        Set<CarDTO> catSet = responseEntity.getBody();
 
         assertNotNull(catSet);
 
