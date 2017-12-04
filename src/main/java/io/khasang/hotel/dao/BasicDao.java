@@ -3,6 +3,7 @@ package io.khasang.hotel.dao;
 import org.hibernate.Session;
 
 import java.util.List;
+import java.util.Set;
 
 public interface BasicDao<T> {
     /**
@@ -16,6 +17,12 @@ public interface BasicDao<T> {
      * @return
      */
     List<T> getList();
+
+    /**
+     * method for receiving all entity
+     * @return
+     */
+    Set<T> getSet();
 
     /**
      * receiv entity by id

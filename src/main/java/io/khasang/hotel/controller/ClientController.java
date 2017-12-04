@@ -14,9 +14,7 @@ public class ClientController {
     @Autowired
     private ClientService clientService;
 
-    @Autowired
-    public ClientController(){}
-    @RequestMapping("/")
+    @RequestMapping(value = "/put", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     public String clientPage(){
         return "client";
     }

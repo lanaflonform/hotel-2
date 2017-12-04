@@ -3,19 +3,16 @@ package io.khasang.hotel.controller;
 import io.khasang.hotel.entity.Address;
 import io.khasang.hotel.entity.Client;
 import io.khasang.hotel.entity.Phone;
-import javafx.scene.input.DataFormat;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.List;
-import java.util.Locale;
 
 import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertEquals;
@@ -47,7 +44,7 @@ public class ClientControllerIntegrationTest {
     }
 
     @Test
-    public void getAllClient(){
+    public void getAllClient() {
         createClient();
         createClient();
         RestTemplate restTemplate = new RestTemplate();
@@ -55,7 +52,7 @@ public class ClientControllerIntegrationTest {
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Client>>(){
+                new ParameterizedTypeReference<List<Client>>() {
                 }
         );
         List<Client> clientList = responseEntity.getBody();
@@ -117,7 +114,7 @@ public class ClientControllerIntegrationTest {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        Client client = prefillCall("Ivanov", "Bob" , "Petrovich", "01.01.1990", "888-999-888");
+        Client client = prefillCall("Ivanov", "Bob", "Petrovich", "01.01.1990", "888-999-888");
 
         HttpEntity<Client> httpEntity = new HttpEntity<>(client, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
@@ -127,36 +124,43 @@ public class ClientControllerIntegrationTest {
                 httpEntity,
                 Client.class
         ).getBody();
+
         assertNotNull(createdClient);
         Assert.assertEquals(client.getName(), createdClient.getName());
         return createdClient;
     }
 
-    private Client prefillCall(String family,String name, String secondName, String date, String phone ) {
-        Client bob = new Client();
+    private Client prefillCall(String family, String name, String secondName, String date, String phone) {
+
         Phone phone1 = new Phone();
         phone1.setNumber(phone);
         Phone phone2 = new Phone();
         phone2.setNumber("222-33-66");
-        List<Phone> list = new ArrayList<>();
-        list.add(phone1);
-        list.add(phone2);
-        Address address1 = new Address( "Koroleva", "10" );
-        Address address2 = new Address( "Simonova", "1" );
+        Set<Phone> set = new HashSet<>();
+        set.add(phone1);
+        set.add(phone2);
+
+        Address address1 = new Address("Koroleva", "10");
+        Address address2 = new Address("Simonova", "1");
         List<Address> addressList = new ArrayList<>();
         addressList.add(address1);
         addressList.add(address2);
 
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT);
-       // Date dateOfBirth =  format.parse(date);
+        try {
+            Date dateOfBirth = format.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Client bob = new Client();
         bob.setFamily(family);
         bob.setName(name);
         bob.setSecondName(secondName);
-        bob.setDateOfBirth(new Date());
-        bob.setPhoneList(list);
+        bob.setDateOfBirth(LocalDate.of(2017, 11, 26));
+        bob.setPhoneList(set);
         bob.setLevel(5);
-        bob.setAddresses(addressList);
-
+        // bob.setAddresses(addressList);
         return bob;
     }
 }

@@ -1,12 +1,10 @@
 package io.khasang.hotel.entity;
 
 import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
+import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "clients")
@@ -20,26 +18,44 @@ public class Client {
     private String name;
     @Column(name = "secondname")
     private String secondName;
-    @Type(type = "date")
-    private Date dateOfBirth;
-    @Column(name = "address")
-    @ManyToMany(cascade = {CascadeType.ALL, CascadeType.ALL}, fetch = FetchType.EAGER)
-    private List<Address> addresses = new ArrayList<>();
+    //@Type(type = "date")
+    @Column(columnDefinition = "DATE")
+    private LocalDate dateOfBirth;
+    @Column(name = "level")
+    private int level;
     @Column(name = "phone")
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Phone> phoneList = new ArrayList<>();
-    private int level;
+    private Set<Phone> phoneList = new HashSet<>();
+
+    //    @Column(name = "address")
+//    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
+//    private List<Address> addresses = new ArrayList<>();
+//
+//    public List<Address> getAddresses() {
+//        return addresses;
+//    }
+//
+//    public void setAddresses(List<Address> addresses) {
+//        this.addresses = addresses;
+//    }
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public Set<Phone> getPhoneList() {
+        return phoneList;
+    }
+
+    public void setPhoneList(Set<Phone> phoneList) {
+        this.phoneList = phoneList;
+    }
 
     public int getLevel() {
         return level;
-    }
-
-    public List<Address> getAddresses() {
-        return addresses;
-    }
-
-    public void setAddresses(List<Address> addresses) {
-        this.addresses = addresses;
     }
 
     public void setLevel(int level) {
@@ -48,14 +64,6 @@ public class Client {
 
     public long getId() {
         return id;
-    }
-
-    public List<Phone> getPhoneList() {
-        return phoneList;
-    }
-
-    public void setPhoneList(List<Phone> phoneList) {
-        this.phoneList = phoneList;
     }
 
     public void setId(long id) {
@@ -85,13 +93,4 @@ public class Client {
     public void setSecondName(String secondName) {
         this.secondName = secondName;
     }
-
-    public Date getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth =  dateOfBirth;
-    }
-
 }

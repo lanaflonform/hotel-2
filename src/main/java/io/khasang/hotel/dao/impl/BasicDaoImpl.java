@@ -1,6 +1,7 @@
 package io.khasang.hotel.dao.impl;
 
 import io.khasang.hotel.dao.BasicDao;
+import io.khasang.hotel.entity.Client;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
 import java.util.List;
+import java.util.Set;
 
 @Transactional
 public class BasicDaoImpl<T> implements BasicDao<T> {
@@ -34,6 +36,16 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
         Root<T> root = criteriaQuery.from(entityClass);
         criteriaQuery.select(root);
         return sessionFactory.getCurrentSession().createQuery(criteriaQuery).list();
+    }
+
+    @Override
+    public Set<T> getSet() {
+        CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
+        CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
+        Root<T> root = criteriaQuery.from(entityClass);
+        criteriaQuery.select(root);
+        Set<T> set = (Set<T>) sessionFactory.getCurrentSession().createQuery(criteriaQuery);
+        return set;
     }
 
     @Override
