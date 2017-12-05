@@ -21,7 +21,7 @@ public class AppController {
 
     @RequestMapping("/create")
     public String tableCreationInfo(Model model){
-        model.addAttribute("status", createTable.createTableStatus());
+       // model.addAttribute("status", createTable.createTableStatus());
         return "status";
     }
 

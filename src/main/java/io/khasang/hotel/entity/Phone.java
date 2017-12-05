@@ -1,13 +1,13 @@
 package io.khasang.hotel.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "phone")
 public class Phone {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "phone_number")
@@ -32,8 +32,4 @@ public class Phone {
         this.number = number;
     }
 
-    public Phone(String number) {
-        this.number = number;
-
-    }
 }

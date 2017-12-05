@@ -18,15 +18,13 @@ public class Client {
     private String name;
     @Column(name = "secondname")
     private String secondName;
-    //@Type(type = "date")
-    @Column(columnDefinition = "DATE")
+    @Column(name = "dateOfBirth",columnDefinition = "DATE")
     private LocalDate dateOfBirth;
     @Column(name = "level")
     private int level;
-    @Column(name = "phone")
+    //@Column(name = "phone")
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Phone> phoneList = new HashSet<>();
-
     //    @Column(name = "address")
 //    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
 //    private List<Address> addresses = new ArrayList<>();

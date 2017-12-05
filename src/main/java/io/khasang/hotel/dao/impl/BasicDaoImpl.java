@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Root;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -44,7 +45,9 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
         CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
         Root<T> root = criteriaQuery.from(entityClass);
         criteriaQuery.select(root);
-        Set<T> set = (Set<T>) sessionFactory.getCurrentSession().createQuery(criteriaQuery);
+        List<T> list = sessionFactory.getCurrentSession().createQuery(criteriaQuery).list();
+        Set<T> set = new HashSet<>();
+        set.addAll(list);
         return set;
     }
 

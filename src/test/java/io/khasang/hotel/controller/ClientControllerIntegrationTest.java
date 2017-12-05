@@ -11,8 +11,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.util.*;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertEquals;
@@ -114,7 +112,7 @@ public class ClientControllerIntegrationTest {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        Client client = prefillCall("Ivanov", "Bob", "Petrovich", "01.01.1990", "888-999-888");
+        Client client = prefillCall("Ivanov", "Bob", "Petrovich", "888-999-788");
 
         HttpEntity<Client> httpEntity = new HttpEntity<>(client, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
@@ -130,12 +128,12 @@ public class ClientControllerIntegrationTest {
         return createdClient;
     }
 
-    private Client prefillCall(String family, String name, String secondName, String date, String phone) {
+    private Client prefillCall(String family, String name, String secondName,  String phone) {
 
         Phone phone1 = new Phone();
         phone1.setNumber(phone);
         Phone phone2 = new Phone();
-        phone2.setNumber("222-33-66");
+        phone2.setNumber("222-33-64");
         Set<Phone> set = new HashSet<>();
         set.add(phone1);
         set.add(phone2);
@@ -146,12 +144,12 @@ public class ClientControllerIntegrationTest {
         addressList.add(address1);
         addressList.add(address2);
 
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT);
-        try {
-            Date dateOfBirth = format.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT);
+//        try {
+//            Date dateOfBirth = format.parse(date);
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
 
         Client bob = new Client();
         bob.setFamily(family);
