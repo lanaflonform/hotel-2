@@ -2,9 +2,8 @@ package io.khasang.hotel.controller;
 
 import io.khasang.hotel.model.CreateTable;
 import io.khasang.hotel.service.MessageService;
+import io.khasang.hotel.util.CheckText;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -14,23 +13,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import javax.xml.ws.Response;
+import java.net.MalformedURLException;
 
 @Controller
 public class AppController {
     private final MessageService messageService;
     private final CreateTable createTable;
+    private final CheckText checkText;
 
     @Autowired
-    public AppController(MessageService messageService, CreateTable createTable) {
+    public AppController(MessageService messageService, CreateTable createTable, CheckText checkText) {
         this.messageService = messageService;
         this.createTable = createTable;
+        this.checkText = checkText;
     }
 
     // http://localhost:8080/
     @RequestMapping("/")
     public String helloPage() {
         return "cat";
+    }
+
+    @RequestMapping(value = "/check/{text}", method = RequestMethod.GET)
+    @ResponseBody
+    public String checkText(@PathVariable("text") String text) throws MalformedURLException {
+        return checkText.chechWord(text);
     }
 
     @RequestMapping("/task")
