@@ -9,12 +9,13 @@ import java.util.List;
 public class Cat {
 
     @Id
-
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private String name;
+
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<CatWoman> catWomanList = new ArrayList<>();
+
     @Column(name = "info")
     private String description;
 
