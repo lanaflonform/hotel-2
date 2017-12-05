@@ -1,8 +1,11 @@
 package io.khasang.hotel.entity;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
+@Table(name = "address")
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -10,14 +13,23 @@ public class Address {
     @Column(name = "street")
     private String street;
     @Column(name = "numberStreet")
-    private String number;
-
-    public Address(String street, String number) {
-        this.street = street;
-        this.number = number;
-    }
+    private String numberStreet;
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "addresses")
+    private List<Client> clientList = new ArrayList<>();
 
     public Address() {
+    }
+    public Address(String street, String number) {
+        this.street = street;
+        this.numberStreet = number;
+    }
+
+    public List<Client> getClientList() {
+        return clientList;
+    }
+
+    public void setClientList(List<Client> clientList) {
+        this.clientList = clientList;
     }
 
     public long getId() {
@@ -36,11 +48,11 @@ public class Address {
         this.street = street;
     }
 
-    public String getNumber() {
-        return number;
+    public String getNumberStreet() {
+        return numberStreet;
     }
 
-    public void setNumber(String number) {
-        this.number = number;
+    public void setNumberStreet(String number) {
+        this.numberStreet = number;
     }
 }

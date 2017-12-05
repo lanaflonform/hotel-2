@@ -1,5 +1,6 @@
 package io.khasang.hotel.controller;
 
+import io.khasang.hotel.dto.ClientDTO;
 import io.khasang.hotel.entity.Address;
 import io.khasang.hotel.entity.Client;
 import io.khasang.hotel.entity.Phone;
@@ -28,7 +29,7 @@ public class ClientControllerIntegrationTest {
     public void addClient() {
         Client client = createClient();
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Client> responseEntity = restTemplate.exchange(
+        ResponseEntity<ClientDTO> responseEntity = restTemplate.exchange(
                 ROOT + GET_BY_ID + "/{id}",
                 HttpMethod.GET,
                 null,
@@ -46,14 +47,14 @@ public class ClientControllerIntegrationTest {
         createClient();
         createClient();
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<Client>> responseEntity = restTemplate.exchange(
+        ResponseEntity<List<ClientDTO>> responseEntity = restTemplate.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Client>>() {
+                new ParameterizedTypeReference<List<ClientDTO>>() {
                 }
         );
-        List<Client> clientList = responseEntity.getBody();
+        List<ClientDTO> clientList = responseEntity.getBody();
         assertNotNull(clientList.get(0));
         assertNotNull(clientList.get(1));
 
@@ -144,13 +145,6 @@ public class ClientControllerIntegrationTest {
         addressList.add(address1);
         addressList.add(address2);
 
-//        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy", Locale.ROOT);
-//        try {
-//            Date dateOfBirth = format.parse(date);
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-
         Client bob = new Client();
         bob.setFamily(family);
         bob.setName(name);
@@ -158,7 +152,7 @@ public class ClientControllerIntegrationTest {
         bob.setDateOfBirth(LocalDate.of(2017, 11, 26));
         bob.setPhoneList(set);
         bob.setLevel(5);
-        // bob.setAddresses(addressList);
+        bob.setAddresses(addressList);
         return bob;
     }
 }

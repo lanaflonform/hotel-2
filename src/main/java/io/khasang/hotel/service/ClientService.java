@@ -1,5 +1,6 @@
 package io.khasang.hotel.service;
 
+import io.khasang.hotel.dto.ClientDTO;
 import io.khasang.hotel.entity.Client;
 import java.util.List;
 
@@ -8,7 +9,7 @@ public interface ClientService {
      * method for receiving all clients
      * @return
      */
-    List<Client> getAllClients();
+    List<ClientDTO> getAllClients();
 
     /**
      * @param id = client id

@@ -1,5 +1,6 @@
 package io.khasang.hotel.controller;
 
+import io.khasang.hotel.dto.ClientDTO;
 import io.khasang.hotel.entity.Client;
 import io.khasang.hotel.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ public class ClientController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public List<Client> getAllClients() {
+    public List<ClientDTO> getAllClients() {
         return clientService.getAllClients();
     }
 

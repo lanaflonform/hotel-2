@@ -3,7 +3,9 @@ package io.khasang.hotel.entity;
 import org.hibernate.annotations.Type;
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -22,20 +24,18 @@ public class Client {
     private LocalDate dateOfBirth;
     @Column(name = "level")
     private int level;
-    //@Column(name = "phone")
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<Phone> phoneList = new HashSet<>();
-    //    @Column(name = "address")
-//    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, fetch = FetchType.EAGER)
-//    private List<Address> addresses = new ArrayList<>();
-//
-//    public List<Address> getAddresses() {
-//        return addresses;
-//    }
-//
-//    public void setAddresses(List<Address> addresses) {
-//        this.addresses = addresses;
-//    }
+    @ManyToMany(cascade = {CascadeType.ALL, CascadeType.ALL}, fetch = FetchType.EAGER)
+    private List<Address> addresses = new ArrayList<>();
+
+    public List<Address> getAddresses() {
+        return addresses;
+    }
+
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
+    }
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }

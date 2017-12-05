@@ -1,21 +1,25 @@
 package io.khasang.hotel.service.impl;
 
 import io.khasang.hotel.dao.ClientDao;
+import io.khasang.hotel.dto.ClientDTO;
 import io.khasang.hotel.entity.Client;
 import io.khasang.hotel.service.ClientService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service("ClientService")
 public class ClientServiceImpl implements ClientService {
     @Autowired
     private ClientDao clientDao;
+    @Autowired
+    private ClientDTO clientDTO;
 
     @Override
-    public List<Client> getAllClients() {
-        return clientDao.getList();
+    public List<ClientDTO> getAllClients() {
+        return clientDTO.getClientDTO(clientDao.getList());
     }
 
     @Override
