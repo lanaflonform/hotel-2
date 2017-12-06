@@ -1,5 +1,7 @@
 package io.khasang.hotel.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,6 +17,7 @@ public class Address {
     @Column(name = "numberStreet")
     private String numberStreet;
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "addresses")
+    @JsonBackReference  //  - решает вопрос сериализации
     private List<Client> clientList = new ArrayList<>();
 
     public Address() {

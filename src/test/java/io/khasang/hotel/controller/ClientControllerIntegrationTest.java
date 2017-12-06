@@ -29,7 +29,7 @@ public class ClientControllerIntegrationTest {
     public void addClient() {
         Client client = createClient();
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<ClientDTO> responseEntity = restTemplate.exchange(
+        ResponseEntity<Client> responseEntity = restTemplate.exchange(
                 ROOT + GET_BY_ID + "/{id}",
                 HttpMethod.GET,
                 null,

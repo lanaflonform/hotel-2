@@ -25,6 +25,7 @@ public class Client {
     @Column(name = "level")
     private int level;
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+   // @JsonManagedReference  - сериализирует
     private Set<Phone> phoneList = new HashSet<>();
     @ManyToMany(cascade = {CascadeType.ALL, CascadeType.ALL}, fetch = FetchType.EAGER)
     private List<Address> addresses = new ArrayList<>();
