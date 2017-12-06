@@ -24,7 +24,6 @@ public interface UserService {
      */
     User addUser(User user);
 
-
     /**
      * @param user - cat that should be updated to DB
      * @return user
