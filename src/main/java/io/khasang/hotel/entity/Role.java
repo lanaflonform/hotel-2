@@ -1,8 +1,6 @@
 package io.khasang.hotel.entity;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -28,11 +26,6 @@ public class Role {
     private String description;
 
     @ManyToMany(fetch = FetchType.EAGER, mappedBy = "roles")
-    @JsonIdentityInfo(
-            generator = ObjectIdGenerators.PropertyGenerator.class,
-            property  = "id",
-            scope     = Role.class
-    )
     @JsonIgnore
     private Set<User> users = new HashSet<>();
 
