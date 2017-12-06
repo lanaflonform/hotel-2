@@ -7,12 +7,15 @@
 </head>
 
 <script>
-    var service = 'http://localhost:8080/cat';
-    var RestPut = function (name, description) {
+    var service = 'http://localhost:8080/task';
+    var RestPut = function (name, bid, completed,createdAt) {
         var JSONObject = {
             'name': name,
-            'description': description
+            'bid': bid,
+            'completed': completed,
+            'createdAt': createdAt
         };
+
         $.ajax({
             type: 'PUT',
             url: service + '/add',
@@ -31,7 +34,7 @@
 </script>
 
 <body>
-<h1>Admin menu</h1>
+<h1>Task menu</h1>
 
 <table class="table">
     <tr>
@@ -41,16 +44,19 @@
     </tr>
     <tr>
         <td>
-            Add Cat <code><strong>PUT</strong></code>
+            Add Task <code><strong>PUT</strong></code>
         </td>
         <td>
-            <code>/cat/add</code>
+            <code>/task/add</code>
         </td>
         <td>
             <form class="form-inline">
-                name: <input type="text" id="putName" value="catName">
-                description: <input type="text" id="putDescription" value="catDescription">
-                <button type="button" onclick="RestPut($('#putName').val(), $('#putDescription').val())">Try</button>
+                name: <input type="text" id="putName" value="taskName">
+                request: <input type="text" id="putBid" value="taskBid">
+                completed: <input class="form-control" type="date" value="2017-11-19" id="putCompleted">
+                createdAt: <input class="form-control" type="date" value="2017-11-19" id="putCreatedAt">
+                <button type="button" onclick="RestPut($('#putName').val(), $('#putBid').val(),
+                                    $('#putCompleted').val(), $('#putCreatedAt').val())">Try</button>
             </form>
         </td>
     </tr>

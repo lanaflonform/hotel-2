@@ -13,6 +13,7 @@
             'name': name,
             'description': description
         };
+
         $.ajax({
             type: 'PUT',
             url: service + '/add',

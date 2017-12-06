@@ -1,11 +1,8 @@
 package io.khasang.hotel.config;
 
-import io.khasang.hotel.dao.CatDao;
-import io.khasang.hotel.dao.UserDao;
-import io.khasang.hotel.dao.impl.CatDaoImpl;
-import io.khasang.hotel.dao.impl.UserDaoImpl;
-import io.khasang.hotel.entity.Cat;
-import io.khasang.hotel.entity.User;
+import io.khasang.hotel.dao.*;
+import io.khasang.hotel.dao.impl.*;
+import io.khasang.hotel.entity.*;
 import io.khasang.hotel.model.CreateTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -16,8 +13,6 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl;
-
-import javax.jws.soap.SOAPBinding;
 
 @Configuration
 @PropertySource(value = "classpath:util.properties")
@@ -63,5 +58,27 @@ public class AppConfig {
     }
 
     @Bean
-    public UserDao userDao() { return new UserDaoImpl(User.class); }
+    public CarDao carDao(){
+        return new CarDaoImpl(Car.class);
+    }
+
+    @Bean
+    public BookingDao bookingDao() {
+        return new BookingDaoImpl(Booking.class);
+    }
+
+    @Bean
+    public TaskDao taskDao() {
+        return new TaskDaoImpl(Task.class);
+    }
+
+    @Bean
+    public DocumentDao documentDao() {
+        return new DocumentDaoImpl(Document.class);
+    }
+
+    @Bean
+    public RoleDao roleDao(){
+        return new RoleDaoImpl(Role.class);
+    }
 }

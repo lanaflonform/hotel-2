@@ -3,23 +3,14 @@ package io.khasang.hotel.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "roles")
-public class Role {
-
+@Table(name = "cat_woman")
+public class CatWoman {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column
     private String name;
-    private String description;
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 
     public String getName() {
         return name;
