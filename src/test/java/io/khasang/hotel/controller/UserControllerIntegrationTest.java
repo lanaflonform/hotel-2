@@ -1,5 +1,6 @@
 package io.khasang.hotel.controller;
 
+import io.khasang.hotel.entity.Role;
 import io.khasang.hotel.entity.User;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
@@ -7,7 +8,9 @@ import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -170,11 +173,19 @@ public class UserControllerIntegrationTest {
 
     private User prefillCall(String login) {
         User user = new User();
-        user.setLogin(login);
-        user.setEmail(login + "@test.com");
         user.setFirstName("testFirstName");
         user.setLastName("testLastName");
-        user.setBirthday(LocalDate.of(2017,11,26));
+        user.setEmail(login + "@test.com");
+        user.setBirthday(LocalDate.now());
+        user.setLogin(login);
+        user.setPassword("SecretPassword");
+        user.setEnabled(false);
+
+        Set<Role> roles = new HashSet<>();
+        roles.add(new Role("TestRole1", "Description for test role1"));
+        roles.add(new Role("TestRole2", "Description for test role2"));
+        user.setRoles(roles);
+
         return user;
     }
 }
