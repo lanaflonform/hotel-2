@@ -1,0 +1,54 @@
+// add user
+PUT http://localhost:8080/admin/user/add
+Content-Type: application/json;charset=utf-8
+
+{
+  "firstName":"first name",
+  "lastName":"last name",
+  "email":"test@test.com",
+  "birthday":"2017-12-01",
+  "login":"testUser",
+  "password":"Secret",
+  "enabled":false,
+  "roles":[]
+}
+
+###
+
+// get all users
+GET http://localhost:8080/admin/user/all
+
+###
+
+// get user by id
+GET http://localhost:8080/admin/user/get/1
+
+###
+
+// update user
+POST http://localhost:8080/admin/user/update
+Content-Type: application/json;charset=utf-8
+
+{
+  "id": 1,
+  "firstName":"new name",
+  "lastName":"last name",
+  "email":"test@test.com",
+  "birthday":"2017-12-01",
+  "login":"testUser",
+  "password":"Secret",
+  "enabled":false,
+  "roles":[]
+}
+
+###
+
+// get user by login
+GET http://localhost:8080/admin/user/get/login/testUser
+
+###
+
+// delete user
+DELETE http://localhost:8080/admin/user/delete/1
+
+###
