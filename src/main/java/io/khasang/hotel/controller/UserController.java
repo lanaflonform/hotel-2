@@ -15,6 +15,11 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    public String getPage() {
+        return "users";
+    }
+
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
     public List<User> getAllUsers() {
