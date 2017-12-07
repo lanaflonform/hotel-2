@@ -1,7 +1,7 @@
 package io.khasang.hotel.controller;
 
-import io.khasang.hotel.entity.Role;
-import io.khasang.hotel.entity.User;
+import io.khasang.hotel.dto.RoleDTO;
+import io.khasang.hotel.dto.UserDTO;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -9,7 +9,6 @@ import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.*;
@@ -25,44 +24,44 @@ public class UserControllerIntegrationTest {
 
     @Test
     public void addUser() {
-        User user = createUser("test");
+        UserDTO userDTO = createUser("test");
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<User> responseEntity = restTemplate.exchange(
+        ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
                 ROOT + GET_BY_ID + "/{id}",
                 HttpMethod.GET,
                 null,
-                User.class,
-                user.getId()
+                UserDTO.class,
+                userDTO.getId()
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-        User receivedUser = responseEntity.getBody();
+        UserDTO receivedUser = responseEntity.getBody();
         assertNotNull(receivedUser.getLogin());
-        deleteUser(user);
+        deleteUser(userDTO);
     }
 
     @Test
     public void userDelete() {
-        User user = createUser("test");
+        UserDTO userDTO = createUser("test");
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<User> responseEntity = restTemplate.exchange(
+        ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
                 ROOT + DELETE + "/{id}",
                 HttpMethod.DELETE,
                 null,
-                User.class,
-                user.getId()
+                UserDTO.class,
+                userDTO.getId()
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-        User receivedUser = responseEntity.getBody();
+        UserDTO receivedUser = responseEntity.getBody();
         assertNotNull(receivedUser.getLogin());
 
-        ResponseEntity<User> responseEntityForDeletedUser = restTemplate.exchange(
+        ResponseEntity<UserDTO> responseEntityForDeletedUser = restTemplate.exchange(
                 ROOT + GET_BY_ID + "/{id}",
                 HttpMethod.GET,
                 null,
-                User.class,
-                user.getId()
+                UserDTO.class,
+                userDTO.getId()
         );
 
         assertEquals("OK", responseEntityForDeletedUser.getStatusCode().getReasonPhrase());
@@ -71,121 +70,113 @@ public class UserControllerIntegrationTest {
 
     @Test
     public void getAllUsers() {
-        User user1 = createUser("test1");
-        User user2 = createUser("test2");
+        UserDTO user1 = createUser("test1");
+        UserDTO user2 = createUser("test2");
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<User>> responseEntity = restTemplate.exchange(
+        ResponseEntity<Set<UserDTO>> responseEntity = restTemplate.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<User>>() {
+                new ParameterizedTypeReference<Set<UserDTO>>() {
                 }
         );
 
-        List<User> userList = responseEntity.getBody();
-        assertNotNull(userList.get(0));
-        assertNotNull(userList.get(1));
+        Set<UserDTO> userSet = responseEntity.getBody();
+        assertNotNull(userSet);
+        assertEquals(2, userSet.size());
         deleteUser(user1);
         deleteUser(user2);
     }
 
     @Test
     public void getUserByLogin() {
-        User user = createUser("test");
+        UserDTO userDTO = createUser("test");
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        HttpEntity<User> httpEntity = new HttpEntity<>(user, httpHeaders);
+        HttpEntity<UserDTO> httpEntity = new HttpEntity<>(userDTO, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<User> responseEntity = restTemplate.exchange(
+        ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
                 ROOT + GET_BY_LOGIN + "/{login}",
                 HttpMethod.GET,
                 null,
-                User.class,
-                user.getLogin()
+                UserDTO.class,
+                userDTO.getLogin()
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-        User receivedUser = responseEntity.getBody();
+        UserDTO receivedUser = responseEntity.getBody();
         assertNotNull(receivedUser.getLogin());
-        assertEquals(user.getLogin(), receivedUser.getLogin());
-        deleteUser(user);
+        assertEquals(userDTO.getLogin(), receivedUser.getLogin());
+        deleteUser(userDTO);
     }
 
     @Test
     public void updateUser() {
-        User user = createUser("test");
-        user.setFirstName("TestUser");
+        UserDTO userDTO = createUser("test");
+        userDTO.setFirstName("TestUser");
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        HttpEntity<User> httpEntity = new HttpEntity<>(user, httpHeaders);
+        HttpEntity<UserDTO> httpEntity = new HttpEntity<>(userDTO, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<User> responseEntity = restTemplate.exchange(
+        ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
                 ROOT + UPDATE,
                 HttpMethod.POST,
                 httpEntity,
-                User.class
+                UserDTO.class
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-        User receivedUser = responseEntity.getBody();
+        UserDTO receivedUser = responseEntity.getBody();
         assertNotNull(receivedUser.getLogin());
         assertEquals("TestUser", receivedUser.getFirstName());
-        deleteUser(user);
+        deleteUser(userDTO);
     }
 
-    private User createUser(String login) {
+    private UserDTO createUser(String login) {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        User user = prefillCall(login);
+        UserDTO userDTO = prefillCall(login);
 
-        HttpEntity<User> httpEntity = new HttpEntity<>(user, httpHeaders);
+        HttpEntity<UserDTO> httpEntity = new HttpEntity<>(userDTO, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
-        User createdUser = restTemplate.exchange(
+        UserDTO createdUser = restTemplate.exchange(
                 ROOT + ADD,
                 HttpMethod.PUT,
                 httpEntity,
-                User.class
+                UserDTO.class
         ).getBody();
 
         assertNotNull(createdUser);
-        assertEquals(user.getLogin(), createdUser.getLogin());
+        assertEquals(userDTO.getLogin(), createdUser.getLogin());
         return createdUser;
     }
 
-    private void deleteUser(User user) {
+    private void deleteUser(UserDTO userDTO) {
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<User> responseEntity = restTemplate.exchange(
+        ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
                 ROOT + DELETE + "/{id}",
                 HttpMethod.DELETE,
                 null,
-                User.class,
-                user.getId()
+                UserDTO.class,
+                userDTO.getId()
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
     }
 
-    private User prefillCall(String login) {
-        User user = new User();
-        user.setFirstName("testFirstName");
-        user.setLastName("testLastName");
-        user.setEmail(login + "@test.com");
-        user.setBirthday(LocalDate.now());
-        user.setLogin(login);
-        user.setPassword("SecretPassword");
-        user.setEnabled(false);
+    private UserDTO prefillCall(String login) {
+        Set<RoleDTO> rolesDTO = new HashSet<>();
+        rolesDTO.add(new RoleDTO(null, "TestRole1", "Description for test role1"));
+        rolesDTO.add(new RoleDTO(null, "TestRole2", "Description for test role2"));
 
-        Set<Role> roles = new HashSet<>();
-        roles.add(new Role("TestRole1", "Description for test role1"));
-        roles.add(new Role("TestRole2", "Description for test role2"));
-        user.setRoles(roles);
+        return new UserDTO(null, "testFirstName", "testLastName", login + "@test.com",
+                LocalDate.now(), login, "SecretPassword", false, rolesDTO);
 
-        return user;
     }
 }

@@ -32,9 +32,7 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
 
         criteriaQuery.select(root);
         List<T> list = sessionFactory.getCurrentSession().createQuery(criteriaQuery).list();
-        Set<T> set = new HashSet<>();
-        set.addAll(list);
-        return set;
+        return new HashSet<>(list);
     }
 
     @Override

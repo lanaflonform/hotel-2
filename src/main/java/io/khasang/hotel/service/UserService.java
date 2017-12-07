@@ -1,44 +1,46 @@
 package io.khasang.hotel.service;
 
+import io.khasang.hotel.dto.UserDTO;
 import io.khasang.hotel.entity.User;
 
 import java.util.List;
+import java.util.Set;
 
 public interface UserService {
     /**
      * method for receiving all users
      *
-     * @return all users
+     * @return all users DTO
      */
-    List<User> getAllUsers();
+    Set<UserDTO> getAllUsers();
 
     /**
      * @param id = user id
-     * @return User by id
+     * @return User DTO by id
      */
-    User getUserById(long id);
+    UserDTO getUserById(Long id);
 
     /**
-     * @param user - user that should be added to DB
-     * @return user
+     * @param userDTO - user DTO that should be added to DB
+     * @return user DTO
      */
-    User addUser(User user);
+    UserDTO addUser(UserDTO userDTO);
 
     /**
-     * @param user - cat that should be updated to DB
-     * @return user
+     * @param userDTO - user that should be updated to DB
+     * @return user DTO
      */
-    User updateUser(User user);
+    UserDTO updateUser(UserDTO userDTO);
 
     /**
      * @param login - login of user
-     * @return user with specify login
+     * @return user DTO with specify login
      */
-    User getUserByLogin(String login);
+    UserDTO getUserByLogin(String login);
 
     /**
      * @param id - user id for remove
-     * @return  deleted user
+     * @return  deleted user DTO
      * */
-    User deleteUser(long id);
+    UserDTO deleteUser(Long id);
 }
