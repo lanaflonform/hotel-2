@@ -31,13 +31,9 @@ public class UserDTO {
     }
 
     public static UserDTO buildUserDTO(User user) {
-        // check if user deleted
-        if (user == null) {
-            return null;
-        } else {
-            return new UserDTO(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getBirthday(),
-                    user.getLogin(), user.getPassword(), user.isEnabled(), getRoleDTOSet(user));
-        }
+        // null if user deleted
+        return (user == null) ? null : new UserDTO(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getBirthday(),
+                user.getLogin(), user.getPassword(), user.isEnabled(), getRoleDTOSet(user));
     }
 
     public static Set<RoleDTO> getRoleDTOSet(User user) {
