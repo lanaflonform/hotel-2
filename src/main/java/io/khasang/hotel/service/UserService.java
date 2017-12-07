@@ -10,35 +10,45 @@ public interface UserService {
      *
      * @return all users DTO
      */
-    Set<UserDTO> getAllUsers();
+    Set<UserDTO> getAll();
 
     /**
-     * @param id = user id
-     * @return User DTO by id
+     * method for receiving user by id
+     *
+     * @param id - user id
+     * @return user DTO by id
      */
-    UserDTO getUserById(Long id);
+    UserDTO getById(Long id);
 
     /**
+     * method for add user to DB
+     *
      * @param userDTO - user DTO that should be added to DB
-     * @return user DTO
+     * @return added user DTO
      */
-    UserDTO addUser(UserDTO userDTO);
+    UserDTO add(UserDTO userDTO);
 
     /**
-     * @param userDTO - user that should be updated to DB
-     * @return user DTO
+     * method for update user in DB
+     *
+     * @param userDTO - user DTO that should be updated in DB
+     * @return updated user DTO
      */
-    UserDTO updateUser(UserDTO userDTO);
+    UserDTO update(UserDTO userDTO);
 
     /**
+     * method for receiving user by login
+     *
      * @param login - login of user
      * @return user DTO with specify login
      */
-    UserDTO getUserByLogin(String login);
+    UserDTO getByLogin(String login);
 
     /**
-     * @param id - user id for remove
+     * method for delete user from DB
+     *
+     * @param id - user id
      * @return  deleted user DTO
      * */
-    UserDTO deleteUser(Long id);
+    UserDTO delete(Long id);
 }

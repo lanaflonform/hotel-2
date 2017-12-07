@@ -22,37 +22,37 @@ public class UserController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public Set<UserDTO> getAllUsers() {
-        return userService.getAllUsers();
+    public Set<UserDTO> getAll() {
+        return userService.getAll();
     }
 
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public UserDTO getUserById(@PathVariable(value = "id") String id) {
-        return userService.getUserById(Long.parseLong(id));
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
-    public UserDTO addUser(@RequestBody UserDTO userDTO) {
-        return userService.addUser(userDTO);
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
-    public UserDTO updateUser(@RequestBody UserDTO userDTO) {
-        return userService.updateUser(userDTO);
+    public UserDTO getById(@PathVariable(value = "id") String id) {
+        return userService.getById(Long.parseLong(id));
     }
 
     @ResponseBody
     @RequestMapping(value = "/get/login/{login}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
-    public UserDTO getUserByLogin(@PathVariable("login") String login) {
-        return userService.getUserByLogin(login);
+    public UserDTO getByLogin(@PathVariable("login") String login) {
+        return userService.getByLogin(login);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    public UserDTO add(@RequestBody UserDTO user) {
+        return userService.add(user);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    public UserDTO update(@RequestBody UserDTO user) {
+        return userService.update(user);
     }
 
     @ResponseBody
     @RequestMapping(value = "/delete/{id}", method = RequestMethod.DELETE)
-    public UserDTO deleteUser(@PathVariable("id") String id) {
-        return userService.deleteUser(Long.parseLong(id));
+    public UserDTO delete(@PathVariable Long id) {
+        return userService.delete(id);
     }
 }

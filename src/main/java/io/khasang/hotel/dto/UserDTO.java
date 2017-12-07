@@ -26,11 +26,11 @@ public class UserDTO {
     private boolean enabled;
     private Set<RoleDTO> roles;
 
-    public static Set<UserDTO> getUserDTOSet(Set<User> userSet) {
-        return userSet.stream().map(UserDTO::buildUserDTO).collect(Collectors.toSet());
+    public static Set<UserDTO> getSet(Set<User> userSet) {
+        return userSet.stream().map(UserDTO::build).collect(Collectors.toSet());
     }
 
-    public static UserDTO buildUserDTO(User user) {
+    public static UserDTO build(User user) {
         // null if user deleted
         return (user == null) ? null : new UserDTO(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getRegistered(),
                 user.getLogin(), user.getPassword(), user.isEnabled(), getRoleDTOSet(user));

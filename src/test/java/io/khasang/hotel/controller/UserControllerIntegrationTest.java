@@ -43,19 +43,10 @@ public class UserControllerIntegrationTest {
     @Test
     public void userDelete() {
         UserDTO userDTO = createUser("test");
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
-                ROOT + DELETE + "/{id}",
-                HttpMethod.DELETE,
-                null,
-                UserDTO.class,
-                userDTO.getId()
-        );
-
-        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-        UserDTO receivedUser = responseEntity.getBody();
+        UserDTO receivedUser = deleteUser(userDTO).getBody();
         assertNotNull(receivedUser.getLogin());
 
+        RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<UserDTO> responseEntityForDeletedUser = restTemplate.exchange(
                 ROOT + GET_BY_ID + "/{id}",
                 HttpMethod.GET,
@@ -153,7 +144,7 @@ public class UserControllerIntegrationTest {
         return createdUser;
     }
 
-    private void deleteUser(UserDTO userDTO) {
+    private ResponseEntity<UserDTO> deleteUser(UserDTO userDTO) {
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
                 ROOT + DELETE + "/{id}",
@@ -164,6 +155,7 @@ public class UserControllerIntegrationTest {
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
+        return responseEntity;
     }
 
     private UserDTO prefillCall(String login) {
