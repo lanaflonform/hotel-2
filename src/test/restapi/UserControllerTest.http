@@ -10,7 +10,16 @@ Content-Type: application/json;charset=utf-8
   "login":"testUser",
   "password":"Secret",
   "enabled":false,
-  "roles":[]
+  "roles":[
+    {
+      "name": "Role1",
+      "description": "Some description for Role1"
+    },
+    {
+      "name": "Role2",
+      "description": "Some description for Role2"
+    }
+  ]
 }
 
 ###
@@ -38,7 +47,16 @@ Content-Type: application/json;charset=utf-8
   "login":"testUser",
   "password":"Secret",
   "enabled":false,
-  "roles":[]
+  "roles":[
+    {
+      "name": "Role1",
+      "description": "Some description for Role1"
+    },
+    {
+      "name": "Role2",
+      "description": "Some description for Role2"
+    }
+  ]
 }
 
 ###
