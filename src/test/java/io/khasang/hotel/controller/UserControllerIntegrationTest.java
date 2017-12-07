@@ -14,13 +14,13 @@ import java.util.Set;
 import static org.junit.Assert.*;
 
 public class UserControllerIntegrationTest {
-    private final String ROOT = "http://localhost:8080/admin/user";
-    private final String ADD = "/add";
-    private final String ALL = "/all";
-    private final String DELETE = "/delete";
-    private final String UPDATE = "/update";
-    private final String GET_BY_ID = "/get";
-    private final String GET_BY_LOGIN = "/get/login";
+    private static final String ROOT = "http://localhost:8080/admin/user";
+    private static final String ADD = "/add";
+    private static final String ALL = "/all";
+    private static final String DELETE = "/delete";
+    private static final String UPDATE = "/update";
+    private static final String GET_BY_ID = "/get";
+    private static final String GET_BY_LOGIN = "/get/login";
 
     @Test
     public void addUser() {
@@ -93,10 +93,6 @@ public class UserControllerIntegrationTest {
     public void getUserByLogin() {
         UserDTO userDTO = createUser("test");
 
-        HttpHeaders httpHeaders = new HttpHeaders();
-        httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
-
-        HttpEntity<UserDTO> httpEntity = new HttpEntity<>(userDTO, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
                 ROOT + GET_BY_LOGIN + "/{login}",

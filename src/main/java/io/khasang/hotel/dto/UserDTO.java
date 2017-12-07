@@ -36,7 +36,7 @@ public class UserDTO {
                 user.getLogin(), user.getPassword(), user.isEnabled(), getRoleDTOSet(user));
     }
 
-    public static Set<RoleDTO> getRoleDTOSet(User user) {
+    private static Set<RoleDTO> getRoleDTOSet(User user) {
         return user.getRoles().stream()
                 .map(role -> new RoleDTO(role.getId(), role.getName(), role.getDescription()))
                 .collect(Collectors.toSet());

@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8" %>
 <html>
 <head>
     <title>Title</title>
@@ -12,12 +12,13 @@
     }
 </style>
 
+<%--suppress JSUnusedLocalSymbols --%>
 <script>
     var service = 'http://localhost:8080/admin/user';
-    var RestPut = function (firstname, lastname, email, birthday, login, password, enabled) {
+    var RestPut = function (firstName, lastName, email, birthday, login, password, enabled) {
         var JSONObject = {
-            'firstName': firstname,
-            'lastName': lastname,
+            'firstName': firstName,
+            'lastName': lastName,
             'email': email,
             'birthday': birthday,
             'login': login,
@@ -44,11 +45,11 @@
         });
     };
 
-    var RestUpdate = function (id, firstname, lastname, email, birthday, login, password, enabled) {
+    var RestUpdate = function (id, firstName, lastName, email, birthday, login, password, enabled) {
         var JSONObject = {
             'id': id,
-            'firstName': firstname,
-            'lastName': lastname,
+            'firstName': firstName,
+            'lastName': lastName,
             'email': email,
             'birthday': birthday,
             'login': login,
@@ -154,39 +155,39 @@
             <form>
                 <table>
                     <tr>
-                        <td>firstName:</td>
-                        <td><input type="text" id="firstname" value="first name"></td>
+                        <td><label for="firstName">firstName:</label></td>
+                        <td><input type="text" id="firstName" value="first name"></td>
                     </tr>
                     <tr>
-                        <td>lastName:</td>
-                        <td><input type="text" id="lastname" value="last name"></td>
+                        <td><label for="lastName">lastName:</label></td>
+                        <td><input type="text" id="lastName" value="last name"></td>
                     </tr>
                     <tr>
-                        <td>email:</td>
+                        <td><label for="email">email:</label></td>
                         <td><input type="text" id="email" value="test@test.com"></td>
                     </tr>
                     <tr>
-                        <td>birthday:</td>
+                        <td><label for="birthday">birthday:</label></td>
                         <td><input class="form-control" type="date" id="birthday" value="2017-12-01"></td>
                     </tr>
                     <tr>
-                        <td>login:</td>
+                        <td><label for="login">login:</label></td>
                         <td><input type="text" id="login" value="testUser"></td>
                     </tr>
                     <tr>
-                        <td>password:</td>
+                        <td><label for="password">password:</label></td>
                         <td><input type="password" id="password" value="Secret"></td>
                     </tr>
                     <tr>
-                        <td>enabled:</td>
+                        <td><label for="enabled">enabled:</label></td>
                         <td><input type="checkbox" id="enabled"></td>
                     </tr>
                 </table>
                 <br>
                 <button type="button"
                         onclick="RestPut(
-                            $('#firstname').val(),
-                            $('#lastname').val(),
+                            $('#firstName').val(),
+                            $('#lastName').val(),
                             $('#email').val(),
                             $('#birthday').val(),
                             $('#login').val(),
@@ -217,7 +218,7 @@
             <form>
                 <table>
                     <tr>
-                        <td>id:</td>
+                        <td><label for="id">id:</label></td>
                         <td><input type="text" id="id" value="1"></td>
                     </tr>
                 </table>
@@ -235,12 +236,12 @@
             <form>
                 <table>
                     <tr>
-                        <td>id:</td>
-                        <td><input type="text" id="getbylogin" value="testUser"></td>
+                        <td><label for="getByLogin">id:</label></td>
+                        <td><input type="text" id="getByLogin" value="testUser"></td>
                     </tr>
                 </table>
                 <br>
-                <button type="button" onclick="RestGetByLogin($('#getbylogin').val())">Try</button>
+                <button type="button" onclick="RestGetByLogin($('#getByLogin').val())">Try</button>
             </form>
         </td>
     </tr>
@@ -253,49 +254,49 @@
             <form>
                 <table>
                     <tr>
-                        <td>id:</td>
-                        <td><input type="text" id="new-id" value="1"></td>
+                        <td><label for="newId">id:</label></td>
+                        <td><input type="text" id="newId" value="1"></td>
                     </tr>
                     <tr>
-                        <td>firstName:</td>
-                        <td><input type="text" id="new-firstname" value="first name"></td>
+                        <td><label for="newFirstName">firstName:</label></td>
+                        <td><input type="text" id="newFirstName" value="first name"></td>
                     </tr>
                     <tr>
-                        <td>lastName:</td>
-                        <td><input type="text" id="new-lastname" value="last name"></td>
+                        <td><label for="newLastName">lastName:</label></td>
+                        <td><input type="text" id="newLastName" value="last name"></td>
                     </tr>
                     <tr>
-                        <td>email:</td>
-                        <td><input type="text" id="new-email" value="test@test.com"></td>
+                        <td><label for="newEmail">email:</label></td>
+                        <td><input type="text" id="newEmail" value="test@test.com"></td>
                     </tr>
                     <tr>
-                        <td>birthday:</td>
-                        <td><input class="form-control" type="date" id="new-birthday" value="2017-12-01"></td>
+                        <td><label for="newBirthday">birthday:</label></td>
+                        <td><input class="form-control" type="date" id="newBirthday" value="2017-12-01"></td>
                     </tr>
                     <tr>
-                        <td>login:</td>
-                        <td><input type="text" id="new-login" value="testUser"></td>
+                        <td><label for="newLogin">login:</label></td>
+                        <td><input type="text" id="newLogin" value="testUser"></td>
                     </tr>
                     <tr>
-                        <td>password:</td>
-                        <td><input type="password" id="new-password" value="Secret"></td>
+                        <td><label for="newPassword">password:</label></td>
+                        <td><input type="password" id="newPassword" value="Secret"></td>
                     </tr>
                     <tr>
-                        <td>enabled:</td>
-                        <td><input type="checkbox" id="new-enabled"></td>
+                        <td><label for="newEnabled">enabled:</label></td>
+                        <td><input type="checkbox" id="newEnabled"></td>
                     </tr>
                 </table>
                 <br>
                 <button type="button"
                         onclick="RestUpdate(
-                            $('#new-id').val(),
-                            $('#new-firstname').val(),
-                            $('#new-lastname').val(),
-                            $('#new-email').val(),
-                            $('#new-birthday').val(),
-                            $('#new-login').val(),
-                            $('#new-password').val(),
-                            $('#new-enabled').is(':checked')
+                            $('#newId').val(),
+                            $('#newFirstName').val(),
+                            $('#newLastName').val(),
+                            $('#newEmail').val(),
+                            $('#newBirthday').val(),
+                            $('#newLogin').val(),
+                            $('#newPassword').val(),
+                            $('#newEnabled').is(':checked')
                         )">Try
                 </button>
             </form>
@@ -310,12 +311,12 @@
             <form>
                 <table>
                     <tr>
-                        <td>id:</td>
-                        <td><input type="text" id="delete-id" value="1"></td>
+                        <td><label for="deleteId">id:</label></td>
+                        <td><input type="text" id="deleteId" value="1"></td>
                     </tr>
                 </table>
                 <br>
-                <button type="button" onclick="RestDelete($('#delete-id').val())">Try</button>
+                <button type="button" onclick="RestDelete($('#deleteId').val())">Try</button>
             </form>
         </td>
     </tr>

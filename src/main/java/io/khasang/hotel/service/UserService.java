@@ -1,9 +1,7 @@
 package io.khasang.hotel.service;
 
 import io.khasang.hotel.dto.UserDTO;
-import io.khasang.hotel.entity.User;
 
-import java.util.List;
 import java.util.Set;
 
 public interface UserService {
