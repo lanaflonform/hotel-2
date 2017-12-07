@@ -26,11 +26,11 @@ public class UserDTO {
     private boolean enabled;
     private Set<RoleDTO> roles;
 
-    public Set<UserDTO> getUserDTOSet(Set<User> userSet) {
-        return userSet.stream().map(this::createUserDTO).collect(Collectors.toSet());
+    public static Set<UserDTO> getUserDTOSet(Set<User> userSet) {
+        return userSet.stream().map(UserDTO::buildUserDTO).collect(Collectors.toSet());
     }
 
-    public UserDTO createUserDTO(User user) {
+    public static UserDTO buildUserDTO(User user) {
         // check if user deleted
         if (user == null) {
             return null;
@@ -40,7 +40,7 @@ public class UserDTO {
         }
     }
 
-    public Set<RoleDTO> getRoleDTOSet(User user) {
+    public static Set<RoleDTO> getRoleDTOSet(User user) {
         return user.getRoles().stream()
                 .map(role -> new RoleDTO(role.getId(), role.getName(), role.getDescription()))
                 .collect(Collectors.toSet());
