@@ -20,7 +20,7 @@ public class UserDTO {
     private String firstName;
     private String lastName;
     private String email;
-    private LocalDate birthday;
+    private LocalDate registered;
     private String login;
     private String password;
     private boolean enabled;
@@ -32,7 +32,7 @@ public class UserDTO {
 
     public static UserDTO buildUserDTO(User user) {
         // null if user deleted
-        return (user == null) ? null : new UserDTO(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getBirthday(),
+        return (user == null) ? null : new UserDTO(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getRegistered(),
                 user.getLogin(), user.getPassword(), user.isEnabled(), getRoleDTOSet(user));
     }
 
@@ -43,7 +43,7 @@ public class UserDTO {
     }
 
     public User toUser() {
-        return new User(id, firstName, lastName, email, birthday, login, password, enabled, getRoleSet());
+        return new User(id, firstName, lastName, email, registered, login, password, enabled, getRoleSet());
     }
 
     private Set<Role> getRoleSet() {

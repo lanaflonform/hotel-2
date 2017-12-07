@@ -15,12 +15,12 @@
 <%--suppress JSUnusedLocalSymbols --%>
 <script>
     var service = 'http://localhost:8080/admin/user';
-    var RestPut = function (firstName, lastName, email, birthday, login, password, enabled) {
+    var RestPut = function (firstName, lastName, email, registered, login, password, enabled) {
         var JSONObject = {
             'firstName': firstName,
             'lastName': lastName,
             'email': email,
-            'birthday': birthday,
+            'registered': registered,
             'login': login,
             'password': password,
             'enabled': enabled,
@@ -45,13 +45,13 @@
         });
     };
 
-    var RestUpdate = function (id, firstName, lastName, email, birthday, login, password, enabled) {
+    var RestUpdate = function (id, firstName, lastName, email, registered, login, password, enabled) {
         var JSONObject = {
             'id': id,
             'firstName': firstName,
             'lastName': lastName,
             'email': email,
-            'birthday': birthday,
+            'registered': registered,
             'login': login,
             'password': password,
             'enabled': enabled,
@@ -167,8 +167,8 @@
                         <td><input type="text" id="email" value="test@test.com"></td>
                     </tr>
                     <tr>
-                        <td><label for="birthday">birthday:</label></td>
-                        <td><input class="form-control" type="date" id="birthday" value="2017-12-01"></td>
+                        <td><label for="registered">registered:</label></td>
+                        <td><input class="form-control" type="date" id="registered" value="2017-12-01"></td>
                     </tr>
                     <tr>
                         <td><label for="login">login:</label></td>
@@ -189,7 +189,7 @@
                             $('#firstName').val(),
                             $('#lastName').val(),
                             $('#email').val(),
-                            $('#birthday').val(),
+                            $('#registered').val(),
                             $('#login').val(),
                             $('#password').val(),
                             $('#enabled').is(':checked')
@@ -270,8 +270,8 @@
                         <td><input type="text" id="newEmail" value="test@test.com"></td>
                     </tr>
                     <tr>
-                        <td><label for="newBirthday">birthday:</label></td>
-                        <td><input class="form-control" type="date" id="newBirthday" value="2017-12-01"></td>
+                        <td><label for="newRegistered">registered:</label></td>
+                        <td><input class="form-control" type="date" id="newRegistered" value="2017-12-01"></td>
                     </tr>
                     <tr>
                         <td><label for="newLogin">login:</label></td>
@@ -293,7 +293,7 @@
                             $('#newFirstName').val(),
                             $('#newLastName').val(),
                             $('#newEmail').val(),
-                            $('#newBirthday').val(),
+                            $('#newRegistered').val(),
                             $('#newLogin').val(),
                             $('#newPassword').val(),
                             $('#newEnabled').is(':checked')

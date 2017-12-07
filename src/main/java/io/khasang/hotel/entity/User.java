@@ -28,7 +28,7 @@ public class User {
     private String email;
 
     @Column(columnDefinition = "DATE")
-    private LocalDate birthday;
+    private LocalDate registered = LocalDate.now();
 
     @Column(unique = true)
     private String login;
