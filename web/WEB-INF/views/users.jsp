@@ -121,6 +121,23 @@
         });
     };
 
+    var RestGetByEmail = function (email) {
+        $.ajax({
+            type: 'POST',
+            url: service + '/get/email',
+            contentType: 'application/json;utf-8',
+            data: email,
+            dataType: 'text',
+            async: false,
+            success: function (result) {
+                $('#response').html(JSON.stringify(result));
+            },
+            error: function (jqXHR, testStatus, errorThrown) {
+                $('#response').html(JSON.stringify(jqXHR));
+            }
+        });
+    };
+
     var RestDelete = function (id) {
         $.ajax({
             type: 'DELETE',
@@ -236,12 +253,30 @@
             <form>
                 <table>
                     <tr>
-                        <td><label for="getByLogin">id:</label></td>
+                        <td><label for="getByLogin">login:</label></td>
                         <td><input type="text" id="getByLogin" value="testUser"></td>
                     </tr>
                 </table>
                 <br>
                 <button type="button" onclick="RestGetByLogin($('#getByLogin').val())">Try</button>
+            </form>
+        </td>
+    </tr>
+    <tr>
+        <td>Get user by email</td>
+        <td>
+            <code>POST http://localhost:8080/admin/user/get/email</code>
+        </td>
+        <td>
+            <form>
+                <table>
+                    <tr>
+                        <td><label for="getByEmail">email:</label></td>
+                        <td><input type="text" id="getByEmail" value="test@test.com"></td>
+                    </tr>
+                </table>
+                <br>
+                <button type="button" onclick="RestGetByEmail($('#getByEmail').val())">Try</button>
             </form>
         </td>
     </tr>

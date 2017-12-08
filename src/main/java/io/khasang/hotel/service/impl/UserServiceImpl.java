@@ -25,7 +25,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO getByLogin(String login) { return UserDTO.build(userDao.getByLogin(login)); }
+    public UserDTO getByLogin(String login) {
+        return UserDTO.build(userDao.getByLogin(login));
+    }
+
+    @Override
+    public UserDTO getByEmail(String email) {
+        return UserDTO.build(userDao.getByEmail(email.replace("\"", "")));
+    }
 
     @Override
     public UserDTO update(UserDTO userDTO) {

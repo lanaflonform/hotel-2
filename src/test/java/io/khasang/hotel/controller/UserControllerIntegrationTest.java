@@ -21,6 +21,7 @@ public class UserControllerIntegrationTest {
     private static final String UPDATE = "/update";
     private static final String GET_BY_ID = "/get";
     private static final String GET_BY_LOGIN = "/get/login";
+    private static final String GET_BY_EMAIL = "/get/email";
 
     @Test
     public void addUser() {
@@ -121,6 +122,29 @@ public class UserControllerIntegrationTest {
         UserDTO receivedUser = responseEntity.getBody();
         assertNotNull(receivedUser.getLogin());
         assertEquals("TestUser", receivedUser.getFirstName());
+        deleteUser(userDTO);
+    }
+
+    @Test
+    public void getUserByEmail() {
+        UserDTO userDTO = createUser("test");
+
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        HttpEntity<String> httpEntity = new HttpEntity<>(userDTO.getEmail(), httpHeaders);
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
+                ROOT + GET_BY_EMAIL,
+                HttpMethod.POST,
+                httpEntity,
+                UserDTO.class
+        );
+
+        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
+        UserDTO receivedUser = responseEntity.getBody();
+        assertNotNull(receivedUser.getEmail());
+        assertEquals(userDTO.getEmail(), receivedUser.getEmail());
         deleteUser(userDTO);
     }
 

@@ -45,6 +45,14 @@ public interface UserService {
     UserDTO getByLogin(String login);
 
     /**
+     * method for receiving user by email
+     *
+     * @param email - email of user
+     * @return user DTO with specify email
+     */
+    UserDTO getByEmail(String email);
+
+    /**
      * method for delete user from DB
      *
      * @param id - user id

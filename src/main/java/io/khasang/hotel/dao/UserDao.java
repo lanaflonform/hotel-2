@@ -10,4 +10,12 @@ public interface UserDao extends BasicDao<User> {
      * @return user entity with specify login
      */
     User getByLogin(String login);
+
+    /**
+     * method for receiving user by login
+     *
+     * @param email - email of user
+     * @return user entity with specify email
+     */
+    User getByEmail(String email);
 }

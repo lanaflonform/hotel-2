@@ -39,6 +39,12 @@ public class UserController {
     }
 
     @ResponseBody
+    @RequestMapping(value = "/get/email", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
+    public UserDTO getByEmail(@RequestBody String email) {
+        return userService.getByEmail(email);
+    }
+
+    @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
     public UserDTO add(@RequestBody UserDTO user) {
         return userService.add(user);
