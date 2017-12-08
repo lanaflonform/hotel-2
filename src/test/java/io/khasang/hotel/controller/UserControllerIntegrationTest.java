@@ -2,6 +2,7 @@ package io.khasang.hotel.controller;
 
 import io.khasang.hotel.dto.RoleDTO;
 import io.khasang.hotel.dto.UserDTO;
+import io.khasang.hotel.util.exception.NotFoundException;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -46,18 +47,6 @@ public class UserControllerIntegrationTest {
         UserDTO userDTO = createUser("test");
         UserDTO receivedUser = deleteUser(userDTO).getBody();
         assertNotNull(receivedUser.getLogin());
-
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<UserDTO> responseEntityForDeletedUser = restTemplate.exchange(
-                ROOT + GET_BY_ID + "/{id}",
-                HttpMethod.GET,
-                null,
-                UserDTO.class,
-                userDTO.getId()
-        );
-
-        assertEquals("OK", responseEntityForDeletedUser.getStatusCode().getReasonPhrase());
-        assertNull(responseEntityForDeletedUser.getBody());
     }
 
     @Test
