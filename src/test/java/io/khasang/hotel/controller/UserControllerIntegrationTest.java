@@ -5,6 +5,7 @@ import io.khasang.hotel.dto.UserDTO;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
@@ -47,6 +48,13 @@ public class UserControllerIntegrationTest {
         UserDTO userDTO = createUser("test");
         UserDTO receivedUser = deleteUser(userDTO).getBody();
         assertNotNull(receivedUser.getLogin());
+    }
+
+    @Test(expected = HttpServerErrorException.class)
+    public void getExceptionWhenDeleteNonexistentUser() {
+        UserDTO userDTO = new UserDTO(9999L, "", "", "", null, "",
+                "", false, null);
+        deleteUser(userDTO);
     }
 
     @Test
