@@ -32,7 +32,7 @@ public class AppConfig {
     }
 
     @Bean
-    public UserDetailsService userDetailsService(){
+    public UserDetailsService userDetailsService() {
         JdbcDaoImpl jdbcDao = new JdbcDaoImpl();
         jdbcDao.setDataSource(dataSource());
         jdbcDao.setUsersByUsernameQuery(environment.getRequiredProperty("usersByQuery"));
@@ -41,7 +41,7 @@ public class AppConfig {
     }
 
     @Bean
-    public JdbcTemplate jdbcTemplate(){
+    public JdbcTemplate jdbcTemplate() {
         JdbcTemplate jdbcTemplate = new JdbcTemplate();
         jdbcTemplate.setDataSource(dataSource());
         return jdbcTemplate;
@@ -53,12 +53,12 @@ public class AppConfig {
     }
 
     @Bean
-    public CatDao catDao(){
+    public CatDao catDao() {
         return new CatDaoImpl(Cat.class);
     }
 
     @Bean
-    public CarDao carDao(){
+    public CarDao carDao() {
         return new CarDaoImpl(Car.class);
     }
 
@@ -78,10 +78,17 @@ public class AppConfig {
     }
 
     @Bean
-    public RoleDao roleDao(){
+    public RoleDao roleDao() {
         return new RoleDaoImpl(Role.class);
     }
 
     @Bean
-    public UserDao userDao() { return new UserDaoImpl(User.class); }
+    public UserDao userDao() {
+        return new UserDaoImpl(User.class);
+    }
+
+    @Bean
+    public GoodsDao goodsDao() {
+        return new GoodsDaoImpl(Goods.class);
+    }
 }
