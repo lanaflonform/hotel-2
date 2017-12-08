@@ -10,8 +10,14 @@ public class UserDaoImpl extends BasicDaoImpl<User> implements UserDao {
     }
 
     @Override
-    public User getUserByLogin(String login) {
+    public User getByLogin(String login) {
         return (User) sessionFactory.getCurrentSession().
                 createQuery("from User as u where u.login = ?").setParameter(0, login).uniqueResult();
+    }
+
+    @Override
+    public User getByEmail(String email) {
+        return (User) sessionFactory.getCurrentSession().
+                createQuery("from User as u where u.email = ?").setParameter(0, email).uniqueResult();
     }
 }

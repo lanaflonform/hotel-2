@@ -1,12 +1,18 @@
 package io.khasang.hotel.service.impl;
 
 import io.khasang.hotel.dao.UserDao;
+import io.khasang.hotel.dto.UserDTO;
 import io.khasang.hotel.entity.User;
 import io.khasang.hotel.service.UserService;
+import io.khasang.hotel.util.exception.NotFoundException;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Set;
+
+import static io.khasang.hotel.util.ValidationUtil.checkNotFound;
+import static io.khasang.hotel.util.ValidationUtil.checkNotFoundWithId;
 
 @Service("UserService")
 public class UserServiceImpl implements UserService {
@@ -15,30 +21,42 @@ public class UserServiceImpl implements UserService {
     private UserDao userDao;
 
     @Override
-    public List<User> getAllUsers() {
-        return userDao.getList();
+    public Set<UserDTO> getAll() {
+        return UserDTO.getSet(userDao.getSet());
     }
 
     @Override
-    public User deleteUser(long id) {
-        return userDao.delete(getUserById(id));
+    public UserDTO delete(Long id) throws NotFoundException {
+        User user = checkNotFoundWithId(userDao.getById(id), id);
+        return UserDTO.build(userDao.delete(user));
     }
 
     @Override
-    public User getUserByLogin(String login) { return userDao.getUserByLogin(login); }
-
-    @Override
-    public User updateUser(User user) {
-        return userDao.update(user);
+    public UserDTO getByLogin(String login) throws NotFoundException {
+        User user = checkNotFound(userDao.getByLogin(login), "login=" + login);
+        return UserDTO.build(user);
     }
 
     @Override
-    public User addUser(User user) {
-        return userDao.add(user);
+    public UserDTO getByEmail(String email) throws NotFoundException {
+        User user = checkNotFound(userDao.getByEmail(email.replace("\"", "")), "email=" + email);
+        return UserDTO.build(user);
     }
 
     @Override
-    public User getUserById(long id) {
-        return userDao.getById(id);
+    public UserDTO update(UserDTO userDTO) throws NotFoundException {
+        User user = checkNotFoundWithId(userDao.update(userDTO.toUser()), userDTO.getId());
+        return UserDTO.build(user);
+    }
+
+    @Override
+    public UserDTO add(@NonNull UserDTO userDTO) {
+        return UserDTO.build(userDao.add(userDTO.toUser()));
+    }
+
+    @Override
+    public UserDTO getById(Long id) throws NotFoundException {
+        User user = checkNotFoundWithId(userDao.getById(id), id);
+        return UserDTO.build(user);
     }
 }

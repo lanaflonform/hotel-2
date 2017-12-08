@@ -1,44 +1,63 @@
 package io.khasang.hotel.service;
 
-import io.khasang.hotel.entity.User;
+import io.khasang.hotel.dto.UserDTO;
+import io.khasang.hotel.util.exception.NotFoundException;
 
-import java.util.List;
+import java.util.Set;
 
 public interface UserService {
     /**
      * method for receiving all users
      *
-     * @return all users
+     * @return all users DTO
      */
-    List<User> getAllUsers();
+    Set<UserDTO> getAll();
 
     /**
-     * @param id = user id
-     * @return User by id
+     * method for receiving user by id
+     *
+     * @param id - user id
+     * @return user DTO by id
      */
-    User getUserById(long id);
+    UserDTO getById(Long id) throws NotFoundException;
 
     /**
-     * @param user - user that should be added to DB
-     * @return user
+     * method for add user to DB
+     *
+     * @param userDTO - user DTO that should be added to DB
+     * @return added user DTO
      */
-    User addUser(User user);
+    UserDTO add(UserDTO userDTO);
 
     /**
-     * @param user - cat that should be updated to DB
-     * @return user
+     * method for update user in DB
+     *
+     * @param userDTO - user DTO that should be updated in DB
+     * @return updated user DTO
      */
-    User updateUser(User user);
+    UserDTO update(UserDTO userDTO) throws NotFoundException;
 
     /**
+     * method for receiving user by login
+     *
      * @param login - login of user
-     * @return user with specify login
+     * @return user DTO with specify login
      */
-    User getUserByLogin(String login);
+    UserDTO getByLogin(String login) throws NotFoundException;
 
     /**
-     * @param id - user id for remove
-     * @return  deleted user
+     * method for receiving user by email
+     *
+     * @param email - email of user
+     * @return user DTO with specify email
+     */
+    UserDTO getByEmail(String email) throws NotFoundException;
+
+    /**
+     * method for delete user from DB
+     *
+     * @param id - user id
+     * @return  deleted user DTO
      * */
-    User deleteUser(long id);
+    UserDTO delete(Long id) throws NotFoundException;
 }
