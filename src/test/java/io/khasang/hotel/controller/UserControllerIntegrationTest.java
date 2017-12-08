@@ -2,7 +2,6 @@ package io.khasang.hotel.controller;
 
 import io.khasang.hotel.dto.RoleDTO;
 import io.khasang.hotel.dto.UserDTO;
-import io.khasang.hotel.util.exception.NotFoundException;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
@@ -12,7 +11,8 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 public class UserControllerIntegrationTest {
     private static final String ROOT = "http://localhost:8080/admin/user";
