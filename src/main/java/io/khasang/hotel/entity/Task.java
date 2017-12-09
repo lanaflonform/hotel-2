@@ -1,9 +1,7 @@
 package io.khasang.hotel.entity;
 
-import org.hibernate.annotations.Type;
-
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "tasks")
@@ -15,12 +13,11 @@ public class Task {
     private String name;
     private String bid;
 
-    @Type(type = "date")
-    private Date completed;
+    @Column(columnDefinition = "DATE")
+    private LocalDate completed;
 
-    @Column(name = "created_at")
-    @Type(type = "date")
-    private Date createdAt;
+    @Column(name = "created_at", columnDefinition = "DATE")
+    private LocalDate createdAt;
 
     public long getId() {
         return id;
@@ -46,19 +43,19 @@ public class Task {
         this.name = name;
     }
 
-    public Date getCompleted() {
+    public LocalDate getCompleted() {
         return completed;
     }
 
-    public void setCompleted(Date completed) {
+    public void setCompleted(LocalDate completed) {
         this.completed = completed;
     }
 
-    public Date getCreatedAt() {
+    public LocalDate getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
     }
 }

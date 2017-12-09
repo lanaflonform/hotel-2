@@ -1,13 +1,14 @@
 package io.khasang.hotel.controller;
 
+import io.khasang.hotel.dto.TaskDTO;
 import io.khasang.hotel.entity.Task;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Date;
-import java.util.List;
+import java.time.LocalDate;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -71,18 +72,16 @@ public class TaskControllerIntegrationTest {
         createTask();
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<Task>> responseEntity = restTemplate.exchange(
+        ResponseEntity<Set<TaskDTO>> responseEntity = restTemplate.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Task>>() {
+                new ParameterizedTypeReference<Set<TaskDTO>>() {
                 }
         );
 
-        List<Task> taskList = responseEntity.getBody();
-        assertNotNull(taskList.get(0));
-        assertNotNull(taskList.get(1));
-
+        Set<TaskDTO> taskSet = responseEntity.getBody();
+        assertNotNull(taskSet);
     }
 
     private Task createTask() {
@@ -132,8 +131,8 @@ public class TaskControllerIntegrationTest {
         Task toDo = new Task();
         toDo.setName(name);
         toDo.setBid("To DO");
-        toDo.setCreatedAt(new Date());
-        toDo.setCompleted(new Date());
+        toDo.setCreatedAt(LocalDate.of(2017, 1, 22));
+        toDo.setCompleted(LocalDate.of(2017, 1, 22));
         return toDo;
     }
 }

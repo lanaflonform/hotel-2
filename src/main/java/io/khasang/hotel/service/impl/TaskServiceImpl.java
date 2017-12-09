@@ -1,22 +1,26 @@
 package io.khasang.hotel.service.impl;
 
 import io.khasang.hotel.dao.TaskDao;
+import io.khasang.hotel.dto.TaskDTO;
 import io.khasang.hotel.entity.Task;
 import io.khasang.hotel.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service("TaskService")
 public class TaskServiceImpl implements TaskService{
 
     @Autowired
     private TaskDao taskDao;
+    @Autowired
+    private TaskDTO taskDTO;
 
     @Override
-    public List<Task> getAllTask() {
-        return taskDao.getList();
+    public Set<TaskDTO> getAllTask() {
+        return taskDTO.getSetDTO(taskDao.getSet());
     }
 
     @Override
@@ -35,8 +39,8 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public List<Task> getTaskByName(String name) {
-        return taskDao.getTaskByName(name);
+    public List<TaskDTO> getTaskByName(String name) {
+        return taskDTO.getListDTO(taskDao.getTaskByName(name));
     }
 
     @Override

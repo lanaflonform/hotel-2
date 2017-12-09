@@ -1,8 +1,10 @@
 package io.khasang.hotel.service;
 
+import io.khasang.hotel.dto.TaskDTO;
 import io.khasang.hotel.entity.Task;
 
 import java.util.List;
+import java.util.Set;
 
 public interface TaskService {
 
@@ -11,7 +13,7 @@ public interface TaskService {
      *
      * @return all task
      */
-    List<Task> getAllTask();
+    Set<TaskDTO> getAllTask();
 
     /**
      * @param id = task id
@@ -36,7 +38,7 @@ public interface TaskService {
      * @param name - name of tasks
      * @return list of tasks with specify name
      */
-    List<Task> getTaskByName(String name);
+    List<TaskDTO> getTaskByName(String name);
 
     /**
      * @param id - task id for remove

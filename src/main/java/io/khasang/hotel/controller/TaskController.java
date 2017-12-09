@@ -1,5 +1,6 @@
 package io.khasang.hotel.controller;
 
+import io.khasang.hotel.dto.TaskDTO;
 import io.khasang.hotel.entity.Task;
 import io.khasang.hotel.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/task")
@@ -17,7 +19,7 @@ public class TaskController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     @ResponseBody
-    public List<Task> getAllTask() {
+    public Set<TaskDTO> getAllTask() {
         return taskService.getAllTask();
     }
 
@@ -41,7 +43,7 @@ public class TaskController {
 
     @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET)
     @ResponseBody
-    public List<Task> getTaskByName(@PathVariable("name") String name) {
+    public List<TaskDTO> getTaskByName(@PathVariable("name") String name) {
         return taskService.getTaskByName(name);
     }
 
