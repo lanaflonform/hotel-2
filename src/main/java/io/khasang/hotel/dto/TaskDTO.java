@@ -63,6 +63,7 @@ public class TaskDTO {
 
         for (Task task : getSetTask) {
             TaskDTO taskDTO = new TaskDTO();
+            taskDTO.setId(task.getId());
             taskDTO.setName(task.getName());
             taskDTO.setBid(task.getBid());
             taskDTO.setCreatedAt(task.getCreatedAt());
@@ -72,17 +73,18 @@ public class TaskDTO {
         return taskDTOSet;
     }
 
-    public List<TaskDTO> getListDTO(List<Task> taskByName) {
-        List<TaskDTO> taskDTOList = new ArrayList<>();
+    public Set<TaskDTO> getSetDTOFromList(List<Task> taskByName) {
+        Set<TaskDTO> taskDTOSet = new HashSet<>();
 
         for (Task task : taskByName) {
             TaskDTO taskDTO = new TaskDTO();
+            taskDTO.setId(task.getId());
             taskDTO.setBid(task.getBid());
             taskDTO.setName(task.getName());
             taskDTO.setCompleted(task.getCompleted());
             taskDTO.setCreatedAt(task.getCreatedAt());
-            taskDTOList.add(taskDTO);
+            taskDTOSet.add(taskDTO);
         }
-        return taskDTOList;
+        return taskDTOSet;
     }
 }

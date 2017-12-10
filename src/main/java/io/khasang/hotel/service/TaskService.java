@@ -38,7 +38,7 @@ public interface TaskService {
      * @param name - name of tasks
      * @return list of tasks with specify name
      */
-    List<TaskDTO> getTaskByName(String name);
+    Set<TaskDTO> getTaskByName(String name);
 
     /**
      * @param id - task id for remove

@@ -21,7 +21,7 @@ public class TaskControllerIntegrationTest {
     private final String GET_BY_ID = "/get";
 
     @Test
-    public void addCat() {
+    public void addTask() {
         Task task = createTask();
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Task> responseEntity = restTemplate.exchange(
@@ -33,12 +33,12 @@ public class TaskControllerIntegrationTest {
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-        Task receivedCat = responseEntity.getBody();
-        assertNotNull(receivedCat.getBid());
+        Task receivedTask = responseEntity.getBody();
+        assertNotNull(receivedTask.getBid());
     }
 
     @Test
-    public void catDelete() {
+    public void taskDelete() {
         Task task = createTask();
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Task> responseEntity = restTemplate.exchange(

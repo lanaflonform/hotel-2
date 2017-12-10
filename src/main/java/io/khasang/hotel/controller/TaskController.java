@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -43,7 +42,7 @@ public class TaskController {
 
     @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET)
     @ResponseBody
-    public List<TaskDTO> getTaskByName(@PathVariable("name") String name) {
+    public Set<TaskDTO> getTaskByName(@PathVariable("name") String name) {
         return taskService.getTaskByName(name);
     }
 

@@ -7,7 +7,6 @@ import io.khasang.hotel.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Set;
 
 @Service("TaskService")
@@ -39,8 +38,8 @@ public class TaskServiceImpl implements TaskService{
     }
 
     @Override
-    public List<TaskDTO> getTaskByName(String name) {
-        return taskDTO.getListDTO(taskDao.getTaskByName(name));
+    public Set<TaskDTO> getTaskByName(String name) {
+        return taskDTO.getSetDTOFromList(taskDao.getTaskByName(name));
     }
 
     @Override
