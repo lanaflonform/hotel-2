@@ -1,55 +1,31 @@
-package io.khasang.hotel.entity;
+package io.khasang.hotel.dto;
 
-import io.khasang.hotel.dto.DocumentDTO;
-import org.hibernate.annotations.Type;
+import io.khasang.hotel.entity.Document;
 
-import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 
-@Entity
-@Table(name = "documents")
-public class Document {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class DocumentDTO {
     private Long id;
-
     private String name;
-
-    /**
-     * Type of the document:
-     * Invoice, Contract, Report, SpreadSheet, Certificate, Identity, License ...
-     */
     private String type;
-
     private String description;
-
-    // TODO: create DocFile entity, then add field List<DocFile> docFiles;
-
-    @Type(type = "timestamp")
-    @Column(name = "creation_date")
     private Date creationDate;
-
-    @Type(type = "timestamp")
-    @Column(name = "modification_date")
     private Date modificationDate;
-
-    @Column(name = "is_valid", columnDefinition = "boolean default true", nullable = false)
     private boolean valid;
 
-    public static Document from(DocumentDTO dto) {
-        if (dto == null) {
+    public static DocumentDTO from(Document document) {
+        if (document == null) {
             return null;
         }
-        Document document = new Document();
-        document.setId(dto.getId());
-        document.setName(dto.getName());
-        document.setType(dto.getType());
-        document.setDescription(dto.getDescription());
-        document.setCreationDate(dto.getCreationDate());
-        document.setModificationDate(dto.getModificationDate());
-        document.setValid(dto.isValid());
-        return document;
+        DocumentDTO dto = new DocumentDTO();
+        dto.setId(document.getId());
+        dto.setName(document.getName());
+        dto.setType(document.getType());
+        dto.setCreationDate(document.getCreationDate());
+        dto.setModificationDate(document.getModificationDate());
+        dto.setDescription(document.getDescription());
+        dto.setValid(document.isValid());
+        return dto;
     }
 
     public Long getId() {
