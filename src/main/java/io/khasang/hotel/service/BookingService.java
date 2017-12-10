@@ -1,8 +1,9 @@
 package io.khasang.hotel.service;
 
+import io.khasang.hotel.dto.BookingDTO;
 import io.khasang.hotel.entity.Booking;
 
-import java.util.List;
+import java.util.Set;
 
 public interface BookingService {
     /**
@@ -10,7 +11,7 @@ public interface BookingService {
      *
      * @return all bookings
      */
-    List<Booking> getAllBookings();
+    Set<BookingDTO> getAllBookings();
 
     /**
      * @param id - booking id
@@ -35,7 +36,7 @@ public interface BookingService {
      * @param name - name of bookings
      * @return list of bookings with specify name
      */
-    List<Booking> getBookingsByName(String name);
+    Set<BookingDTO> getBookingsByName(String name);
 
     /**
      * @param id - booking id for remove

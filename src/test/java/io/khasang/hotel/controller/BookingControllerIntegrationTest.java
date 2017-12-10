@@ -1,17 +1,16 @@
 package io.khasang.hotel.controller;
 
+import io.khasang.hotel.dto.BookingDTO;
 import io.khasang.hotel.entity.Booking;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class BookingControllerIntegrationTest {
     private final String ROOT = "http://localhost:8080/booking";
@@ -73,17 +72,16 @@ public class BookingControllerIntegrationTest {
         createBooking();
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<Booking>> responseEntity = restTemplate.exchange(
+        ResponseEntity<List<BookingDTO>> responseEntity = restTemplate.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Booking>>() {
+                new ParameterizedTypeReference<List<BookingDTO>>() {
                 }
         );
 
-        List<Booking> bookingList = responseEntity.getBody();
-        assertNotNull(bookingList.get(0));
-        assertNotNull(bookingList.get(1));
+        List<BookingDTO> bookingList = responseEntity.getBody();
+        assertNotNull(bookingList);
 
     }
 
@@ -134,8 +132,8 @@ public class BookingControllerIntegrationTest {
         Booking petrov = new Booking();
         petrov.setName(name);
         petrov.setRoom("402");
-        petrov.setStartDate(new Date());
-        petrov.setEndDate(new Date());
+        petrov.setStartDate(LocalDate.of(2017, 1, 22));
+        petrov.setEndDate(LocalDate.of(2017, 1, 22));
         return petrov;
     }
 }

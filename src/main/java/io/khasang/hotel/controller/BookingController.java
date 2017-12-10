@@ -1,12 +1,13 @@
 package io.khasang.hotel.controller;
 
+import io.khasang.hotel.dto.BookingDTO;
 import io.khasang.hotel.entity.Booking;
 import io.khasang.hotel.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/booking")
@@ -17,7 +18,7 @@ public class BookingController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public List<Booking> getAllBooking() {
+    public Set<BookingDTO> getAllBooking() {
         return bookingService.getAllBookings();
     }
 
@@ -41,7 +42,7 @@ public class BookingController {
 
     @ResponseBody
     @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET)
-    public List<Booking> getBookingByName(@PathVariable("name") String name) {
+    public Set<BookingDTO> getBookingByName(@PathVariable("name") String name) {
         return bookingService.getBookingsByName(name);
     }
 
