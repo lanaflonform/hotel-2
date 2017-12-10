@@ -3,6 +3,7 @@ package io.khasang.hotel.config;
 import io.khasang.hotel.dao.*;
 import io.khasang.hotel.dao.impl.*;
 import io.khasang.hotel.entity.*;
+import io.khasang.hotel.entity.goods.Goods;
 import io.khasang.hotel.model.CreateTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

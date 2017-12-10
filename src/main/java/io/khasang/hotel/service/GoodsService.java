@@ -1,6 +1,6 @@
 package io.khasang.hotel.service;
 
-import io.khasang.hotel.entity.Goods;
+import io.khasang.hotel.entity.goods.Goods;
 
 import java.util.List;
 

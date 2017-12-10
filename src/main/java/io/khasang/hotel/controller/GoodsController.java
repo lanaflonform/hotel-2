@@ -1,6 +1,6 @@
 package io.khasang.hotel.controller;
 
-import io.khasang.hotel.entity.Goods;
+import io.khasang.hotel.entity.goods.Goods;
 import io.khasang.hotel.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

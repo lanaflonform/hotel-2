@@ -1,17 +1,14 @@
 package io.khasang.hotel.controller;
 
-import io.khasang.hotel.entity.Goods;
+import io.khasang.hotel.entity.goods.Goods;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Date;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 public class GoodsControllerIntegrationTest {
     private final String ROOT = "http://localhost:8080/goods";
@@ -131,14 +128,14 @@ public class GoodsControllerIntegrationTest {
 
     private Goods prefillGoods(String name) {
         Goods testGoods = new Goods();
-        testGoods.setName(name);
-        testGoods.setPrice(10);
-        testGoods.setStock(2);
-        testGoods.setCategories("something");
-        testGoods.setDate(new Date());
-        testGoods.setDescription("this line for test");
-        testGoods.setTags("qwerty");
-        testGoods.setSku("шт");
+//        testGoods.setName(name);
+//        testGoods.setPrice(10);
+//        testGoods.setStock(2);
+//        testGoods.setCategoryDTO("something");
+//        testGoods.setDate(new Date());
+//        testGoods.setDescription("this line for test");
+//        testGoods.setTagDTOS("qwerty");
+//        testGoods.setSkuDTO("шт");
         return testGoods;
     }
 }
