@@ -84,4 +84,9 @@ public class AppConfig {
 
     @Bean
     public UserDao userDao() { return new UserDaoImpl(User.class); }
+
+    @Bean
+    public RoomDao roomDao(){
+        return new RoomDaoImpl(Room.class);
+    }
 }
