@@ -3,7 +3,6 @@
 <head>
     <link rel="stylesheet" type="text/css" href="../../css/style.css" media="all">
     <title>Title</title>
-
 </head>
 <body>
 <p>${hello}</p>
