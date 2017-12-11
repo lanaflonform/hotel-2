@@ -1,21 +1,24 @@
 package io.khasang.hotel.service.impl;
 
 import io.khasang.hotel.dao.RoleDao;
+import io.khasang.hotel.dto.RoleDTO;
 import io.khasang.hotel.entity.Role;
 import io.khasang.hotel.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Set;
 
 @Service("RoleService")
-public class RoleServiceImpl implements RoleService{
+public class RoleServiceImpl implements RoleService {
     @Autowired
     private RoleDao roleDao;
+    @Autowired
+    private RoleDTO roleDTO;
 
     @Override
-    public List<Role> getAllRoles() {
-        return roleDao.getList();
+    public Set<RoleDTO> getAllRoles() {
+        return roleDTO.getRoleDTO(roleDao.getSet());
     }
 
     @Override
@@ -24,8 +27,8 @@ public class RoleServiceImpl implements RoleService{
     }
 
     @Override
-    public List<Role> getRolesByName(String name) {
-        return roleDao.getRolesByName(name);
+    public Set<RoleDTO> getRolesByName(String name) {
+        return roleDTO.getRoleDTO(roleDao.getRolesByName(name));
     }
 
     @Override

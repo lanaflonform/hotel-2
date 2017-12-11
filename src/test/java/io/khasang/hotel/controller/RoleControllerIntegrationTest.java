@@ -1,12 +1,15 @@
 package io.khasang.hotel.controller;
 
 import io.khasang.hotel.entity.Role;
+import io.khasang.hotel.entity.User;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -81,14 +84,35 @@ public class RoleControllerIntegrationTest {
         List<Role> roleList = responseEntity.getBody();
         assertNotNull(roleList.get(0));
         assertNotNull(roleList.get(1));
-
     }
 
-    private Role createRole() {
+    @Test
+    public void addUser() {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        Role role = prefillCall("Admin");
+        User user = new User();
+        user.setLogin("sanya");
+        user.setName("Sanya");
+        user.setPassword("sanya");
+
+        Role role1 = createRole("STAFF");
+        Role role2 = createRole("AD");
+
+        Set<Role> roles = new HashSet<>();
+        roles.add(role1);
+        roles.add(role2);
+
+        user.setRoles(roles);
+
+        assertNotNull(user.getRoles());
+    }
+
+    private Role createRole(String name) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        Role role = prefillCall(name);
 
         HttpEntity<Role> httpEntity = new HttpEntity<>(role, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
@@ -102,6 +126,10 @@ public class RoleControllerIntegrationTest {
         assertNotNull(createdRole);
         assertEquals(role.getName(), createdRole.getName());
         return createdRole;
+    }
+
+    private Role createRole() {
+        return createRole("Admin");
     }
 
     @Test
@@ -133,5 +161,4 @@ public class RoleControllerIntegrationTest {
         superRole.setDescription("Super Role");
         return superRole;
     }
-
 }

@@ -3,7 +3,9 @@ package io.khasang.hotel.dao.impl;
 import io.khasang.hotel.dao.RoleDao;
 import io.khasang.hotel.entity.Role;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class RoleDaoImpl extends BasicDaoImpl<Role> implements RoleDao {
 
@@ -12,8 +14,11 @@ public class RoleDaoImpl extends BasicDaoImpl<Role> implements RoleDao {
     }
 
     @Override
-    public List<Role> getRolesByName(String name) {
-        return (List<Role>) sessionFactory.getCurrentSession().
-                createQuery("from Role as c where c.name = ?").setParameter(0, name).list();
+    public Set<Role> getRolesByName(String name) {
+        Set<Role> set = new HashSet<>();
+        List list = (List<Role>) sessionFactory.getCurrentSession().
+                createQuery("from roles as c where c.name = ?").setParameter(0, name).list();
+        set.addAll(list);
+        return set;
     }
 }

@@ -2,8 +2,8 @@ package io.khasang.hotel.dao;
 
 import io.khasang.hotel.entity.Role;
 
-import java.util.List;
+import java.util.Set;
 
 public interface RoleDao extends BasicDao<Role> {
-    List<Role> getRolesByName(String name);
+    Set<Role> getRolesByName(String name);
 }

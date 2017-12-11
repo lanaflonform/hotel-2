@@ -1,32 +1,33 @@
 package io.khasang.hotel.service;
 
+import io.khasang.hotel.dto.RoleDTO;
 import io.khasang.hotel.entity.Role;
 
-import java.util.List;
+import java.util.Set;
 
 public interface RoleService {
     /**
      * method for receiving all roles
      *
-     * @return all roles
+     * @return all roles DTO
      */
-    List<Role> getAllRoles();
+    Set<RoleDTO> getAllRoles();
 
     /**
      * @param id = role id
-     * @return Role by id
+     * @return role DTO by id
      */
     Role getRoleById(long id);
 
     /**
-     * @param role - role that should be added to DB
-     * @return role
+     * @param role - role DTO that should be added to DB
+     * @return role DRO
      */
     Role addRole(Role role);
 
     /**
      * @param role - role that should be updated to DB
-     * @return role
+     * @return role DTO
      */
     Role updateRole(Role role);
 
@@ -34,7 +35,7 @@ public interface RoleService {
      * @param name - name of roles
      * @return list of roles with specify name
      */
-    List<Role> getRolesByName(String name);
+    Set<RoleDTO> getRolesByName(String name);
 
     /**
      * @param id - role id for remove
