@@ -1,0 +1,519 @@
+﻿*{
+	margin:0; padding:0;
+}
+img{
+	border:none;
+}
+body{
+	background:#e3e3e3; font-size:14px; 
+}
+.main{
+	 min-width:100px;
+	 max-width:1400px; 
+	 margin:0 auto;
+	 
+   }
+.header {
+    height:60px; 
+	background:#24689d;
+	border-bottom: 2px solid transparent;
+	border-color: #cccccd;
+	border-radius:0 0 2px 2px;
+	overflow:hidden; 
+   }	
+.user{
+	height: 30px;
+	width: 30px;
+	float:left;
+	background:#153c5a url(images/user.png) center no-repeat ;
+	margin: 10px 0 0 60px;
+	padding:4px;
+	border-radius: 4px;
+	border: 2px solid #153c5a;
+	display:block;
+    }	
+    .user:hover{
+	background:#012642 url(images/user.png) center no-repeat ;
+	border:2px solid #012642;
+	box-shadow: -1px 1px #3a556a;
+    } 
+        .user a{
+	    display:block;
+	    height: 100%;
+        }
+.logo{
+	display:block;
+	float:left;
+	text-align:center;
+	margin: 15px 0 0 60px;
+	padding:4px 0 4px 0;
+	width: auto;
+	cursor:default; 
+}
+.logo h1{
+	font: 24px bold;
+	color:#fff;
+	letter-spacing: 2px;
+}
+.phone{
+	display:block;
+	float:left;
+	text-align:left;
+	margin: 18px 0 0 20px;
+	padding:4px 0 4px 0;
+	width: auto;
+	cursor:default;
+}
+.phone h5{
+	font: 10px bold;
+	color:#fff;
+	letter-spacing: 2px;
+}
+.block-search{
+	min-width:180px;
+	max-width:420px;
+	margin-top: -40px;
+	float:right;
+	position:relative;
+	display:block;
+	table-layout:fixed;
+	width:100%;
+	}
+	
+.search-form{
+	}
+	.search li{
+	display:table-cell;
+	list-style:none;
+	width:auto;
+	text-align:center; 
+	vertical-align:middle;
+	}
+	#pole-search{
+	font-size: 21px;	
+    border:none;
+	height: 28px;
+	}
+	  .search li img{
+		cursor:no-repeat;
+		display:block;
+		height:28px;
+		margin:2px auto ;
+	  }
+	  .search li input{
+		outline: none; 
+	  }
+	  .search-button-block{
+		width:40px;
+		min-width:40px;
+	  }
+	  	.search-button-block span{
+		 overflow:hidden;
+		 display:inline;
+		 font-size:15px;
+		 vertical-align: middle;
+		 text-overflow: ellipsis;
+         line-height: 1;
+		 text-align: center;
+         font-weight: 600;
+	     }
+	    .search-btn{
+		 height:28px;
+		 min-width:80px;
+		 width:80px;
+		 display:block;
+		 user-select: none;
+		 background-color: #81a3be;
+         color: #fff; 
+         text-decoration: none; 
+		 border:0;
+	  }
+	    .search-btn:hover{
+		 background: #11314a;
+	  }
+.content{
+	width:100%;
+	display:block;
+	background: #fff url(images/fon_content.jpg) center top no-repeat;
+	height:900px;
+	margin:0 auto;
+	padding:0;
+}	 
+.menu{
+    height:16px;
+	float:center;
+	margin: 0 auto;
+	padding: 30px 30px 50px 30px ;
+	position:relative;
+	display:block;
+	list-style:none; 		
+	}	
+	  	.menu li{
+		display:table-cell;
+		background:none;
+		width:auto;
+		text-align:center; 
+		vertical-align:bottom;
+	    }
+	    .menu li:hover{
+		background: rgba(246, 186, 98, 0.7) url(images/cub.gif) left 8px top 8px no-repeat;
+	    }
+			.menu li div{
+		     margin:2px;
+			 border:0px solid black;
+			}
+	        .menu li a{
+		     display:block;
+			 width:1000px;
+			 height:30px;
+			 vertical-align:middle;
+			 display:table-cell;
+			 font:18px  Verdana, Geneva, sans-serif;
+			 color:#012642;
+			 text-decoration:none;
+			 border:1px solid black;
+	        }
+.informer-page{
+	display:block;
+	position:relative;
+	width:90%;
+	height:6px;
+	background:transparent;
+	border-top: 1px solid #999;
+	margin:0 5% 2% 5%;
+}
+    .informer-page div{
+	    margin: 0;
+		float:left;
+		display:block;
+		position:relative;
+		top:-170%;
+        background:#fff;		
+		border-radius:12px;	
+	}
+    .informer-page p{
+		padding:0 8px 0 8px;
+        cursor:	pointer;	
+	}
+	.informer-page div:first-child{
+		margin: 0 0 0 30px;
+	}
+			
+.booking-block{
+	margin: 0 1% 0 5%;
+    background: rgba(246, 186, 98, 0.4);
+    box-sizing: border-box;
+    width: 25%;
+	height: 400px;
+	font:bold 1em Arial, Helvetica, sans-serif;
+	color: #999;
+	display: inline-block;
+    float:left;
+	box-shadow: 0 0 0 1px #999, 0 -2px 0 -1px #999, 2px 0 0 -1px #999, 0 2px 0 -1px #999, -2px 0 0 -1px #999;
+    }
+    .booking-block h2{
+		padding: 18px 0 24px 22px;
+		background:#24689d;
+		color:#fff;
+		border:0;
+	}
+	    .booking-block li{
+			position:relative;
+			width:100%;
+			float:none;
+			background: rgba(246, 186, 98, 0.7);
+			width: 90%;
+			margin: 6px 8px 7px 25px;
+            display:inline-block;			
+		}
+		.booking-block li input{
+			margin:6px 0 0 60px;
+			padding:2px;
+			float: center;
+			outline: none;
+			border:0;
+			list-style:none;
+            align:center;
+            background:transparent;			
+		}
+		.booking-block li button{
+		    outline: none;
+			list-style:none; 
+			border:0;
+			float:right;
+			background:transparent;
+			cursor: pointer;
+		}
+		.booking-block li button img{
+			margin: 4px 0 0 0;
+			float:right;
+		}
+		.booking-block li p{
+			float:left;
+			display:block;
+			margin: 0 0 0 20px;
+			padding: 8px 0 8px 0;
+			color: #777;
+		}
+	.booking-block-select-room{
+		overflow: hidden;
+		width: 94%;
+		height: 20px;
+		background: url(images/bg-strelka-select.png) no-repeat right transparent  ;
+		text-align:center;
+		display: inline-block; 
+		padding: 8px 0 8px 0;
+	}
+	.booking-block-select-room select{
+		background: transparent;
+		border: 0;
+        height: 20px;
+		font:bold 1em Arial, Helvetica, sans-serif;
+		color: #777;
+		width: 96%;
+        padding: 0;
+		margin: 0 0 0 14px;
+		outline: none;
+		/*for WebKit*/
+        -webkit-appearance: none;
+        /* for FF */
+        -moz-appearance: none;
+         text-indent: 0.01px; 
+        text-overflow: '';
+        /* for IE */
+        -ms-appearance: none;
+        appearance: none!important;
+		
+	}
+	.booking-block-select-room select::-ms-expand {
+        display: none;
+    }
+	.booking-li-select-people{
+		background: rgba(246, 186, 98, 0.7) ;
+		height: 20px;
+		padding: 8px 0 8px 0;
+	}
+	.booking-block-select-people{
+		overflow: hidden;
+		width: 47%;
+		height:20px;
+		margin: 0 auto;
+		padding: 0;
+		float:left;
+		display: inline-block; 
+		background: url(images/bg-strelka-select.png) no-repeat right transparent  ;
+		text-align:center;
+		
+	}
+	.booking-block-select-people select{
+		background: transparent ;
+		border: 0;
+        height: 20px;
+		font:bold 1em Arial, Helvetica, sans-serif;
+		color: #777;
+		width: 100%;
+        padding: 0;
+		margin: 0 0 0 13px;
+		outline: none;
+		/*for WebKit*/
+        -webkit-appearance: none;
+        /* for FF */
+        -moz-appearance: none;
+         text-indent: 0.01px; 
+        text-overflow: '';
+        /* for IE */
+        -ms-appearance: none;
+        appearance: none!important;
+	}
+	.booking-block-select-people select::-ms-expand {
+        display: none;
+    }
+	.booking-block-clr-people{
+		background: none !important;
+		height: 20px!important;
+		width:100%!important;
+	}
+	.booking-block-btn{
+		text-align:center;
+		margin:0!important;
+		width: 100%;
+		
+	}
+	.booking-block-btn button{
+		padding: 10px 0 10px 0;
+		border:0;
+		height:100%;
+		width:100%;
+		text-align:center;
+		display:block;
+		user-select: none;
+	    height: 100%;
+		text-decoration:none;
+        background:transparent;	
+        font:bold 1em Arial, Helvetica, sans-serif;
+	    color: #666;
+	    list-style:none; 
+        display: inline-block;	
+        cursor:pointer;	
+        outline: none;		
+	}
+	.booking-block-btn button:hover{
+		background:#c1a74b;
+		color: #fff;
+	}
+.booking-block-rezult{
+	padding: 0 1% 0 1%;
+	margin: 0 5% 0 1%;
+    background: transparent;
+    width: 56%;
+	float:right;
+	display:block;
+	height: 400px;
+    }
+	.booking-filter-price{
+		display:inline-block;
+		float:left;
+		width:100%;
+		background:rgba(246, 186, 98, 0.4);
+		text-align: center;
+	}
+	.booking-filter-price div{
+		display:block;
+	}
+	.booking-block-rezult h2{
+		color:#999;
+		font:bold 1.2em Arial, Helvetica, sans-serif;
+		padding: 25px 0 20px 20px;
+		float:left;	
+        background:transparent;		
+	}
+	.booking-block-rezult div span:first-child{
+		color:#999;
+		font:bold 1.1em Arial, Helvetica, sans-serif;
+        margin: 19px;
+		padding: 6px 20px 6px 6px;
+		float:left;
+		background:url(images/sort-top-act.gif) right center no-repeat;
+		cursor:pointer;
+	}
+	.booking-block-rezult-part{
+		float:left;
+		width:46%;
+		height:54px;
+		border:1px solid black;
+		margin:1% 1% 1.5% 6px;
+		background:rgba(232, 227, 191, 0.7);
+		border: 1px solid #999;
+		border-radius: 2px;
+	}
+	.booking-block-part-text{		
+		display: block;
+		height: 100%;
+		text-align:left;
+		vertical-align: middle;
+		background:transparent;
+	}
+	.booking-block-part-text:hover{
+		background: rgba(246, 186, 98, 0.4) url(images/booking.png) right 3px bottom 3px no-repeat;
+		
+	}
+	.booking-block-part-text p{
+		margin: 6px 0 0 10px;
+	    float: left;
+	    font:bold 0.8em Arial, Helvetica, sans-serif;
+	}
+	.booking-block-part-text p span{
+	    font:bold 1.1em Arial, Helvetica, sans-serif;
+	}
+	.booking-block-part-img{
+		display:block;
+		padding:2px;
+		float:left;
+		width:50px;
+		height:50px;
+		background:url(images/room.jpg) center no-repeat;
+	}
+.block-info{
+	position:relative;
+	width:100%;
+	overflow:hidden;
+	display:inline-block;
+	margin: 0 auto;
+	background: transparent;
+	top: 140px;
+}
+    .block-info-news{
+		margin: 10px 0 10px 6%;
+		height: 200px;
+		width:25%;
+		float:left;
+		cursor:pointer;
+		display:inline-block;
+		vertical-align: middle;
+		border:0px solid gray;
+		border-radius:2pt;
+		background: rgba(246, 186, 98, 0.8);
+		text-align: center;
+		font-size: 14px;
+		box-shadow: 0 0 0 1px #999, 0 -2px 0 -1px #999, 2px 0 0 -1px #999, 0 2px 0 -1px #999, -2px 0 0 -1px #999;
+	}
+	.block-info-news h3{
+		background:#24689d;
+		padding: 5px;
+		color:#fff;
+	}
+	.block-info-news p{
+		line-height: 60px;
+		background:transparent;
+		font-size: 13px;
+	}
+	
+	
+	
+.footer{
+	background:#e3e3e3;
+	list-style:none; 
+	margin: 20px 195px 20px 195px;
+}
+      .footer  ul{
+		  overflow:hidden; 
+		  list-style:none;
+		  padding:6px;
+		  }
+      .footer  ul li{
+		  background:#e3e3e3; 
+		  display:table-cell;
+		  width:auto; 
+		  text-align:center;
+		  height:10px;
+		  border-left:1px solid #3e2837;
+		  border-right:1px solid #261922; 
+		  vertical-align:bottom;
+	  }
+
+			.footer li:first-child{ 
+			 border-left:none;
+			}
+			.footer li:last-child{ 
+			 border-right:none;
+			}
+	        .footer li a{
+		     display:block;
+			 width:1000px;
+			 height: 20px;
+			 vertical-align:middle;
+			 display:table-cell;
+			 font:8px Verdana, Geneva, sans-serif;
+			 color:#999; 
+			 text-decoration:none;
+	        }
+			
+
+	  
+
+
+						 
+						 
+						 
+						 
+						 
