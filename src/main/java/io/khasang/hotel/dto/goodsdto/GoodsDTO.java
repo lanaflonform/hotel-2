@@ -5,9 +5,11 @@ import io.khasang.hotel.dto.goodsdto.manufacturer.PersonDTO;
 import io.khasang.hotel.entity.goods.Goods;
 import io.khasang.hotel.entity.goods.Tag;
 import io.khasang.hotel.entity.goods.manufacturer.Person;
+import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+@Component
 public class GoodsDTO {
     private long id;
     private String name;
@@ -27,24 +29,27 @@ public class GoodsDTO {
 
         for (Goods goods : goodsSet) {
             if (goods == null) return null;
-            GoodsDTO goodsDTO = new GoodsDTO();
-
-            setId(goods.getId());
-            setName(goods.getName());
-            setSkuDTO(getSkuDTOFromGoods(goods));
-            setManufacturerDTO(getManufacturerDTOFromGoods(goods));
-            setBarcode(goods.getBarcode());
-            setPrice(goods.getPrice());
-            setStock(goods.getStock());
-            setDescription(goods.getDescription());
-            setDate(goods.getDate());
-            setCategoryDTO(getCategoryDTOFromGoods(goods));
-            setTagDTOS(getTagDTOSetFromGoods(goods));
-            setImage(goods.getImage());
-
+            GoodsDTO goodsDTO = getGoodsDTO(goods);
             goodsDTOS.add(goodsDTO);
         }
         return goodsDTOS;
+    }
+
+    public GoodsDTO getGoodsDTO(Goods goods) {
+        GoodsDTO goodsDTO = new GoodsDTO();
+        setId(goods.getId());
+        setName(goods.getName());
+        setSkuDTO(getSkuDTOFromGoods(goods));
+        setManufacturerDTO(getManufacturerDTOFromGoods(goods));
+        setBarcode(goods.getBarcode());
+        setPrice(goods.getPrice());
+        setStock(goods.getStock());
+        setDescription(goods.getDescription());
+        setDate(goods.getDate());
+        setCategoryDTO(getCategoryDTOFromGoods(goods));
+        setTagDTOS(getTagDTOSetFromGoods(goods));
+        setImage(goods.getImage());
+        return goodsDTO;
     }
 
     public long getId() {
@@ -144,6 +149,7 @@ public class GoodsDTO {
     }
 
     private SkuDTO getSkuDTOFromGoods(Goods goods) {
+        if(goods.getSku().getName() == null) return null;
         SkuDTO skuDTO = new SkuDTO();
         skuDTO.setId(goods.getSku().getId());
         skuDTO.setName(goods.getSku().getName());

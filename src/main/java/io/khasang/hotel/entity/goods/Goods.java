@@ -18,9 +18,11 @@ public class Goods {
     // the product name
     private String name;
     @OneToOne
+    @JoinColumn(name = "sku_id")
     // the stock keeping unit
     private Sku sku;
     @OneToOne
+    @JoinColumn(name = "manufacturer_id")
     // the manufacturer
     private Manufacturer manufacturer;
     @Column(nullable = false)
@@ -38,6 +40,7 @@ public class Goods {
     // the date that the product was added to the store
     private Date date;
     @OneToOne
+    @JoinColumn(name = "category_id")
     //  display the list of categories that the product is in
     private Category category;
     @ManyToMany(cascade = CascadeType.ALL, targetEntity = Tag.class, fetch = FetchType.EAGER)
