@@ -14,8 +14,8 @@
 
 <%--suppress JSUnusedLocalSymbols --%>
 <script>
-    var service = 'http://localhost:8080/admin/user';
-    var RestPut = function (firstName, lastName, email, registered, login, password, enabled) {
+    var service = 'http://localhost:8080/admin/users';
+    var RestPost = function (firstName, lastName, email, registered, login, password, enabled) {
         var JSONObject = {
             'firstName': firstName,
             'lastName': lastName,
@@ -30,8 +30,8 @@
         console.log(JSON.stringify(JSONObject));
 
         $.ajax({
-            type: 'PUT',
-            url: service + '/add',
+            type: 'POST',
+            url: service,
             contentType: 'application/json;utf-8',
             data: JSON.stringify(JSONObject),
             dataType: 'json',
@@ -61,8 +61,8 @@
         console.log(JSON.stringify(JSONObject));
 
         $.ajax({
-            type: 'POST',
-            url: service + '/update',
+            type: 'PUT',
+            url: service,
             contentType: 'application/json;utf-8',
             data: JSON.stringify(JSONObject),
             dataType: 'json',
@@ -79,7 +79,7 @@
     var RestGetAll = function () {
         $.ajax({
             type: 'GET',
-            url: service + '/all',
+            url: service,
             contentType: 'application/json;utf-8',
             async: false,
             success: function (result) {
@@ -94,7 +94,7 @@
     var RestGetById = function (id) {
         $.ajax({
             type: 'GET',
-            url: service + '/get/' + id,
+            url: service + '/' + id,
             contentType: 'application/json;utf-8',
             async: false,
             success: function (result) {
@@ -109,7 +109,7 @@
     var RestGetByLogin = function (login) {
         $.ajax({
             type: 'GET',
-            url: service + '/get/login/' + login,
+            url: service + '?login=' + login,
             contentType: 'application/json;utf-8',
             async: false,
             success: function (result) {
@@ -123,11 +123,9 @@
 
     var RestGetByEmail = function (email) {
         $.ajax({
-            type: 'POST',
-            url: service + '/get/email',
+            type: 'GET',
+            url: service + '?email=' + email,
             contentType: 'application/json;utf-8',
-            data: email,
-            dataType: 'text',
             async: false,
             success: function (result) {
                 $('#response').html(JSON.stringify(result));
@@ -141,11 +139,11 @@
     var RestDelete = function (id) {
         $.ajax({
             type: 'DELETE',
-            url: service + '/delete/' + id,
+            url: service + '/' + id,
             contentType: 'application/json;utf-8',
             async: false,
-            success: function (result) {
-                $('#response').html(JSON.stringify(result));
+            success: function(data, textStatus, xhr) {
+                $('#response').html("Status code: " + xhr.status);
             },
             error: function (jqXHR, testStatus, errorThrown) {
                 $('#response').html(JSON.stringify(jqXHR));
@@ -166,7 +164,7 @@
     <tr>
         <td>Add user</td>
         <td>
-            <code>PUT http://localhost:8080/admin/user/add</code>
+            <code>POST http://localhost:8080/admin/users</code>
         </td>
         <td>
             <form>
@@ -202,7 +200,7 @@
                 </table>
                 <br>
                 <button type="button"
-                        onclick="RestPut(
+                        onclick="RestPost(
                             $('#firstName').val(),
                             $('#lastName').val(),
                             $('#email').val(),
@@ -218,7 +216,7 @@
     <tr>
         <td>Get all users</td>
         <td>
-            <code>GET http://localhost:8080/admin/user/all</code>
+            <code>GET http://localhost:8080/admin/users</code>
         </td>
         <td>
             <form>
@@ -229,7 +227,7 @@
     <tr>
         <td>Get user by id</td>
         <td>
-            <code>GET http://localhost:8080/admin/user/get/{id}</code>
+            <code>GET http://localhost:8080/admin/users/{id}</code>
         </td>
         <td>
             <form>
@@ -247,7 +245,7 @@
     <tr>
         <td>Get user by login</td>
         <td>
-            <code>GET http://localhost:8080/admin/user/get/login/{login}</code>
+            <code>GET http://localhost:8080/admin/users?login={login}</code>
         </td>
         <td>
             <form>
@@ -265,7 +263,7 @@
     <tr>
         <td>Get user by email</td>
         <td>
-            <code>POST http://localhost:8080/admin/user/get/email</code>
+            <code>GET http://localhost:8080/admin/users?email={email}</code>
         </td>
         <td>
             <form>
@@ -283,7 +281,7 @@
     <tr>
         <td>Update user</td>
         <td>
-            <code>POST http://localhost:8080/admin/user/update</code>
+            <code>PUT http://localhost:8080/admin/users</code>
         </td>
         <td>
             <form>
@@ -340,7 +338,7 @@
     <tr>
         <td>Delete user</td>
         <td>
-            <code>DELETE http://localhost:8080/admin/user/delete/{id}</code>
+            <code>DELETE http://localhost:8080/admin/users/{id}</code>
         </td>
         <td>
             <form>
