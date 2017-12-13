@@ -24,34 +24,6 @@ public class GoodsDTO {
     private Set<TagDTO> tagDTOS;
     private byte[] image;
 
-    public Set<GoodsDTO> getGoodsDTOSet(Set<Goods> goodsSet) {
-        Set<GoodsDTO> goodsDTOS = new HashSet<>();
-
-        for (Goods goods : goodsSet) {
-            if (goods == null) return null;
-            GoodsDTO goodsDTO = getGoodsDTO(goods);
-            goodsDTOS.add(goodsDTO);
-        }
-        return goodsDTOS;
-    }
-
-    public GoodsDTO getGoodsDTO(Goods goods) {
-        GoodsDTO goodsDTO = new GoodsDTO();
-        setId(goods.getId());
-        setName(goods.getName());
-        setSkuDTO(getSkuDTOFromGoods(goods));
-        setManufacturerDTO(getManufacturerDTOFromGoods(goods));
-        setBarcode(goods.getBarcode());
-        setPrice(goods.getPrice());
-        setStock(goods.getStock());
-        setDescription(goods.getDescription());
-        setDate(goods.getDate());
-        setCategoryDTO(getCategoryDTOFromGoods(goods));
-        setTagDTOS(getTagDTOSetFromGoods(goods));
-        setImage(goods.getImage());
-        return goodsDTO;
-    }
-
     public long getId() {
         return id;
     }
@@ -146,6 +118,34 @@ public class GoodsDTO {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public Set<GoodsDTO> getGoodsDTOSet(Set<Goods> goodsSet) {
+        Set<GoodsDTO> goodsDTOS = new HashSet<>();
+
+        for (Goods goods : goodsSet) {
+            if (goods == null) return null;
+            GoodsDTO goodsDTO = getGoodsDTO(goods);
+            goodsDTOS.add(goodsDTO);
+        }
+        return goodsDTOS;
+    }
+
+    public GoodsDTO getGoodsDTO(Goods goods) {
+        GoodsDTO goodsDTO = new GoodsDTO();
+        setId(goods.getId());
+        setName(goods.getName());
+        setSkuDTO(getSkuDTOFromGoods(goods));
+        setManufacturerDTO(getManufacturerDTOFromGoods(goods));
+        setBarcode(goods.getBarcode());
+        setPrice(goods.getPrice());
+        setStock(goods.getStock());
+        setDescription(goods.getDescription());
+        setDate(goods.getDate());
+        setCategoryDTO(getCategoryDTOFromGoods(goods));
+        setTagDTOS(getTagDTOSetFromGoods(goods));
+        setImage(goods.getImage());
+        return goodsDTO;
     }
 
     private SkuDTO getSkuDTOFromGoods(Goods goods) {

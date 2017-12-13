@@ -29,7 +29,7 @@ public class GoodsController {
 
     @ResponseBody
     @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
-    public Goods addGoods(@RequestBody Goods goods) {
+    public GoodsDTO addGoods(@RequestBody Goods goods) {
         return goodsService.addGoods(goods);
     }
 
@@ -41,8 +41,8 @@ public class GoodsController {
 
     @ResponseBody
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
-    public Goods updateGoods(@RequestBody Goods goods) {
-        return goodsService.update(goods);
+    public GoodsDTO updateGoods(@RequestBody Goods goods) {
+        return goodsService.updateGoods(goods);
     }
 }
 

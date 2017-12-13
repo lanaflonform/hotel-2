@@ -22,8 +22,8 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public Goods addGoods(Goods goods) {
-        return goodsDao.add(goods);
+    public GoodsDTO addGoods(Goods goods) {
+        return goodsDTO.getGoodsDTO(goodsDao.add(goods));
     }
 
     @Override
@@ -37,7 +37,7 @@ public class GoodsServiceImpl implements GoodsService {
     }
 
     @Override
-    public Goods update(Goods goods) {
-        return goodsDao.update(goods);
+    public GoodsDTO updateGoods(Goods goods) {
+        return goodsDTO.getGoodsDTO(goodsDao.update(goods));
     }
 }

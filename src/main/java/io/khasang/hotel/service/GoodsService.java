@@ -17,7 +17,7 @@ public interface GoodsService {
      * @param goods - goods that should be added to DB
      * @return goods
      */
-    Goods addGoods(Goods goods);
+    GoodsDTO addGoods(Goods goods);
 
     /**
      * method for receiving goods by id
@@ -39,5 +39,5 @@ public interface GoodsService {
      * @param goods - goods that should be updated
      * @return updated goods
      */
-    Goods update(Goods goods);
+    GoodsDTO updateGoods(Goods goods);
 }
