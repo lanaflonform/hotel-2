@@ -7,7 +7,7 @@ import io.khasang.hotel.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 @Service("GoodsService")
 public class GoodsServiceImpl implements GoodsService {
@@ -17,32 +17,27 @@ public class GoodsServiceImpl implements GoodsService {
     private GoodsDTO goodsDTO;
 
     @Override
-    public Set<Goods> getAllGoods() {
-       // return goodsDTO.getGoodsDTOSet(goodsDao.getSet());
-        return (goodsDao.getSet());
+    public List<GoodsDTO> getAllGoods() {
+        return goodsDTO.getGoodsDTOList(goodsDao.getList());
     }
 
     @Override
     public Goods addGoods(Goods goods) {
-        //return goodsDTO.getGoodsDTO(goodsDao.add(goods));
         return (goodsDao.add(goods));
     }
 
     @Override
-    public Goods getGoodsById(long id) {
-        //return goodsDTO.getGoodsDTO(goodsDao.getById(id));
-        return (goodsDao.getById(id));
+    public GoodsDTO getGoodsById(long id) {
+        return goodsDTO.getGoodsDTO(goodsDao.getById(id));
     }
 
     @Override
     public Goods deleteGoods(long id) {
-        //return goodsDTO.getGoodsDTO(goodsDao.delete(id));
-        return (goodsDao.delete(getGoodsById(id)));
+        return goodsDao.deleteById(id);
     }
 
     @Override
     public Goods updateGoods(Goods goods) {
-        //return goodsDTO.getGoodsDTO(goodsDao.update(goods));
         return (goodsDao.update(goods));
     }
 }

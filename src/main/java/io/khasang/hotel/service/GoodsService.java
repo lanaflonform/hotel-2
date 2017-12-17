@@ -1,8 +1,9 @@
 package io.khasang.hotel.service;
 
+import io.khasang.hotel.dto.goodsdto.GoodsDTO;
 import io.khasang.hotel.entity.goods.Goods;
 
-import java.util.Set;
+import java.util.List;
 
 public interface GoodsService {
     /**
@@ -10,7 +11,7 @@ public interface GoodsService {
      *
      * @return all goods
      */
-    Set<Goods> getAllGoods();
+    List<GoodsDTO> getAllGoods();
 
     /**
      * @param goods - goods that should be added to DB
@@ -24,7 +25,7 @@ public interface GoodsService {
      * @param id = goods id
      * @return Goods by id
      */
-    Goods getGoodsById(long id);
+    GoodsDTO getGoodsById(long id);
 
     /**
      * method for delete goods by id

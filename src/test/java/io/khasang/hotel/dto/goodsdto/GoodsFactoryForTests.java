@@ -10,13 +10,13 @@ import java.util.*;
 
 public class GoodsFactoryForTests {
 
-    public Goods getTestGoods(){
+    public Goods getTestGoods() {
         return createGoods();
     }
 
     private Goods createGoods() {
         Goods testGoods = new Goods();
-        testGoods.setName("test goods");
+        testGoods.setName("test goods" + new Date());
 //        testGoods.setSku(createSku());
 //        testGoods.setManufacturer(createManufacturer());
         testGoods.setBarcode(1234567898765L);

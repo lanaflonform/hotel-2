@@ -3,9 +3,7 @@ package io.khasang.hotel.dto.goodsdto;
 import io.khasang.hotel.entity.goods.Goods;
 import org.springframework.stereotype.Component;
 
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Component
 public class GoodsDTO {
@@ -118,11 +116,11 @@ public class GoodsDTO {
         this.image = image;
     }
 
-    public Set<GoodsDTO> getGoodsDTOSet(Set<Goods> goodsSet) {
-        Set<GoodsDTO> goodsDTOS = new HashSet<>();
+    public List<GoodsDTO> getGoodsDTOList(List<Goods> goodsList) {
+        List<GoodsDTO> goodsDTOS = new ArrayList<>();
 
-        for (Goods goods : goodsSet) {
-            if (goods == null) return null;
+        for (Goods goods : goodsList) {
+         //   if (goods == null) return null;
             GoodsDTO goodsDTO = getGoodsDTO(goods);
             goodsDTOS.add(goodsDTO);
         }
@@ -130,19 +128,20 @@ public class GoodsDTO {
     }
 
     public GoodsDTO getGoodsDTO(Goods goods) {
+        if(goods == null) return null;
         GoodsDTO goodsDTO = new GoodsDTO();
-        setId(goods.getId());
-        setName(goods.getName());
-//        setSkuDTO(getSkuDTOFromGoods(goods));
-//        setManufacturerDTO(getManufacturerDTOFromGoods(goods));
-        setBarcode(goods.getBarcode());
-        setPrice(goods.getPrice());
-        setStock(goods.getStock());
-        setDescription(goods.getDescription());
-        setDate(goods.getDate());
-//        setCategoryDTO(getCategoryDTOFromGoods(goods));
-//        setTagDTOS(getTagDTOSetFromGoods(goods));
-        setImage(goods.getImage());
+        goodsDTO.setId(goods.getId());
+        goodsDTO.setName(goods.getName());
+//        goodsDTO.setSkuDTO(getSkuDTOFromGoods(goods));
+//        goodsDTO.setManufacturerDTO(getManufacturerDTOFromGoods(goods));
+        goodsDTO.setBarcode(goods.getBarcode());
+        goodsDTO.setPrice(goods.getPrice());
+        goodsDTO.setStock(goods.getStock());
+        goodsDTO.setDescription(goods.getDescription());
+        goodsDTO.setDate(goods.getDate());
+//        goodsDTO.setCategoryDTO(getCategoryDTOFromGoods(goods));
+//        goodsDTO.setTagDTOS(getTagDTOSetFromGoods(goods));
+        goodsDTO.setImage(goods.getImage());
         return goodsDTO;
     }
 

@@ -7,7 +7,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Set;
+import java.util.List;
 
 import static junit.framework.TestCase.assertNull;
 import static org.junit.Assert.assertEquals;
@@ -22,28 +22,28 @@ public class GoodsControllerIntegrationTest {
     private final String GET_BY_ID = "/get";
 
 
-        @Test
-        public void getAllGoods() {
-            addGoodsResponseEntity();
-            addGoodsResponseEntity();
+    @Test
+    public void getAllGoods() {
+        addGoodsResponseEntity();
+        addGoodsResponseEntity();
 
-            RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<Set<Goods>> responseEntity = restTemplate.exchange(
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<List<Goods>> responseEntity = restTemplate.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<Set<Goods>>() {
+                new ParameterizedTypeReference<List<Goods>>() {
                 }
         );
 
-        Set<Goods> goodsDTOSet = responseEntity.getBody();
+        List<Goods> goodsDTOSet = responseEntity.getBody();
         assertNotNull(goodsDTOSet);
+        assertNotNull(goodsDTOSet.iterator().next().getName());
     }
 
     @Test
     public void deleteGoods() {
         Goods goods = addGoodsResponseEntity().getBody();
-
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Goods> responseEntity = restTemplate.exchange(
                 ROOT + DELETE + "?id=" + "{id}",
@@ -52,7 +52,7 @@ public class GoodsControllerIntegrationTest {
                 Goods.class,
                 goods.getId()
         );
-
+        int i = 0;
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         Goods receivedGoods = responseEntity.getBody();
         assertNotNull(receivedGoods.getName());
@@ -62,10 +62,9 @@ public class GoodsControllerIntegrationTest {
                 HttpMethod.GET,
                 null,
                 Goods.class,
-                goods.getId()
+                receivedGoods.getId()
         );
-
-        //assertEquals("OK", responseEntityForDeleteGoods.getStatusCode().getReasonPhrase());
+        assertEquals("OK", responseEntityForDeleteGoods.getStatusCode().getReasonPhrase());
         assertNull(responseEntityForDeleteGoods.getBody());
     }
 
@@ -116,8 +115,24 @@ public class GoodsControllerIntegrationTest {
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-        Goods receivedGoods = responseEntity.getBody();
-        assertNotNull(receivedGoods.getName());
+        assertNotNull(responseEntity.getBody().getName());
+    }
+
+    @Test
+    public void getNonexistentEntityById() {
+        // check if entity in DB
+        long nonexistentID = 999999999999999999L;
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<Goods> responseEntity = restTemplate.exchange(
+                ROOT + GET_BY_ID + "/{id}",
+                HttpMethod.GET,
+                null,
+                Goods.class,
+                nonexistentID
+        );
+
+        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
+        assertNull(responseEntity.getBody());
     }
 
     private ResponseEntity<Goods> addGoodsResponseEntity() {
@@ -133,5 +148,4 @@ public class GoodsControllerIntegrationTest {
                 Goods.class
         );
     }
-
 }
