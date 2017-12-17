@@ -1,6 +1,5 @@
 package io.khasang.hotel.controller;
 
-import io.khasang.hotel.dto.goodsdto.GoodsDTO;
 import io.khasang.hotel.entity.goods.Goods;
 import io.khasang.hotel.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,31 +16,31 @@ public class GoodsController {
 
     @ResponseBody
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public Set<GoodsDTO> getAllGoods() {
+    public Set<Goods> getAllGoods() {
         return goodsService.getAllGoods();
     }
 
     @ResponseBody
     @RequestMapping(value = "/get/{id}", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
-    public GoodsDTO getGoodsById(@PathVariable(value = "id") String id) {
+    public Goods getGoodsById(@PathVariable(value = "id") String id) {
         return goodsService.getGoodsById(Integer.parseInt(id));
     }
 
     @ResponseBody
-    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
-    public GoodsDTO addGoods(@RequestBody Goods goods) {
+    @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    public Goods addGoods(@RequestBody Goods goods) {
         return goodsService.addGoods(goods);
     }
 
     @ResponseBody
     @RequestMapping(value = "/delete", method = RequestMethod.DELETE)
-    public GoodsDTO deleteGoods(@RequestParam(value = "id") String id) {
-        return goodsService.deleteGoods(Integer.parseInt(id));
+    public Goods deleteGoods(@RequestParam(value = "id") String id) {
+        return goodsService.deleteGoods(Long.parseLong(id));
     }
 
     @ResponseBody
     @RequestMapping(value = "/update", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
-    public GoodsDTO updateGoods(@RequestBody Goods goods) {
+    public Goods updateGoods(@RequestBody Goods goods) {
         return goodsService.updateGoods(goods);
     }
 }

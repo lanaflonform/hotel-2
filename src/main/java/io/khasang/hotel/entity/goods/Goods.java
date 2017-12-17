@@ -1,6 +1,6 @@
 package io.khasang.hotel.entity.goods;
 
-import io.khasang.hotel.entity.goods.manufacturer.Manufacturer;
+//import io.khasang.hotel.entity.goods.manufacturer.Manufacturer;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;

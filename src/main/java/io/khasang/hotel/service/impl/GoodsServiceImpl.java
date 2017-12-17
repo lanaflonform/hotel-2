@@ -17,27 +17,32 @@ public class GoodsServiceImpl implements GoodsService {
     private GoodsDTO goodsDTO;
 
     @Override
-    public Set<GoodsDTO> getAllGoods() {
-        return goodsDTO.getGoodsDTOSet(goodsDao.getSet());
+    public Set<Goods> getAllGoods() {
+       // return goodsDTO.getGoodsDTOSet(goodsDao.getSet());
+        return (goodsDao.getSet());
     }
 
     @Override
-    public GoodsDTO addGoods(Goods goods) {
-        return goodsDTO.getGoodsDTO(goodsDao.add(goods));
+    public Goods addGoods(Goods goods) {
+        //return goodsDTO.getGoodsDTO(goodsDao.add(goods));
+        return (goodsDao.add(goods));
     }
 
     @Override
-    public GoodsDTO getGoodsById(int id) {
-        return goodsDTO.getGoodsDTO(goodsDao.getById(id));
+    public Goods getGoodsById(long id) {
+        //return goodsDTO.getGoodsDTO(goodsDao.getById(id));
+        return (goodsDao.getById(id));
     }
 
     @Override
-    public GoodsDTO deleteGoods(int id) {
-        return goodsDTO.getGoodsDTO(goodsDao.delete(id));
+    public Goods deleteGoods(long id) {
+        //return goodsDTO.getGoodsDTO(goodsDao.delete(id));
+        return (goodsDao.delete(getGoodsById(id)));
     }
 
     @Override
-    public GoodsDTO updateGoods(Goods goods) {
-        return goodsDTO.getGoodsDTO(goodsDao.update(goods));
+    public Goods updateGoods(Goods goods) {
+        //return goodsDTO.getGoodsDTO(goodsDao.update(goods));
+        return (goodsDao.update(goods));
     }
 }

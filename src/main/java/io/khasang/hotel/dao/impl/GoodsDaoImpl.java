@@ -8,10 +8,4 @@ public class GoodsDaoImpl extends BasicDaoImpl<Goods> implements GoodsDao {
         super(entityClass);
     }
 
-    @Override
-    public Goods delete(int id) {
-        Goods goods = sessionFactory.getCurrentSession().get(Goods.class, id);
-        sessionFactory.getCurrentSession().delete(goods);
-        return goods;
-    }
 }
