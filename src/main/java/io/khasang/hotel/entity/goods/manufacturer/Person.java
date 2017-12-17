@@ -2,7 +2,7 @@ package io.khasang.hotel.entity.goods.manufacturer;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 @Table(name = "persons")
 public class Person {
     @Id

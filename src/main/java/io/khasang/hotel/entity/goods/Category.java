@@ -2,7 +2,7 @@ package io.khasang.hotel.entity.goods;
 
 import javax.persistence.*;
 
-@Entity
+//@Entity
 @Table(name = "categories")
 public class Category {
     @Id

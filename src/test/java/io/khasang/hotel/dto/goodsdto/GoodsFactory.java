@@ -1,6 +1,5 @@
 package io.khasang.hotel.dto.goodsdto;
 
-import io.khasang.hotel.entity.goods.Category;
 import io.khasang.hotel.entity.goods.Goods;
 import io.khasang.hotel.entity.goods.Sku;
 import io.khasang.hotel.entity.goods.Tag;
@@ -9,7 +8,7 @@ import io.khasang.hotel.entity.goods.manufacturer.Person;
 
 import java.util.*;
 
-public class GoodsFactory {
+public class GoodsFactoryForTests {
 
     public Goods getTestGoods(){
         return createGoods();
@@ -18,15 +17,15 @@ public class GoodsFactory {
     private Goods createGoods() {
         Goods testGoods = new Goods();
         testGoods.setName("test goods");
-        testGoods.setSku(createSku());
-        testGoods.setManufacturer(createManufacturer());
+//        testGoods.setSku(createSku());
+//        testGoods.setManufacturer(createManufacturer());
         testGoods.setBarcode(1234567898765L);
         testGoods.setPrice(1001);
         testGoods.setStock(24);
         testGoods.setDescription("this line for test");
         testGoods.setDate(new Date());
-        testGoods.setCategory(createCategory());
-        testGoods.setTags(createTagSet());
+//        testGoods.setCategory(createCategory());
+//        testGoods.setTags(createTagSet());
         return testGoods;
     }
 
@@ -40,11 +39,11 @@ public class GoodsFactory {
         return tagSet;
     }
 
-    private Category createCategory() {
-        Category category = new Category();
-        category.setName("test category");
-        return category;
-    }
+//    private Category createCategory() {
+//        Category category = new Category();
+//        category.setName("test category");
+//        return category;
+//    }
 
     private Manufacturer createManufacturer() {
         Manufacturer manufacturer = new Manufacturer();

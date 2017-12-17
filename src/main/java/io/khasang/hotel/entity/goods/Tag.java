@@ -3,7 +3,7 @@ package io.khasang.hotel.entity.goods;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity
+//@Entity
 @Table(name = "tags")
 public class Tag {
     @Id

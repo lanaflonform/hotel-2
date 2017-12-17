@@ -28,7 +28,7 @@ public class GoodsController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/add", method = RequestMethod.PUT, produces = "application/json;charset=utf-8")
+    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json;charset=utf-8")
     public GoodsDTO addGoods(@RequestBody Goods goods) {
         return goodsService.addGoods(goods);
     }

@@ -12,41 +12,41 @@ import java.util.Set;
 public class Goods {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // the product ID, assigned by DataBase when you create the product
+    /** the product ID, assigned by DataBase when you create the product */
     private long id;
     @Column(nullable = false)
-    // the product name
+    /** the product name */
     private String name;
-    @OneToOne
-    @JoinColumn(name = "sku_id")
-    // the stock keeping unit
-    private Sku sku;
-    @OneToOne
-    @JoinColumn(name = "manufacturer_id")
-    // the manufacturer
-    private Manufacturer manufacturer;
+//    @OneToOne
+//    @JoinColumn(name = "sku_id")
+//    /** the stock keeping unit */
+//    private Sku sku;
+//    @OneToOne
+//    @JoinColumn(name = "manufacturer_id")
+//    /** the manufacturer */
+//    private Manufacturer manufacturer;
     @Column(nullable = false)
-    // the barcode
+    /** the barcode */
     private long barcode;
     @Column(nullable = true)
-    // the current product price
+    /** the current product price */
     private int price;
     @Column(nullable = true)
-    // the current stock level for the product
+    /** the current stock level of the product */
     private int stock;
-    // the full product description
+    /** the full product description */
     private String description;
     @Type(type = "date")
-    // the date that the product was added to the store
+    /** the date that the product was added to the store */
     private Date date;
-    @OneToOne
-    @JoinColumn(name = "category_id")
-    //  display the list of categories that the product is in
-    private Category category;
-    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Tag.class, fetch = FetchType.EAGER)
-    // the list of tags that the product is in
-    private Set<Tag> tags;
-    // the main product image
+//    @OneToOne
+//    @JoinColumn(name = "category_id")
+//    /**  display the list of categories that the product is in */
+//    private Category category;
+//    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Tag.class, fetch = FetchType.EAGER)
+//    /** the list of tags that the product is in */
+//    private Set<Tag> tags;
+    /** the main product image */
     private byte[] image;
 
     public long getId() {
@@ -65,21 +65,21 @@ public class Goods {
         this.name = name;
     }
 
-    public Sku getSku() {
-        return sku;
-    }
+//    public Sku getSku() {
+//        return sku;
+//    }
 
-    public void setSku(Sku sku) {
-        this.sku = sku;
-    }
+//    public void setSku(Sku sku) {
+//        this.sku = sku;
+//    }
 
-    public Manufacturer getManufacturer() {
-        return manufacturer;
-    }
+//    public Manufacturer getManufacturer() {
+//        return manufacturer;
+//    }
 
-    public void setManufacturer(Manufacturer manufacturer) {
-        this.manufacturer = manufacturer;
-    }
+//    public void setManufacturer(Manufacturer manufacturer) {
+//        this.manufacturer = manufacturer;
+//    }
 
     public long getBarcode() {
         return barcode;
@@ -121,21 +121,21 @@ public class Goods {
         this.date = date;
     }
 
-    public Category getCategory() {
-        return category;
-    }
+//    public Category getCategory() {
+//        return category;
+//    }
 
-    public void setCategory(Category categories) {
-        this.category = categories;
-    }
+//    public void setCategory(Category categories) {
+//        this.category = categories;
+//    }
 
-    public Set<Tag> getTags() {
-        return tags;
-    }
+//    public Set<Tag> getTags() {
+//        return tags;
+//    }
 
-    public void setTags(Set<Tag> tags) {
-        this.tags = tags;
-    }
+//    public void setTags(Set<Tag> tags) {
+//        this.tags = tags;
+//    }
 
     public byte[] getImage() {
         return image;
