@@ -5,7 +5,8 @@ import io.khasang.hotel.dto.UserDTO;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
-import org.springframework.web.client.HttpServerErrorException;
+import org.springframework.http.client.ClientHttpResponse;
+import org.springframework.web.client.ResponseErrorHandler;
 import org.springframework.web.client.RestTemplate;
 
 import java.time.LocalDate;
@@ -16,45 +17,110 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class UserControllerIntegrationTest {
-    private static final String ROOT = "http://localhost:8080/admin/user";
-    private static final String ADD = "/add";
-    private static final String ALL = "/all";
-    private static final String DELETE = "/delete";
-    private static final String UPDATE = "/update";
-    private static final String GET_BY_ID = "/get";
-    private static final String GET_BY_LOGIN = "/get/login";
-    private static final String GET_BY_EMAIL = "/get/email";
+    private static final String ROOT = "http://localhost:8080/admin/users";
+    private static final String GET_BY_LOGIN = "?login=";
+    private static final String GET_BY_EMAIL = "?email=";
 
     @Test
-    public void addUser() {
+    public void addUserAndGetById() {
         UserDTO userDTO = createUser("test");
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
-                ROOT + GET_BY_ID + "/{id}",
+                ROOT + "/{id}",
                 HttpMethod.GET,
                 null,
                 UserDTO.class,
                 userDTO.getId()
         );
 
-        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         UserDTO receivedUser = responseEntity.getBody();
-        assertNotNull(receivedUser.getLogin());
+        assertNotNull(receivedUser.getId());
         deleteUser(userDTO);
+    }
+
+    @Test
+    public void get404WhenRequestNonexistentId() {
+        UserDTO userDTO = new UserDTO(9999L, "", "", "", null, "",
+                "", false, null);
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.setErrorHandler(new ResponseErrorHandler() {
+            @Override
+            public boolean hasError(ClientHttpResponse response) {
+                return false;
+            }
+
+            @Override
+            public void handleError(ClientHttpResponse response) {
+            }
+        });
+
+        ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
+                ROOT + "/{id}",
+                HttpMethod.GET,
+                null,
+                UserDTO.class,
+                userDTO.getId()
+        );
+
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
     }
 
     @Test
     public void userDelete() {
         UserDTO userDTO = createUser("test");
-        UserDTO receivedUser = deleteUser(userDTO).getBody();
-        assertNotNull(receivedUser.getLogin());
+        ResponseEntity<UserDTO> responseEntity = deleteUser(userDTO);
+
+        assertEquals(HttpStatus.NO_CONTENT, responseEntity.getStatusCode());
+
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.setErrorHandler(new ResponseErrorHandler() {
+            @Override
+            public boolean hasError(ClientHttpResponse response) {
+                return false;
+            }
+
+            @Override
+            public void handleError(ClientHttpResponse response) {
+            }
+        });
+
+        responseEntity = restTemplate.exchange(
+                ROOT + "/{id}",
+                HttpMethod.GET,
+                null,
+                UserDTO.class,
+                userDTO.getId()
+        );
+
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
     }
 
-    @Test(expected = HttpServerErrorException.class)
-    public void getExceptionWhenDeleteNonexistentUser() {
+    @Test
+    public void get404WhenDeleteNonexistentUser() {
         UserDTO userDTO = new UserDTO(9999L, "", "", "", null, "",
                 "", false, null);
-        deleteUser(userDTO);
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.setErrorHandler(new ResponseErrorHandler() {
+            @Override
+            public boolean hasError(ClientHttpResponse response) {
+                return false;
+            }
+
+            @Override
+            public void handleError(ClientHttpResponse response) {
+            }
+        });
+
+        ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
+                ROOT + "/{id}",
+                HttpMethod.DELETE,
+                null,
+                UserDTO.class,
+                userDTO.getId()
+        );
+
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
     }
 
     @Test
@@ -64,7 +130,7 @@ public class UserControllerIntegrationTest {
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Set<UserDTO>> responseEntity = restTemplate.exchange(
-                ROOT + ALL,
+                ROOT,
                 HttpMethod.GET,
                 null,
                 new ParameterizedTypeReference<Set<UserDTO>>() {
@@ -84,18 +150,92 @@ public class UserControllerIntegrationTest {
 
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
-                ROOT + GET_BY_LOGIN + "/{login}",
+                ROOT + GET_BY_LOGIN + "{login}",
                 HttpMethod.GET,
                 null,
                 UserDTO.class,
                 userDTO.getLogin()
         );
 
-        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         UserDTO receivedUser = responseEntity.getBody();
         assertNotNull(receivedUser.getLogin());
         assertEquals(userDTO.getLogin(), receivedUser.getLogin());
         deleteUser(userDTO);
+    }
+
+    @Test
+    public void get404WhenRequestNonexistentLogin() {
+        UserDTO userDTO = new UserDTO(9999L, "", "", "", null, "NonexistentLogin",
+                "", false, null);
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.setErrorHandler(new ResponseErrorHandler() {
+            @Override
+            public boolean hasError(ClientHttpResponse response) {
+                return false;
+            }
+
+            @Override
+            public void handleError(ClientHttpResponse response) {
+            }
+        });
+
+        ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
+                ROOT + GET_BY_LOGIN + "{login}",
+                HttpMethod.GET,
+                null,
+                UserDTO.class,
+                userDTO.getLogin()
+        );
+
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
+    }
+
+    @Test
+    public void getUserByEmail() {
+        UserDTO userDTO = createUser("test");
+
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
+                ROOT + GET_BY_EMAIL + "{email}",
+                HttpMethod.GET,
+                null,
+                UserDTO.class,
+                userDTO.getEmail()
+        );
+
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+        UserDTO receivedUser = responseEntity.getBody();
+        assertNotNull(receivedUser.getEmail());
+        assertEquals(userDTO.getEmail(), receivedUser.getEmail());
+        deleteUser(userDTO);
+    }
+
+    @Test
+    public void get404WhenRequestNonexistentEmail() {
+        UserDTO userDTO = new UserDTO(9999L, "", "", "NonexistentEmail", null, "",
+                "", false, null);
+        RestTemplate restTemplate = new RestTemplate();
+        restTemplate.setErrorHandler(new ResponseErrorHandler() {
+            @Override
+            public boolean hasError(ClientHttpResponse response) {
+                return false;
+            }
+
+            @Override
+            public void handleError(ClientHttpResponse response) {
+            }
+        });
+
+        ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
+                ROOT + GET_BY_EMAIL + "{email}",
+                HttpMethod.GET,
+                null,
+                UserDTO.class,
+                userDTO.getEmail()
+        );
+
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
     }
 
     @Test
@@ -109,40 +249,47 @@ public class UserControllerIntegrationTest {
         HttpEntity<UserDTO> httpEntity = new HttpEntity<>(userDTO, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
-                ROOT + UPDATE,
-                HttpMethod.POST,
+                ROOT,
+                HttpMethod.PUT,
                 httpEntity,
                 UserDTO.class
         );
 
-        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
+        assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         UserDTO receivedUser = responseEntity.getBody();
         assertNotNull(receivedUser.getLogin());
-        assertEquals("TestUser", receivedUser.getFirstName());
+        assertEquals(userDTO.getFirstName(), receivedUser.getFirstName());
         deleteUser(userDTO);
     }
 
     @Test
-    public void getUserByEmail() {
-        UserDTO userDTO = createUser("test");
-
+    public void get404WhenUpdateNonexistentUser() {
+        UserDTO userDTO = new UserDTO(9999L, "", "", "", null, "",
+                "", false, null);
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        HttpEntity<String> httpEntity = new HttpEntity<>(userDTO.getEmail(), httpHeaders);
+        HttpEntity<UserDTO> httpEntity = new HttpEntity<>(userDTO, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
+        restTemplate.setErrorHandler(new ResponseErrorHandler() {
+            @Override
+            public boolean hasError(ClientHttpResponse response) {
+                return false;
+            }
+
+            @Override
+            public void handleError(ClientHttpResponse response) {
+            }
+        });
+
         ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
-                ROOT + GET_BY_EMAIL,
-                HttpMethod.POST,
+                ROOT,
+                HttpMethod.PUT,
                 httpEntity,
                 UserDTO.class
         );
 
-        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-        UserDTO receivedUser = responseEntity.getBody();
-        assertNotNull(receivedUser.getEmail());
-        assertEquals(userDTO.getEmail(), receivedUser.getEmail());
-        deleteUser(userDTO);
+        assertEquals(HttpStatus.NOT_FOUND, responseEntity.getStatusCode());
     }
 
     private UserDTO createUser(String login) {
@@ -153,30 +300,27 @@ public class UserControllerIntegrationTest {
 
         HttpEntity<UserDTO> httpEntity = new HttpEntity<>(userDTO, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
-        UserDTO createdUser = restTemplate.exchange(
-                ROOT + ADD,
-                HttpMethod.PUT,
+        ResponseEntity<UserDTO> createdUser = restTemplate.exchange(
+                ROOT,
+                HttpMethod.POST,
                 httpEntity,
                 UserDTO.class
-        ).getBody();
+        );
 
-        assertNotNull(createdUser);
-        assertEquals(userDTO.getLogin(), createdUser.getLogin());
-        return createdUser;
+        assertEquals(HttpStatus.CREATED, createdUser.getStatusCode());
+        assertNotNull(createdUser.getBody());
+        assertEquals(userDTO.getLogin(), createdUser.getBody().getLogin());
+        return createdUser.getBody();
     }
 
     private ResponseEntity<UserDTO> deleteUser(UserDTO userDTO) {
-        RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
-                ROOT + DELETE + "/{id}",
+        return new RestTemplate().exchange(
+                ROOT + "/{id}",
                 HttpMethod.DELETE,
                 null,
                 UserDTO.class,
                 userDTO.getId()
         );
-
-        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-        return responseEntity;
     }
 
     private UserDTO prefillCall(String login) {

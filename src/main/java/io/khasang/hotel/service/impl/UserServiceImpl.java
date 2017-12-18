@@ -45,8 +45,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserDTO update(UserDTO userDTO) throws NotFoundException {
-        User user = checkNotFoundWithId(userDao.update(userDTO.toUser()), userDTO.getId());
-        return UserDTO.build(user);
+        checkNotFoundWithId(userDao.getById(userDTO.getId()), userDTO.getId());
+        return UserDTO.build(userDao.update(userDTO.toUser()));
     }
 
     @Override
