@@ -10,8 +10,7 @@ public class GoodsDTOGetGoodsUnitTest {
     public void getGoodsDTO() throws Exception {
         Goods goods = (new GoodsFactoryForTests()).getTestGoods();
 
-        GoodsDTO goodsDTO = new GoodsDTO();
-        goodsDTO.getGoodsDTO(goods);
+        GoodsDTO goodsDTO = (new GoodsDTO()).getGoodsDTO(goods);
 
         assertEquals(goods.getName(), goodsDTO.getName());
         assertEquals(goods.getBarcode(), goodsDTO.getBarcode());
@@ -19,7 +18,7 @@ public class GoodsDTOGetGoodsUnitTest {
         assertEquals(goods.getDescription(), goodsDTO.getDescription());
         assertEquals(goods.getPrice(), goodsDTO.getPrice());
         assertEquals(goods.getStock(), goodsDTO.getStock());
-//        assertEquals(goods.getTags().size(), goodsDTO.getTagDTOS().size());
+        assertEquals(goods.getTags().size(), goodsDTO.getTagDTOS().size());
 //        assertEquals(goods.getSku().getName(), goodsDTO.getSkuDTO().getName());
 //        assertTrue((goods.getManufacturer().getName()).equals(goodsDTO.getManufacturerDTO().getName()));
 //        assertEquals(goods.getCategory().getName(), goodsDTO.getCategoryDTO().getName());

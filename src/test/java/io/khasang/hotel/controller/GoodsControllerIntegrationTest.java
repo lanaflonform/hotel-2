@@ -141,11 +141,13 @@ public class GoodsControllerIntegrationTest {
         Goods goods = (new GoodsFactoryForTests()).getTestGoods();
         HttpEntity<Goods> httpEntity = new HttpEntity<>(goods, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
-        return restTemplate.exchange(
+        ResponseEntity<Goods> responseEntity = restTemplate.exchange(
                 ROOT + ADD,
                 HttpMethod.PUT,
                 httpEntity,
                 Goods.class
         );
+        int i =0;
+        return responseEntity;
     }
 }

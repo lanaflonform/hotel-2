@@ -1,10 +1,13 @@
 package io.khasang.hotel.entity.goods;
 
 //import io.khasang.hotel.entity.goods.manufacturer.Manufacturer;
+
+import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -17,7 +20,7 @@ public class Goods {
     @Column(nullable = false)
     /** the product name */
     private String name;
-//    @OneToOne
+    //    @OneToOne
 //    @JoinColumn(name = "sku_id")
 //    /** the stock keeping unit */
 //    private Sku sku;
@@ -25,8 +28,9 @@ public class Goods {
 //    @JoinColumn(name = "manufacturer_id")
 //    /** the manufacturer */
 //    private Manufacturer manufacturer;
-    @Column(nullable = false)
     /** the barcode */
+    @NaturalId
+    @Column(nullable = false, unique = true)
     private long barcode;
     @Column(nullable = true)
     /** the current product price */
@@ -34,7 +38,9 @@ public class Goods {
     @Column(nullable = true)
     /** the current stock level of the product */
     private int stock;
-    /** the full product description */
+    /**
+     * the full product description
+     */
     private String description;
     @Type(type = "date")
     /** the date that the product was added to the store */
@@ -43,11 +49,28 @@ public class Goods {
 //    @JoinColumn(name = "category_id")
 //    /**  display the list of categories that the product is in */
 //    private Category category;
-//    @ManyToMany(cascade = CascadeType.ALL, targetEntity = Tag.class, fetch = FetchType.EAGER)
-//    /** the list of tags that the product is in */
-//    private Set<Tag> tags;
-    /** the main product image */
+
+    /**
+     * the list of tags that the product is in
+     */
+    @ManyToMany(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    },
+            fetch = FetchType.EAGER
+    )
+    @JoinTable(name = "goods_tags",
+            joinColumns = @JoinColumn(name = "goods_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    @OrderColumn(name = "name")
+    private Set<Tag> tags = new HashSet<>();
+    /**
+     * the main product image
+     */
     private byte[] image;
+
+    public Goods() {
+    }
 
     public long getId() {
         return id;
@@ -129,13 +152,23 @@ public class Goods {
 //        this.category = categories;
 //    }
 
-//    public Set<Tag> getTags() {
-//        return tags;
-//    }
+    public Set<Tag> getTags() {
+        return tags;
+    }
 
-//    public void setTags(Set<Tag> tags) {
-//        this.tags = tags;
-//    }
+    public void setTags(Set<Tag> tags) {
+        this.tags = tags;
+    }
+
+    public void addTag(Tag tag) {
+        tags.add(tag);
+        tag.getGoodsSet().add(this);
+    }
+
+    public void removeTag(Tag tag) {
+        tags.remove(tag);
+        tag.getGoodsSet().remove(this);
+    }
 
     public byte[] getImage() {
         return image;

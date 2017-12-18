@@ -1,12 +1,15 @@
 package io.khasang.hotel.dto.goodsdto;
 
 import io.khasang.hotel.entity.goods.Goods;
+import io.khasang.hotel.entity.goods.Tag;
+
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+
 //import io.khasang.hotel.entity.goods.Sku;
-//import io.khasang.hotel.entity.goods.Tag;
 //import io.khasang.hotel.entity.goods.manufacturer.Manufacturer;
 //import io.khasang.hotel.entity.goods.manufacturer.Person;
-
-import java.util.*;
 
 public class GoodsFactoryForTests {
 
@@ -19,25 +22,25 @@ public class GoodsFactoryForTests {
         testGoods.setName("test goods" + new Date());
 //        testGoods.setSku(createSku());
 //        testGoods.setManufacturer(createManufacturer());
-        testGoods.setBarcode(1234567898765L);
+        testGoods.setBarcode((new Date()).getTime());
         testGoods.setPrice(1001);
         testGoods.setStock(24);
         testGoods.setDescription("this line for test");
         testGoods.setDate(new Date());
 //        testGoods.setCategory(createCategory());
-//        testGoods.setTags(createTagSet());
+        testGoods.setTags(createTagSet());
         return testGoods;
     }
 
-//    private Set<Tag> createTagSet() {
-//        Set<Tag> tagSet = new HashSet<>();
-//        for (int i = 0; i < 3; i++) {
-//            Tag tag = new Tag();
-//            tag.setName("test tag" + i);
-//            tagSet.add(tag);
-//        }
-//        return tagSet;
-//    }
+    private Set<Tag> createTagSet() {
+        Set<Tag> tagSet = new HashSet<>();
+        for (int i = 0; i < 3; i++) {
+            Tag tag = new Tag();
+            tag.setName("test tag" + new Date());
+            tagSet.add(tag);
+        }
+        return tagSet;
+    }
 
 //    private Category createCategory() {
 //        Category category = new Category();

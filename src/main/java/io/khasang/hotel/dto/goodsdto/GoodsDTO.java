@@ -1,6 +1,7 @@
 package io.khasang.hotel.dto.goodsdto;
 
 import io.khasang.hotel.entity.goods.Goods;
+import io.khasang.hotel.entity.goods.Tag;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
@@ -17,7 +18,7 @@ public class GoodsDTO {
     private String description;
     private Date date;
 //    private CategoryDTO categoryDTO;
-//    private Set<TagDTO> tagDTOS;
+    private Set<TagDTO> tagDTOS;
     private byte[] image;
 
     public long getId() {
@@ -100,13 +101,13 @@ public class GoodsDTO {
 //        this.categoryDTO = categories;
 //    }
 
-//    public Set<TagDTO> getTagDTOS() {
-//        return tagDTOS;
-//    }
+    public Set<TagDTO> getTagDTOS() {
+        return tagDTOS;
+    }
 
-//    public void setTagDTOS(Set<TagDTO> tagDTOS) {
-//        this.tagDTOS = tagDTOS;
-//    }
+    public void setTagDTOS(Set<TagDTO> tagDTOS) {
+        this.tagDTOS = tagDTOS;
+    }
 
     public byte[] getImage() {
         return image;
@@ -140,7 +141,7 @@ public class GoodsDTO {
         goodsDTO.setDescription(goods.getDescription());
         goodsDTO.setDate(goods.getDate());
 //        goodsDTO.setCategoryDTO(getCategoryDTOFromGoods(goods));
-//        goodsDTO.setTagDTOS(getTagDTOSetFromGoods(goods));
+        goodsDTO.setTagDTOS(getTagDTOSetFromGoods(goods));
         goodsDTO.setImage(goods.getImage());
         return goodsDTO;
     }
@@ -189,17 +190,17 @@ public class GoodsDTO {
 //        return categoryDTO;
 //    }
 
-//    private Set<TagDTO> getTagDTOSetFromGoods(Goods goods) {
-//        if(goods.getTags().size() == 0) return new HashSet<TagDTO>();
-//        Set<TagDTO> tagDTOS = new HashSet<>();
-//        for (Tag tag : goods.getTags()) {
-//            TagDTO tagDTO = new TagDTO();
-//            tagDTO.setId(tag.getId());
-//            tagDTO.setName(tag.getName());
-//            tagDTOS.add(tagDTO);
-//        }
-//        return tagDTOS;
-//    }
+    private Set<TagDTO> getTagDTOSetFromGoods(Goods goods) {
+        if(goods.getTags().size() == 0) return new HashSet<TagDTO>();
+        Set<TagDTO> tagDTOS = new HashSet<>();
+        for (Tag tag : goods.getTags()) {
+            TagDTO tagDTO = new TagDTO();
+            tagDTO.setId(tag.getId());
+            tagDTO.setName(tag.getName());
+            tagDTOS.add(tagDTO);
+        }
+        return tagDTOS;
+    }
 
     @Override
     public boolean equals(Object o) {
