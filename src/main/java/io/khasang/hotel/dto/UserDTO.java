@@ -2,77 +2,53 @@ package io.khasang.hotel.dto;
 
 import io.khasang.hotel.entity.Role;
 import io.khasang.hotel.entity.User;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
-import java.util.HashSet;
+import java.time.LocalDate;
 import java.util.Set;
+import java.util.stream.Collectors;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Component
 public class UserDTO {
-    private long id;
-    private String name;
+    private Long id;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private LocalDate registered;
     private String login;
     private String password;
-    private Set<RoleDTO> roles = new HashSet<>();
+    private boolean enabled;
+    private Set<RoleDTO> roles;
 
-    public long getId() {
-        return id;
+    public static Set<UserDTO> getSet(Set<User> userSet) {
+        return userSet.stream().map(UserDTO::build).collect(Collectors.toSet());
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public static UserDTO build(User user) {
+        // null if user deleted
+        return (user == null) ? null : new UserDTO(user.getId(), user.getFirstName(), user.getLastName(), user.getEmail(), user.getRegistered(),
+                user.getLogin(), user.getPassword(), user.isEnabled(), getRoleDTOSet(user));
     }
 
-    public String getName() {
-        return name;
+    private static Set<RoleDTO> getRoleDTOSet(User user) {
+        return user.getRoles().stream()
+                .map(role -> new RoleDTO(role.getId(), role.getName(), role.getDescription()))
+                .collect(Collectors.toSet());
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public User toUser() {
+        return new User(id, firstName, lastName, email, registered, login, password, enabled, getRoleSet());
     }
 
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public Set<RoleDTO> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<RoleDTO> roles) {
-        this.roles = roles;
-    }
-
-    public Set<UserDTO> getUserDTO(Set<User> userSet) {
-        Set<UserDTO> userDTOSet = new HashSet<>();
-
-        for (User user : userSet) {
-            UserDTO userDTO = new UserDTO();
-            userDTO.setId(user.getId());
-            userDTO.setLogin(user.getLogin());
-            userDTO.setName(user.getName());
-            userDTO.setPassword(user.getPassword());
-
-            Set<RoleDTO> roleDTOSet = new HashSet<>();
-            for (Role role : user.getRoles()) {
-                roleDTOSet.add(new RoleDTO(role));
-            }
-            userDTO.setRoles(roleDTOSet);
-
-            userDTOSet.add(userDTO);
-        }
-        return userDTOSet;
+    private Set<Role> getRoleSet() {
+        return roles.stream()
+                .map(roleDTO -> new Role(roleDTO.getId(), roleDTO.getName(), roleDTO.getDescription()))
+                .collect(Collectors.toSet());
     }
 }

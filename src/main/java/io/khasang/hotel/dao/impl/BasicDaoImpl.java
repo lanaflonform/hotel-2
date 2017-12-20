@@ -20,23 +20,8 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
     @Autowired
     protected SessionFactory sessionFactory;
 
-    @Override
-    public Session getCurrentSession() {
-        return sessionFactory.getCurrentSession();
-    }
-
     public BasicDaoImpl(Class<T> entityClass) {
         this.entityClass = entityClass;
-    }
-
-    @Override
-    public List<T> getList() {
-        CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
-        CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
-        Root<T> root = criteriaQuery.from(entityClass);
-
-        criteriaQuery.select(root);
-        return sessionFactory.getCurrentSession().createQuery(criteriaQuery).list();
     }
 
     @Override
@@ -47,9 +32,22 @@ public class BasicDaoImpl<T> implements BasicDao<T> {
 
         criteriaQuery.select(root);
         List<T> list = sessionFactory.getCurrentSession().createQuery(criteriaQuery).list();
-        Set<T> set = new HashSet<>();
-        set.addAll(list);
-        return set;
+        return new HashSet<>(list);
+    }
+
+    @Override
+    public Session getCurrentSession() {
+        return sessionFactory.getCurrentSession();
+    }
+
+    @Override
+    public List<T> getList() {
+        CriteriaBuilder builder = sessionFactory.getCriteriaBuilder();
+        CriteriaQuery<T> criteriaQuery = builder.createQuery(entityClass);
+        Root<T> root = criteriaQuery.from(entityClass);
+
+        criteriaQuery.select(root);
+        return sessionFactory.getCurrentSession().createQuery(criteriaQuery).list();
     }
 
     @Override

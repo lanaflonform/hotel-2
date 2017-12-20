@@ -1,11 +1,8 @@
 package io.khasang.hotel.config;
 
-import io.khasang.hotel.dao.CatDao;
-import io.khasang.hotel.dao.RoleDao;
-import io.khasang.hotel.dao.impl.CatDaoImpl;
-import io.khasang.hotel.dao.impl.RoleDaoImpl;
-import io.khasang.hotel.entity.Cat;
-import io.khasang.hotel.entity.Role;
+import io.khasang.hotel.dao.*;
+import io.khasang.hotel.dao.impl.*;
+import io.khasang.hotel.entity.*;
 import io.khasang.hotel.model.CreateTable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -61,7 +58,30 @@ public class AppConfig {
     }
 
     @Bean
+    public CarDao carDao(){
+        return new CarDaoImpl(Car.class);
+    }
+
+    @Bean
+    public BookingDao bookingDao() {
+        return new BookingDaoImpl(Booking.class);
+    }
+
+    @Bean
+    public TaskDao taskDao() {
+        return new TaskDaoImpl(Task.class);
+    }
+
+    @Bean
+    public DocumentDao documentDao() {
+        return new DocumentDaoImpl(Document.class);
+    }
+
+    @Bean
     public RoleDao roleDao() {
         return new RoleDaoImpl(Role.class);
     }
+
+    @Bean
+    public UserDao userDao() { return new UserDaoImpl(User.class); }
 }
