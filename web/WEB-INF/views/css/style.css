@@ -1,0 +1,979 @@
+﻿*{
+	margin:0; padding:0;
+}
+img{
+	border:none;
+}
+body{
+	background:#666; font-size:14px; 
+}
+.main{
+	 min-width:180px;
+	 max-width:1400px;
+     width:1024px;	 
+	 margin:0 auto;
+   }
+.header {
+    height:60px; 
+	background:#24689d;
+	border-bottom: 2px solid transparent;
+	border-color: #cccccd;
+	border-radius:0 0 2px 2px;
+    overflow:hidden;
+	width:100%;
+	display:block;
+   }	
+.user-block{
+	display:block;
+	height:100%;
+	width:130px;
+	float:left;
+   }
+   .user-block:hover{
+	background:#012642 ;
+   }
+   .user-block:hover div{
+	background:#ccc url(images/user.png) center no-repeat ;
+	border:2px solid #ccc;
+   }
+.user{
+	height: 30px;
+	width: 30px;	
+	background:#153c5a url(images/user.png) center no-repeat ;
+	margin: 10px 0 0 60px;
+	padding:4px;
+	border-radius: 4px;
+	border: 2px solid #153c5a;
+	display:block;
+    }	
+        .user-block a{
+		cursor:pointer;
+	    display:block;
+	    height: 100%;
+        }
+.logo{
+	display:block;
+	float:left;
+	text-align:center;
+	margin: 15px 0 0 30px;
+	padding:4px 0 4px 0;
+	width: auto;
+	cursor:default;
+    font: Arial, Helvetica, sans-serif;	
+}
+.logo h1{
+	font: 24px bold;
+	color:#fff;
+	letter-spacing: 2px;
+	font: Arial, Helvetica, sans-serif;	
+}
+.phone{
+	display:block;
+	float:left;
+	text-align:left;
+	margin: 18px 0 0 20px;
+	padding:4px 0 4px 0;
+	width: auto;
+	cursor:default;
+	font: Arial, Helvetica, sans-serif;	
+}
+.phone h5{
+	font: 10px bold Arial, Helvetica, sans-serif;
+	color:#fff;
+	letter-spacing: 2px;
+}
+.block-search{
+	min-width:380px;
+	max-width:420px;
+	width: 400px;
+	position:relative;
+	margin-right: 30px;
+    float:right;
+	display:block;
+    height: 28px;
+    top:-40px;
+	overflow:hidden;
+	}
+	#pole-search{
+	font-size: 21px;
+    text-align:center-left;
+    border:none;
+	height: 28px;
+	float:left;
+	outline: none; 
+	width:70%;
+	}
+	.search-img{
+		display:block;
+		width:10%;
+		height:28px;
+		float:left;
+        background:#fff url(images/search.png) center no-repeat;
+	  }
+	  .search-button-block{
+		width:20%;
+		float:right;
+	  }
+	  .search-btn{
+		height:28px;
+		width:100%;
+		cursor:pointer;
+		user-select: none;
+		background-color: #81a3be;
+        color: #fff; 
+        text-decoration: none; 
+		border:0;
+		vertical-align: middle;
+		text-overflow: ellipsis;
+        line-height: 1;
+		text-align: center;
+        font-weight: 600;
+	  }
+	  .search-btn:hover{
+		background: #11314a;
+	  }
+.content{
+	width:100%;
+	display:block;
+	background: #fff url(images/fon_content.jpg) center top no-repeat;
+	height:900px;
+	margin:0 auto;
+	overflow:hidden;
+    position:relative;	
+    top:-28px;
+}	 
+.menu{
+	display:block;
+	list-style:none; 
+	}
+	#pull{
+		display:none;
+	}	
+	  	.menu li{
+		display:table-cell;
+		background:none;
+		width:auto;
+		text-align:center; 
+		height: 40px;		
+	    }
+		.menu li div{
+			border:1px solid #bbb;
+			margin: 20px 20px 0 20px;			
+		}
+	    .menu li div:hover{
+		background: rgba(246, 186, 98, 0.7) url(images/cub.gif) left 8px top 8px no-repeat;
+	    }
+	        .menu li a{	     
+			 width:1000px;
+			 height:30px;
+			 vertical-align:middle;
+			 display:table-cell;
+			 font:18px  Verdana, Geneva, sans-serif;
+			 color:#012642;
+			 text-decoration:none;			 
+			 display:table-cell;			 
+	        }
+.informer-page{
+	display:block;
+	width:100%;
+	height:30px;
+	background:none;
+	float:left;
+	margin: 24px 0 0 0;
+}
+.informer-page-line{
+	display:block;
+	width:90%;
+	margin:0 2% 0 4%;
+	border-top: 1px solid #999;	
+}
+    .informer-page-block{
+		float:left;
+		display:block;
+		position: relative;
+		height: 18px;
+		top:-9px;
+		border-radius:12px;	
+		background:#fff;	
+	}
+	.informer-page-block:first-child{
+		margin: 0 0 0 20px;
+	}
+    .informer-page p{
+		font:14px  Arial, Helvetica, sans-serif;
+		padding:0 8px 0 8px;
+        cursor:	pointer;   	
+	}
+		
+.booking-block{
+    background: rgba(246, 186, 98, 0.4);
+	position:relative;
+    width: 25%;
+	height: 386px;
+	font:bold 1em Arial, Helvetica, sans-serif;
+	color: #999;
+	display:block;
+    float:left;
+	left: 4%;
+	box-shadow: 0 0 0 1px #999, 0 -2px 0 -1px #999, 2px 0 0 -1px #999, 0 2px 0 -1px #999, -2px 0 0 -1px #999;
+	border: 1px solid #999;
+	list-style:none; 
+    }
+    .booking-block h2{
+		width:auto;
+		margin:0 auto;
+		height: 60px;
+		text-align:center;
+        line-height:60px;
+		background:#24689d;
+		color:#fff;
+	}
+	    .booking-block li{
+			width:92%;
+			float:left;
+			background: #edbd76;
+			margin: 6px 0 7px 0;
+			position:relative;
+			left:5%;
+            display:inline-block;
+            text-decoration:none;			
+		}
+		.booking-block li p{
+			position:relative;
+			width: auto;
+			float:left;
+			display:block;
+			left:20px;
+			padding: 8px 0 8px 0;
+			color: #777;
+		}
+		.booking-block li input{
+			position:relative;
+			float:left;
+			display:block;
+			left:25px;
+			top:6px;	
+			outline: none;
+			border:0;
+			list-style:none;
+            text-align:center;
+            background:none;
+            font:14px  Arial, Helvetica, sans-serif;			
+		}
+		.booking-block li button{
+			position:relative;
+		    outline: none;
+			list-style:none; 
+			border:0;
+			float:right;
+			background:none;
+			cursor: pointer;
+		}
+		.booking-block li button img{
+			position:relative;
+			top:2px;
+			float:right;
+		}
+
+	.booking-block-select-room{
+		overflow: hidden;
+		width: 94%;
+		background: url(images/bg-strelka-select.png) no-repeat right transparent  ;
+		text-align:center;
+		display: inline-block; 
+		padding: 8px 0 8px 0;
+	}
+	.booking-block-select-room select{
+		background: none;
+		border: 0;
+		font:bold 1em Arial, Helvetica, sans-serif;
+		color: #777;
+		width: 96%;
+        padding: 0;
+		margin: 0 0 0 14px;
+		outline: none;
+		/*for WebKit*/
+        -webkit-appearance: none;
+        /* for FF */
+        -moz-appearance: none;
+         text-indent: 0.01px; 
+        text-overflow: '';
+        /* for IE */
+        -ms-appearance: none;
+        appearance: none!important;
+		
+	}
+	.booking-block-select-room select::-ms-expand {
+        display: none;
+    }
+	.booking-li-select-people{
+		background: rgba(246, 186, 98, 0.7) ;
+		padding: 8px 0 8px 0;
+	}
+	.booking-block-select-people{
+		overflow: hidden;
+		width: 42%;
+		height:20px;
+		margin: 0 auto;
+		padding: 0;
+		float:left;
+		display: inline-block; 
+		background: url(images/bg-strelka-select.png) no-repeat right transparent  ;
+		text-align:center;		
+	}
+	.booking-block-select-people:first-child{
+        width: 53%!important;
+	}
+	.booking-block-select-people select{
+		background: transparent ;
+		border: 0;
+		font:bold 1em Arial, Helvetica, sans-serif;
+		color: #777;
+		width: 100%;
+        padding: 0;
+		margin: 0 0 0 13px;
+		outline: none;
+		/*for WebKit*/
+        -webkit-appearance: none;
+        /* for FF */
+        -moz-appearance: none;
+         text-indent: 0.01px; 
+        text-overflow: '';
+        /* for IE */
+        -ms-appearance: none;
+        appearance: none!important;
+	}
+	.booking-block-select-people select::-ms-expand {
+        display: none;
+    }
+	.booking-block-clr-people{
+		background: none !important;
+		height: 20px!important;
+		width:100%!important;
+	}
+	.booking-block-btn{
+		text-align:center;
+		margin:0!important;
+		width: 100%;
+		
+	}
+	.booking-block-btn button{
+		padding: 10px 0 10px 0;
+		border:0;
+		height:100%;
+		width:100%;
+		text-align:center;
+		display:block;
+		user-select: none;
+	    height: 100%;
+		text-decoration:none;
+        background:none;	
+        font:bold 1em Arial, Helvetica, sans-serif;
+	    color: #666;
+	    list-style:none; 
+        display: inline-block;	
+        cursor:pointer;	
+        outline: none;		
+	}
+	.booking-block-btn button:hover{
+		background:#c1a74b;
+		color: #fff;
+	}
+	
+	
+.booking-block-rezult{
+	float:right;
+	display:block;
+	position:relative;
+	font:bold 1em Arial, Helvetica, sans-serif;
+	right: 4%;
+    background: none;
+    width: 64%;
+	height: 400px;
+    overflow:visible;
+    }
+	.booking-filter-price{
+		display:inline-block;
+		float:left;
+		width:100%;
+		height: 60px;
+		background:rgba(246, 186, 98, 0.5);
+		text-align: center;
+	}
+	.booking-block-rezult h2{
+		color:#999;
+		font:bold 1.2em Arial, Helvetica, sans-serif;
+		float:left;
+        line-height:60px;
+        padding-left: 30px;		
+        background:none;	       
+	}
+	.booking-block-rezult h3{
+		color:#999;
+		font:bold 1.1em Arial, Helvetica, sans-serif;
+        line-height:60px;
+		padding-left: 20px;
+		padding-right: 20px;
+		float:left;
+		background:url(images/sort-top-act.gif) right center no-repeat;
+		cursor:pointer;
+	}
+	.booking-block-rezult-part{
+		display: block;
+		float:left;
+		overflow:hidden;
+		width:45%;
+		border:1px solid black;
+		margin:1%;
+		background:rgba(232, 227, 191, 0.7);
+		border: 1px solid #999;
+		border-radius: 2px;
+		text-align:left;
+		vertical-align: middle;
+		word-wrap:normal;
+	}
+	.booking-block-rezult-part:hover{
+		background: rgba(246, 186, 98, 0.4) url(images/booking.png) right 3px bottom 3px no-repeat;		
+	}
+	.booking-block-part-img{
+		display:block;
+		padding:2px auto;
+		float:left;
+		width:70px;
+		height:70px;
+		background:url(images/room.jpg) center no-repeat;
+	}
+
+	.booking-block-rezult-part p{
+		position:relative;
+		top:3px;
+	    font:bold 0.8em Arial, Helvetica, sans-serif;
+	}
+	.booking-block-rezult-part p span{
+		text-align:left;
+	    font:bold 1.1em Arial, Helvetica, sans-serif;
+	}
+
+.block-info{
+	position:relative;
+	width:100%;
+	overflow:hidden;
+	height: 260px;
+	display:block;
+	margin: 0 auto;
+	background: none;
+	top:100px;
+}
+    .block-info-news{
+		margin: 10px 0 10px 6%;
+		height: 200px;
+		width:25%;
+		float:left;
+		cursor:pointer;
+		display:inline-block;
+		vertical-align: middle;
+		border:0px solid gray;
+		border-radius:2pt;
+		background: rgba(246, 186, 98, 0.8);
+		text-align: center;
+		font-size: 14px;
+		box-shadow: 0 0 0 1px #999, 0 -2px 0 -1px #999, 2px 0 0 -1px #999, 0 2px 0 -1px #999, -2px 0 0 -1px #999;
+	}
+	.block-info-news h3{
+		background:#24689d;
+		padding: 5px;
+		color:#fff;
+	}
+	.block-info-news p{
+		line-height: 60px;
+		background:transparent;
+		font-size: 13px;
+	}
+.booking-block-rezult-numeric{
+	overflow:hidden;
+	width:100%;
+	float:left;
+	position:absolute;
+	background:none;
+	text-align: center;
+	bottom:-45px;
+	display:block;
+	left:30%;
+}
+.booking-block-rezult-numeric p{
+	cursor:pointer;
+	background:#ddd;
+	display:inline-block;
+	float:left;
+	margin-left:14px;
+	border:1px solid #999;
+	padding:5px;
+}
+.booking-block-rezult-numeric p:hover{
+	background:#24689d;
+}
+	
+	
+	
+.footer{
+	background:none;
+	list-style:none; 
+	display:block;
+	margin: 20px 135px 20px 135px;
+	float:center;
+	overflow:hidden;
+	position:relative;
+}
+      .footer  ul{
+		  overflow:hidden; 
+		  list-style:none;
+		  padding:5px;
+		  }
+      .footer  ul li{
+		  background:#666; 
+		  display:table-cell;
+		  width:auto; 
+		  text-align:center;
+		  height:10px;
+		  border-left:1px solid #727272;
+		  border-right:1px solid #5c5c5c; 
+		  vertical-align:bottom;
+          padding:0 2px 0 2px;
+	  }
+
+			.footer li:first-child{ 
+			 border-left:none;
+			}
+			.footer li:last-child{ 
+			 border-right:none;
+			}
+	        .footer li a{
+		     display:block;
+			 width:1000px;
+			 height: 20px;
+			 vertical-align:middle;
+			 display:table-cell;
+			 font:9px Verdana, Geneva, sans-serif;
+			 color:#999; 
+			 text-decoration:none;
+			 
+	        }
+@media only screen and (min-width: 1024px) {
+	.main{
+		width:100%;
+	}
+}
+@media only screen and (min-width: 771px) and (max-width:1023px){
+	.main{
+	width:100%;
+   }
+   .block-search{
+	min-width:280px;
+	max-width:220px;
+	width: 270px;
+	margin-right: 15px;
+	}
+    .booking-block li input{
+	left:12px;
+    font:13px  Arial, Helvetica, sans-serif;	
+	width:120px;
+   }
+    .booking-block{
+    width: 30%;
+	left: 1%;
+    }
+    .booking-block li{
+	width:95%;
+	margin: 6px 0 7px 0;
+	left:3%;		
+	}
+	.booking-block li p{
+	left:7px;
+	}
+	.booking-block-select-room select{
+	width: 98%;
+	margin: 0 0 0 7px;
+	}
+    .booking-block-rezult{
+	right: 1%;
+    width: 66%;
+    }
+	.booking-block-select-people select{
+	margin: 0 0 0 7px;
+	}
+	.booking-block-rezult-part{
+	width:49%;
+	margin:3px 1px 0 1px;
+	}
+	.block-info-news{
+		margin: 5px 0 5px 2%;
+		height: 200px;
+		width:30%;
+	}
+	.footer{
+		margin:10px auto;
+	}
+}
+@media only screen and (min-width: 611px) and (max-width:770px){
+	.main{
+	width:100%;	
+   }
+   .header {
+	border-bottom: 0px;
+   }	
+   .block-search{
+	min-width:481px;
+	max-width:770px;
+	width: 96%;
+	background:#666;
+	margin:0 10px 2px 10px;
+    float:left;
+    top:0px;
+	border:2px solid black;
+	}
+	.content{
+    top:0;
+    }
+    .booking-block li input{
+	left:10px;
+    font:13px  Arial, Helvetica, sans-serif;
+    width:120px;	
+    }
+	.booking-block{
+    width: 38%;
+	left: 1%;
+    }
+    .booking-block li{
+	width:95%;
+	margin: 6px 0 7px 0;
+	left:3%;		
+	}
+	.booking-block li p{
+	left:7px;
+	}
+	.booking-block-select-room select{
+	width: 98%;
+	margin: 0 0 0 7px;
+	}
+    .booking-block-rezult{
+	overflow-x:hidden;
+    overflow-y:auto;
+	right: 1%;
+    width: 58%;
+    }
+	.booking-block-rezult-numeric{
+		display:none;
+	}
+	.booking-block-select-people select{
+	margin: 0 0 0 7px;
+	}
+	.booking-block-rezult-part{
+	width:98%;
+	margin:3px 1px 0 1px;
+	}
+	.block-info-news{
+	margin: 5px 0 5px 2%;
+	height: 200px;
+	width:30%;
+	}
+	.footer{
+		margin:0 auto;
+	}
+}
+@media only screen and (min-width: 501px) and (max-width:610px){
+	.main{
+	width:100%;	
+   }
+   .user-block{
+	width:70px;
+   }
+   .user{
+	height: 30px;
+	width: 30px;	
+	margin: 10px 0 0 10px;
+    }
+    .logo{
+	margin: 15px 0 0 15px;
+	padding:4px 0 4px 0;
+    }	
+   .header {
+	border-bottom: 0;
+   }   
+   .block-search{
+	min-width:180px;
+	max-width:610px;
+	width: 99%;
+	background:#666;
+	margin:1px;
+    float:left;
+    top:0px;
+	border:1px solid black;
+	}
+	.content{
+    top:0;
+	height:auto;
+    }
+	.menu{
+    border:2px solid #999;
+	}
+	.menu_ul{
+		display:none;
+	}
+	.menu_ul li{
+		display:inline-block;
+		width:100%;
+	}
+	.menu_ul li:last-child{
+		margin-bottom:10px;
+	}
+	.menu a#pull{
+		display:block;
+		font:16px Arial, Helvetica, sans-serif;
+		font-weight:bold;
+		color:#333;
+		text-decoration:none;
+		padding:10px 30px;
+		width: 92%;
+		position:relative;
+	}
+	.menu a#pull:after{
+		content:"";
+		background:url(images/icon-menu.png)  no-repeat;
+		width:12px;
+		height:13px;
+		display:inline-block;
+		position:absolute;
+		top:14px;
+		right:48px;
+	}
+	.booking-block li input{
+	left:10px;
+    font:13px  Arial, Helvetica, sans-serif;
+	width:120px;
+    }
+	.booking-block{
+    width: 98%;
+	left: 1%;
+	height: auto;
+	margin-bottom:5px;
+    }
+	.booking-block h2{
+	height: 40px;
+       line-height:40px;
+	}
+    .booking-block li{
+	width:95%;
+	margin: 6px 0 7px 0;
+	left:3%;		
+	}
+	.booking-block li p{
+	left:7px;
+	}
+	.booking-block-clr-people{
+	display:none;
+	height:0px!important;
+	}
+	.booking-filter-price{
+	background:#24689d;
+	height: 40px;
+	}
+	.booking-block-rezult h2{
+        line-height:40px; 
+	}
+	.booking-block-rezult h3{
+	font:bold 1em Arial, Helvetica, sans-serif;
+    line-height:40px;
+	padding-left: 6px;
+	padding-right: 12px;
+	}
+	.booking-block-select-room select{
+	width: 98%;
+	margin: 0 0 0 7px;
+	}
+    .booking-block-rezult{
+	overflow:visible;
+	right: 1%;
+    width: 98%;
+	height:auto;
+    }
+	.booking-block-select-people select{
+	margin: 0 0 0 7px;
+	}
+	.booking-block-rezult-part{
+	width:98%;
+	margin:3px 1px 0 1px;
+	}
+.block-info{
+	position:relative;
+	width:100%;
+	overflow:vision;
+	height: 400px;
+	display:block;
+	margin: 0 auto;
+	background: none;
+	top:60px;
+}
+    .block-info-news{
+		margin: 8px;
+		height: 150px;
+		width:46%;
+	}
+	.footer{
+		margin:0 auto;
+	}
+}
+@media only screen and (min-width: 180px) and (max-width:500px){
+   .main{
+	width:100%;	
+   }
+   .user-block{
+	width:70px;
+   }
+   .user{
+	height: 30px;
+	width: 30px;	
+	margin: 10px 0 0 10px;
+    }
+    .logo{
+	margin: 15px 0 0 15px;
+	padding:4px 0 4px 0;
+    }
+   .header {
+	border-bottom: 0;
+   }   
+   .block-search{
+	min-width:180px;
+	max-width:500px;
+	width: 99%;
+	background:#666;
+	margin:1px;
+    float:left;
+    top:0px;
+	border:1px solid black;
+	}
+	.content{
+    overflow:vision;
+    top:0;
+	height:auto;
+    }
+	.menu{
+		border:2px solid #999;
+	}
+	.menu_ul{
+		display:none;
+	}
+	.menu_ul li{
+		display:inline-block;
+		width:100%;
+	}
+	.menu_ul li:last-child{
+		margin-bottom:10px;
+	}
+	.menu a#pull{
+		display:block;
+		font:16px Arial, Helvetica, sans-serif;
+		font-weight:bold;
+		color:#333;
+		text-decoration:none;
+		padding:10px 30px;
+		width: 90%;
+		position:relative;
+	}
+	.menu a#pull:after{
+		content:"";
+		background:url(images/icon-menu.png) right no-repeat;
+		width:12px;
+		height:13px;
+		display:inline-block;
+		position:absolute;
+		top:14px;
+		right:48px;
+	}
+	.booking-block li input{
+	left:10px;
+    font:13px  Arial, Helvetica, sans-serif;
+	width:120px;
+    }
+	.booking-block{
+    width: 98%;
+	left: 1%;
+	height: auto;
+	margin-bottom:5px;
+    }
+	.booking-block h2{
+	height: 40px;
+       line-height:40px;
+	}
+    .booking-block li{
+	width:95%;
+	margin: 6px 0 7px 0;
+	left:3%;		
+	}
+	.booking-block li p{
+	left:7px;
+	}
+	.booking-block-clr-people{
+	display:none;
+	height:0px!important;
+	}
+	.booking-filter-price{
+	background:#24689d;
+	height: 40px;
+	}
+	.booking-block-rezult h2{
+    line-height:40px; 
+	}
+	.booking-block-rezult h3{
+	font:bold 1em Arial, Helvetica, sans-serif;
+    line-height:40px;
+	padding-left: 6px;
+	padding-right: 12px;
+	}
+	.booking-block-select-room select{
+	width: 98%;
+	margin: 0 0 0 7px;
+	}
+    .booking-block-rezult{
+	overflow:visible;
+	right: 1%;
+    width: 98%;
+	height:auto;
+    }
+	.booking-block-select-people select{
+	margin: 0 0 0 7px;
+	}
+	.booking-block-rezult-part{
+	width:98%;
+	margin:3px 1px 0 1px;
+	}
+	.block-info{
+	position:relative;
+	width:100%;
+	overflow:vision;
+	height: 540px;
+	display:block;
+	margin: 0 auto;
+	background: none;
+	top:60px;
+}
+    .block-info-news{
+		margin: 4px;
+		height: 150px;
+		width:98%;
+	}
+	.footer{
+		margin:0 auto;
+	}
+}
+
+
+			
+
+	  
+
+
+						 
+						 
+						 
+						 
+						 
