@@ -52,7 +52,6 @@ public class GoodsControllerIntegrationTest {
                 Goods.class,
                 goods.getId()
         );
-        int i = 0;
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
         Goods receivedGoods = responseEntity.getBody();
         assertNotNull(receivedGoods.getName());
@@ -147,7 +146,6 @@ public class GoodsControllerIntegrationTest {
                 httpEntity,
                 Goods.class
         );
-        int i =0;
         return responseEntity;
     }
 }

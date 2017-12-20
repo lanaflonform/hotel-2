@@ -6,8 +6,8 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Entity(name = "Tag")
-@Table(name = "tag")
+@Entity
+@Table(name = "tags")
 public class Tag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,9 +15,10 @@ public class Tag {
     @NaturalId
     @Column(nullable = false, unique = true)
     private String name;
-    @ManyToMany( mappedBy = "tags")
-    @OrderColumn(name = "name")
-    private Set<Goods> goodsSet = new HashSet<>();
+
+//    @ManyToMany( mappedBy = "tags")
+//    @OrderColumn(name = "name")
+//    private Set<Goods> goodsSet = new HashSet<>();
 
     public Tag() {
     }
@@ -38,13 +39,13 @@ public class Tag {
         this.name = name;
     }
 
-    public Set<Goods> getGoodsSet() {
-        return goodsSet;
-    }
-
-    public void setGoodsSet(Set<Goods> goodsSet) {
-        this.goodsSet = goodsSet;
-    }
+//    public Set<Goods> getGoodsSet() {
+//        return goodsSet;
+//    }
+//
+//    public void setGoodsSet(Set<Goods> goodsSet) {
+//        this.goodsSet = goodsSet;
+//    }
 
     @Override
     public boolean equals(Object o) {
