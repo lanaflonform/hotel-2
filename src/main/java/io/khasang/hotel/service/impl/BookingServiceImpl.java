@@ -1,22 +1,25 @@
 package io.khasang.hotel.service.impl;
 
 import io.khasang.hotel.dao.BookingDao;
+import io.khasang.hotel.dto.BookingDTO;
 import io.khasang.hotel.entity.Booking;
 import io.khasang.hotel.service.BookingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Set;
 
 @Service("BookingService")
 public class BookingServiceImpl implements BookingService{
 
     @Autowired
     private BookingDao bookingDao;
+    @Autowired
+    private BookingDTO bookingDTO;
 
     @Override
-    public List<Booking> getAllBookings() {
-        return bookingDao.getList();
+    public Set<BookingDTO> getAllBookings() {
+        return bookingDTO.getSetDTO(bookingDao.getSet());
     }
 
     @Override
@@ -35,8 +38,8 @@ public class BookingServiceImpl implements BookingService{
     }
 
     @Override
-    public List<Booking> getBookingsByName(String name) {
-        return bookingDao.getBookingByName(name);
+    public Set<BookingDTO> getBookingsByName(String name) {
+        return bookingDTO.getSetDTOFromList(bookingDao.getBookingByName(name));
     }
 
     @Override
