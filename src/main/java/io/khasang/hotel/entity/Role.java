@@ -1,7 +1,6 @@
 package io.khasang.hotel.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,15 +8,6 @@ import java.util.Set;
 @Entity
 @Table(name = "roles")
 public class Role {
-
-    public Role() {
-    }
-
-    public Role(Long id, String name, String description) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,12 +20,13 @@ public class Role {
     @JsonBackReference
     private Set<User> users = new HashSet<>();
 
-    public Set<User> getUsers() {
-        return users;
+    public Role(){
     }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    public Role(Long id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
     }
 
     public String getDescription() {
@@ -60,5 +51,13 @@ public class Role {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

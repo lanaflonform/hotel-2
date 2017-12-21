@@ -1,12 +1,13 @@
 package io.khasang.hotel.controller;
 
+import io.khasang.hotel.dto.RoleDTO;
 import io.khasang.hotel.entity.Role;
 import io.khasang.hotel.service.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.Set;
 
 @Controller
 @RequestMapping("/role")
@@ -15,9 +16,14 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
+    @RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
+    public String getPage() {
+        return "roles";
+    }
+
     @RequestMapping(value = "/all", method = RequestMethod.GET, produces = "application/json;charset=utf-8")
     @ResponseBody
-    public List<Role> getAllRoles() {
+    public Set<RoleDTO> getAllRoles() {
         return roleService.getAllRoles();
     }
 
@@ -41,7 +47,7 @@ public class RoleController {
 
     @ResponseBody
     @RequestMapping(value = "/get/name/{name}", method = RequestMethod.GET)
-    public List<Role> getRolesByName(@PathVariable("name") String name) {
+    public Set<RoleDTO> getRolesByName(@PathVariable("name") String name) {
         return roleService.getRolesByName(name);
     }
 
@@ -50,5 +56,4 @@ public class RoleController {
     public Role deleteRole(@RequestParam(value = "id") String id) {
         return roleService.deleteRole(Long.parseLong(id));
     }
-
 }

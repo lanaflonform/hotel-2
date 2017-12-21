@@ -1,12 +1,18 @@
 package io.khasang.hotel.controller;
 
+import io.khasang.hotel.dto.RoleDTO;
+import io.khasang.hotel.dto.UserDTO;
 import io.khasang.hotel.entity.Role;
+import io.khasang.hotel.entity.User;
 import org.junit.Test;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import static org.junit.Assert.*;
 
@@ -20,48 +26,47 @@ public class RoleControllerIntegrationTest {
 
     @Test
     public void addRole() {
-        Role role = createRole();
+        RoleDTO roleDTO = createRole();
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Role> responseEntity = restTemplate.exchange(
+        ResponseEntity<RoleDTO> responseEntity = restTemplate.exchange(
                 ROOT + GET_BY_ID + "/{id}",
                 HttpMethod.GET,
                 null,
-                Role.class,
-                role.getId()
+                RoleDTO.class,
+                roleDTO.getId()
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-        Role receivedRole = responseEntity.getBody();
+        RoleDTO receivedRole = responseEntity.getBody();
         assertNotNull(receivedRole.getDescription());
     }
 
     @Test
     public void roleDelete() {
-        Role role = createRole();
+        RoleDTO roleDTO = createRole();
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Role> responseEntity = restTemplate.exchange(
+        ResponseEntity<RoleDTO> responseEntity = restTemplate.exchange(
                 ROOT + DELETE + "?id=" + "{id}",
                 HttpMethod.DELETE,
                 null,
-                Role.class,
-                role.getId()
+                RoleDTO.class,
+                roleDTO.getId()
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-        Role receivedRole = responseEntity.getBody();
+        RoleDTO receivedRole = responseEntity.getBody();
         assertNotNull(receivedRole.getDescription());
 
-        ResponseEntity<Role> responseEntityForDeletedRole = restTemplate.exchange(
+        ResponseEntity<RoleDTO> responseEntityForDeletedRole = restTemplate.exchange(
                 ROOT + GET_BY_ID + "/{id}",
                 HttpMethod.GET,
                 null,
-                Role.class,
-                role.getId()
+                RoleDTO.class,
+                roleDTO.getId()
         );
 
         assertEquals("OK", responseEntityForDeletedRole.getStatusCode().getReasonPhrase());
         assertNull(responseEntityForDeletedRole.getBody());
-
     }
 
     @Test
@@ -70,68 +75,93 @@ public class RoleControllerIntegrationTest {
         createRole();
 
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<List<Role>> responseEntity = restTemplate.exchange(
+        ResponseEntity<List<RoleDTO>> responseEntity = restTemplate.exchange(
                 ROOT + ALL,
                 HttpMethod.GET,
                 null,
-                new ParameterizedTypeReference<List<Role>>() {
+                new ParameterizedTypeReference<List<RoleDTO>>() {
                 }
         );
 
-        List<Role> roleList = responseEntity.getBody();
+        List<RoleDTO> roleList = responseEntity.getBody();
         assertNotNull(roleList.get(0));
         assertNotNull(roleList.get(1));
-
     }
 
-    private Role createRole() {
+    @Test
+    public void addUser() {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        Role role = prefillCall("Admin");
+        RoleDTO roleDTO1 = createRole("STAFF");
+        RoleDTO roleDTO2 = createRole("AD");
+        Set<RoleDTO> roles = new HashSet<>();
+        roles.add(roleDTO1);
+        roles.add(roleDTO2);
+        UserDTO userDTO = new UserDTO(null, "Sanya", "", "1@1.ru", LocalDate.now(), "sanya", "sanya", true, roles);
 
-        HttpEntity<Role> httpEntity = new HttpEntity<>(role, httpHeaders);
+        HttpEntity<UserDTO> httpEntity = new HttpEntity<>(userDTO, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
-        Role createdRole = restTemplate.exchange(
+        ResponseEntity<UserDTO> responseEntity = restTemplate.exchange(
+                "http://localhost:8080/admin/users",
+                HttpMethod.POST,
+                httpEntity,
+                UserDTO.class
+        );
+
+        assertEquals("Created", responseEntity.getStatusCode().getReasonPhrase());
+        UserDTO receivedUserDTO = responseEntity.getBody();
+        assertNotNull(receivedUserDTO.getId());
+    }
+
+    private RoleDTO createRole(String name) {
+        HttpHeaders httpHeaders = new HttpHeaders();
+        httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
+
+        RoleDTO roleDTO = prefillCall(name);
+
+        HttpEntity<RoleDTO> httpEntity = new HttpEntity<>(roleDTO, httpHeaders);
+        RestTemplate restTemplate = new RestTemplate();
+        RoleDTO createdRole = restTemplate.exchange(
                 ROOT + ADD,
                 HttpMethod.PUT,
                 httpEntity,
-                Role.class
+                RoleDTO.class
         ).getBody();
 
         assertNotNull(createdRole);
-        assertEquals(role.getName(), createdRole.getName());
+        assertEquals(roleDTO.getName(), createdRole.getName());
         return createdRole;
+    }
+
+    private RoleDTO createRole() {
+        return createRole("Admin");
     }
 
     @Test
     public void updateRole() {
-        Role role = createRole();
-        role.setName("User");
+        RoleDTO roleDTO = createRole();
+        roleDTO.setName("User");
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        HttpEntity<Role> httpEntity = new HttpEntity<>(role, httpHeaders);
+        HttpEntity<RoleDTO> httpEntity = new HttpEntity<>(roleDTO, httpHeaders);
         RestTemplate restTemplate = new RestTemplate();
-        ResponseEntity<Role> responseEntity = restTemplate.exchange(
+        ResponseEntity<RoleDTO> responseEntity = restTemplate.exchange(
                 ROOT + UPDATE,
                 HttpMethod.POST,
                 httpEntity,
-                Role.class
+                RoleDTO.class
         );
 
         assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
-        Role receivedRole = responseEntity.getBody();
+        RoleDTO receivedRole = responseEntity.getBody();
         assertNotNull(receivedRole.getDescription());
         assertEquals("User", receivedRole.getName());
     }
 
-    private Role prefillCall(String name) {
-        Role superRole = new Role();
-        superRole.setName(name);
-        superRole.setDescription("Super Role");
-        return superRole;
+    private RoleDTO prefillCall(String name) {
+        return new RoleDTO(null, name, "Super Role");
     }
-
 }
