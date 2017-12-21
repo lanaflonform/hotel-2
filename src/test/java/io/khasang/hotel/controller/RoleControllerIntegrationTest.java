@@ -7,6 +7,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.*;
 import org.springframework.web.client.RestTemplate;
 
+import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -91,21 +92,25 @@ public class RoleControllerIntegrationTest {
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.setContentType(MediaType.APPLICATION_JSON_UTF8);
 
-        User user = new User();
-        user.setLogin("sanya");
-        user.setName("Sanya");
-        user.setPassword("sanya");
-
         Role role1 = createRole("STAFF");
         Role role2 = createRole("AD");
-
         Set<Role> roles = new HashSet<>();
         roles.add(role1);
         roles.add(role2);
+        User user = new User(null, "Sanya", "", "1@1.ru", LocalDate.now(), "sanya", "sanya", true, roles);
 
-        user.setRoles(roles);
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<User> responseEntity = restTemplate.exchange(
+                "http://localhost:8080/admin/users/{id}",
+                HttpMethod.GET,
+                null,
+                User.class,
+                user.getId()
+        );
 
-        assertNotNull(user.getRoles());
+        assertEquals("OK", responseEntity.getStatusCode().getReasonPhrase());
+        User receivedUser = responseEntity.getBody();
+        assertNotNull(receivedUser.getId());
     }
 
     private Role createRole(String name) {
@@ -156,9 +161,6 @@ public class RoleControllerIntegrationTest {
     }
 
     private Role prefillCall(String name) {
-        Role superRole = new Role();
-        superRole.setName(name);
-        superRole.setDescription("Super Role");
-        return superRole;
+        return new Role(null, name, "Super Role");
     }
 }

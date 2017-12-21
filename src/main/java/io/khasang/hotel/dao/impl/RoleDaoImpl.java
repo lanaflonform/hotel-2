@@ -17,7 +17,7 @@ public class RoleDaoImpl extends BasicDaoImpl<Role> implements RoleDao {
     public Set<Role> getRolesByName(String name) {
         Set<Role> set = new HashSet<>();
         List list = (List<Role>) sessionFactory.getCurrentSession().
-                createQuery("from roles as c where c.name = ?").setParameter(0, name).list();
+                createQuery("from Role as r where r.name = ?").setParameter(0, name).list();
         set.addAll(list);
         return set;
     }

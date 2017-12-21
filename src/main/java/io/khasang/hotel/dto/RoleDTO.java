@@ -8,7 +8,7 @@ import java.util.Set;
 
 @Component
 public class RoleDTO {
-    private long id;
+    private Long id;
     private String name;
     private String description;
     private Set<UserDTO> users = new HashSet();
@@ -16,17 +16,17 @@ public class RoleDTO {
     public RoleDTO() {
     }
 
-    public RoleDTO(Role role) {
-        this.id = role.getId();
-        this.name = role.getName();
-        this.description = role.getDescription();
+    public RoleDTO(Long id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -57,7 +57,7 @@ public class RoleDTO {
     public Set<RoleDTO> getRoleDTO(Set<Role> roleSet) {
         Set<RoleDTO> roleDTOSet = new HashSet<>();
         for (Role role : roleSet) {
-            roleDTOSet.add(new RoleDTO(role));
+            roleDTOSet.add(new RoleDTO(role.getId(), role.getName(), role.getDescription()));
         }
         return roleDTOSet;
     }
