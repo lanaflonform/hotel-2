@@ -19,7 +19,6 @@ public class Info {
     @Column(name = "number_of_rooms")
     private Integer numberOfRooms;
 
-    @Column(name = "administrator_hotel_users")
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private Set<User> administratorHotelUsers = new HashSet<>();
 
