@@ -3,8 +3,6 @@ package io.khasang.hotel.controller;
 import io.khasang.hotel.model.CreateTable;
 import io.khasang.hotel.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpRequest;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,8 +11,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
-import javax.xml.ws.Response;
 
 @Controller
 public class AppController {
@@ -41,6 +37,11 @@ public class AppController {
     @RequestMapping("/booking")
     public String bookingPage() {
         return "booking";
+    }
+
+    @RequestMapping("/info")
+    public String infoPage() {
+        return "info";
     }
 
     @RequestMapping("/create")

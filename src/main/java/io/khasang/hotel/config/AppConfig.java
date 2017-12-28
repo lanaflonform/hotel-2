@@ -73,6 +73,11 @@ public class AppConfig {
     }
 
     @Bean
+    public InfoDao infoDao() {
+        return new InfoDaoImpl(Info.class);
+    }
+
+    @Bean
     public DocumentDao documentDao() {
         return new DocumentDaoImpl(Document.class);
     }
