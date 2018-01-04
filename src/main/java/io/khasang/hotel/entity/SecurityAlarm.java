@@ -11,6 +11,10 @@ public class SecurityAlarm {
     @Column(name = "alarm")
     private boolean alarm;
 
+    public SecurityAlarm() {
+        this.alarm = false;
+    }
+
     public long getId() {
         return id;
     }

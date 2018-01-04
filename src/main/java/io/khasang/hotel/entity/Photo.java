@@ -3,17 +3,13 @@ package io.khasang.hotel.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "busy")
-public class Busy {
+@Table(name = "photo")
+public class Photo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(name = "busy")
-    private boolean busy;
-
-    public Busy() {
-        this.busy = false;
-    }
+    @Column(unique = true,name = "url")
+    private String url;
 
     public long getId() {
         return id;
@@ -23,11 +19,11 @@ public class Busy {
         this.id = id;
     }
 
-    public boolean isBusy() {
-        return busy;
+    public String getUrl() {
+        return url;
     }
 
-    public void setBusy(boolean busy) {
-        this.busy = busy;
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

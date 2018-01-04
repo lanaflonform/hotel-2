@@ -10,6 +10,10 @@ public class FireAlarm {
     @Column(name = "fire")
     private boolean fire;
 
+    public FireAlarm() {
+        this.fire = false;
+    }
+
     public long getId() {
         return id;
     }
