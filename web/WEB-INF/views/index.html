@@ -1,209 +1,30 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-
-<link rel="stylesheet" type="text/css" href="style.css" />
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-<script>
-		$(function() {
-			var pull 		= $('#pull');
-				menu 		= $('.menu ul');
-				menuHeight	= menu.height();
-
-			$(pull).on('click', function(e) {
-				e.preventDefault();
-				menu.slideToggle();
-			});
-
-			$(window).resize(function(){
-        		var w = $(window).width();
-        		if(w > 320 && menu.is(':hidden')) {
-        			menu.removeAttr('style');
-        		}
-    		});
-		});
-	</script>
-<title>hotel</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/vue"></script>
+    <script type="text/javascript" src="js/menu.js"></script>
+    <title>hotel</title>
 </head>
 <body>
-<div class="main" >
-    <div class="header">
-	     <div class="user-block">		 
-		 <a href="#55">
-		    <div class="user">  	
-            </div>
-		 </a>
-		 </div>
-		 <div class="logo">
-		 <h1> mini-hotel</h1>
-		 </div>
-         <div class="phone">
-		 <h5>тел. &nbsp;  8-888-888-88-88 <br /> факс. 7(888)-888-88-88 </h5>
-         </div>		 
-	</div>
-	<div class="block-search">
-                <form class="search-form" method="post" action="/search/search">
-				<div class="search-img"></div>	
-                <input type="text" name="search-pole" id="pole-search" />
-                <div class="search-button-block">
-				       <button class="search-btn" type="submit" value="Поиск" >Поиск</button>					
-				</div>
-                </form>
-    </div>	
-<div class="content">
-<div class="menu">
-    <ul class="menu_ul">
-           <li><div><a href="##">Главная</a></div></li>
-           <li><div><a href="#2">Ресторан</a></div></li>
-           <li><div><a href="#1">Предложения</a></div></li>
-           <li><div><a href="#$">Мероприятия</a></div></li>
-    </ul>
-	<a href="#0" id="pull">Меню</a>
-</div>
-<div class="informer-page">
-<div class="informer-page-line">
-     <div class="informer-page-block"><p>Главная &nbsp; &raquo;</p></div>
-     <div class="informer-page-block"><p>Бронирование &nbsp; &raquo;</p></div>
-</div>
-</div>
-	<div class="booking-block">
-	<h2>Бронирование</h2>
-	   <li><p>Заезд&nbsp;</p>
-	       <input id="checkIn" class="txtInput" readonly="readonly" type="date" value="2017-04-10">
-		   <button class="dateInput-btn" type="button">
-		   <img src="images/datepickerIcon.png" alt="..." title="...">
-		   </button>
-	   </li>
-	   <li><p>Выезд</p>
-	       <input id="checkOut" class="txtInput" readonly="readonly2" type="date" size = "20" value="2017-04-10">
-		   <button class="dateInput-btn" type="button">
-           <img src="images/datepickerIcon.png" alt="..." title="...">
-		   </button>
-		   
-	   </li>
-	   <li><div class="booking-block-select-room"><select>
-	       <option>Номера(2 местный)</option>
-           <option>Номера(1 местный)</option>
-           <option>Номера(3 местный)</option>
-           <option>Номера(4 местный)</option>
-		   <option>Номера(5 местный)</option>
-		   </select>
-		   </div>
-       </li>
-	   <li class = "booking-li-select-people">
-	   <div class="booking-block-select-people"><select>
-	       <option>Взрослые(2)</option>
-           <option>Взрослые(1)</option>
-           <option>Взрослые(3)</option>
-           <option>Взрослые(4)</option>
-		   <option>Взрослые(5)</option>
-		   </select>
-	   </div>
-	   <div class="booking-block-select-people">
-	       <select>
-		   <option>Дети(0)</option>
-	       <option>Дети(1)</option>
-           <option>Дети(2)</option>
-           <option>Дети(3)</option>
-           <option>Дети(4)</option>
-		   <option>Дети(5)</option>
-		   </select>
-	   </div>
-	   </li>
-	   <li><p>+ Промо код</p></li>
-	   <li class="booking-block-clr-people"></li>
-	   <li><div class="booking-block-btn">
-	        <button type="submit" name="booking-btn" id="booking-btn" />Проверить наличие</button>
-		   </div>
-	   </li>
-	</div>
-	
-	<div class="booking-block-rezult">  
-	<div class="booking-filter-price">
-	    <h2>Результат:</h2>
-	    <h3>Цена</h3>
-	</div>
-	<div class="booking-block-rezult-part">	
-	     <div class="booking-block-part-img">		 
-		 </div>
-		    <p>&nbsp; Максимальное размещение: <br /> 2 взрослых и 2 детей в возрасте до 12 лет <br />
-	        <span>Тариф: 2700 р/ день </span></p>
-	</div>
-	<div class="booking-block-rezult-part">	
-	     <div class="booking-block-part-img">		 
-		 </div>
-	        <p>&nbsp; Максимальное размещение: <br /> 2 взрослых и 2 детей в возрасте до 12 лет <br />
-	        <span>Тариф: 2700 р/ день </span></p>
-	</div>
-	<div class="booking-block-rezult-part">	
-	     <div class="booking-block-part-img">		 
-		 </div>
-	        <p>&nbsp; Максимальное размещение: <br /> 2 взрослых и 2 детей в возрасте до 12 лет <br />
-	        <span></span></p>	
-	</div>
-		<div class="booking-block-rezult-part">	
-	     <div class="booking-block-part-img">		 
-		 </div>
-	        <p>&nbsp; Максимальное размещение: <br /> 2 взрослых и 2 детей в возрасте до 12 лет <br />
-	        <span></span></p>	
-	</div>
-		<div class="booking-block-rezult-part">	
-	     <div class="booking-block-part-img">		 
-		 </div>
-	        <p>&nbsp; Максимальное размещение: <br /> 2 взрослых и 2 детей в возрасте до 12 лет <br />
-	        <span></span></p>	
-	</div>
-
-
-	<div class="booking-block-rezult-part">	
-	     <div class="booking-block-part-img">		 
-		 </div>
-	        <p>Цена :  2700 р/ день </p>
-	</div>
-	<div class="booking-block-rezult-part">	
-	     <div class="booking-block-part-img">		 
-		 </div>
-	        <p>Цена :  2700 р/ день </p>
-	</div>
-    <div class="booking-block-rezult-numeric">
-	   <p><</p>
-	   <p>1</p>
-	   <p>2</p>
-	   <p>...</p>
-	   <p>></p>
-	</div>
+<div id="app">
+  <div class="header">
+    <div class="user-block">
+      <a href="#55">
+        <div class="user">
+        </div>
+      </a>
     </div>
-
-
-<div class="block-info">
-<div class="block-info-news">
-<h3>Мы в социальных сетях</h3>
-<p></p>
+    <div class="logo">
+      <h1>{{nameHotel}}</h1>
+    </div>
+    <div class="phone">
+      <h5>тел. &nbsp;  {{phone}} <br /> факс. {{fax}} </h5>
+    </div>
+  </div>
 </div>
-<div class="block-info-news">
-<h3>СПА</h3>
-<p>Отдых ...</p>
-</div>
-<div class="block-info-news">
-<h3>Специальные предложения</h3>
-<p>Предлагаем вам специальные условия</p>
-</div>
-</div>
-</div>
-<div class="footer">
-           <ul>
-           <li><a href="#">О НАС</a></li>
-           <li><a href="#">КАРЬЕРА</a></li>
-           <li><a href="#">ПРЕСС-ЦЕНТР</a></li>
-           <li><a href="#">КОНТАКТЫ</a></li>
-		   <li><a href="#">КОНТАКТЫ</a></li>
-		   <li><a href="#">FAQ'S</a></li>
-		   <li><a href="#">ПРАВИЛА И УСЛОВИЯ</a></li>
-		   <li><a href="#">ОБРАТНАЯ СВЯЗЬ</a></li>
-		   <li><a href="#">КАРТА САЙТА</a></li>
-		   </ul>
-</div>	
-</div>
+<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>

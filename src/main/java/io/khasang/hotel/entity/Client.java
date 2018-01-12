@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,7 +24,7 @@ public class Client {
     private String password;
     @Column(name = "photoPassport")
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Photo> photoPassport;
+    private List<Photo> photoPassport = new ArrayList<>();
     @OneToOne
     @JoinColumn(name = "photoLogin")
     private Photo photoLogin;
@@ -35,7 +36,7 @@ public class Client {
     private String coupon;
     @Column(name = "level")
     private int level;
-    @OneToOne (cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
+    @ManyToOne (cascade = CascadeType.ALL,  fetch = FetchType.EAGER)
     @JoinColumn(name="contacts")
     private Contacts contact = new Contacts();
 

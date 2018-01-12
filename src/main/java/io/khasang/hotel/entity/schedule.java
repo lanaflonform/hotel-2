@@ -6,20 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "booking")
-public class Booking {
-
+@Table(name = "Schedule")
+public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private String room;
     @Column(columnDefinition = "DATE")
     private LocalDate startDate;
     @Column(columnDefinition = "DATE")
     private LocalDate endDate;
-    @Column(name = "clients")
+    @Column(name = "personal")
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Client> client = new ArrayList<>();
+    private List<User> personal = new ArrayList<>();
 
     public long getId() {
         return id;
@@ -27,14 +25,6 @@ public class Booking {
 
     public void setId(long id) {
         this.id = id;
-    }
-
-    public String getRoom() {
-        return room;
-    }
-
-    public void setRoom(String room) {
-        this.room = room;
     }
 
     public LocalDate getStartDate() {
@@ -53,11 +43,11 @@ public class Booking {
         this.endDate = endDate;
     }
 
-    public List<Client> getClient() {
-        return client;
+    public List<User> getPersonal() {
+        return personal;
     }
 
-    public void setClient(List<Client> client) {
-        this.client = client;
+    public void setPersonal(List<User> personal) {
+        this.personal = personal;
     }
 }

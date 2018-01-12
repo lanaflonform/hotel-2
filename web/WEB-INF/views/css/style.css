@@ -33,13 +33,13 @@ body{
 	background:#012642 ;
    }
    .user-block:hover div{
-	background:#ccc url(images/user.png) center no-repeat ;
+	background:#ccc url(../images/user.png) center no-repeat ;
 	border:2px solid #ccc;
    }
 .user{
 	height: 30px;
 	width: 30px;	
-	background:#153c5a url(images/user.png) center no-repeat ;
+	background:#153c5a url(../images/user.png) center no-repeat ;
 	margin: 10px 0 0 60px;
 	padding:4px;
 	border-radius: 4px;
@@ -108,7 +108,7 @@ body{
 		width:10%;
 		height:28px;
 		float:left;
-        background:#fff url(images/search.png) center no-repeat;
+        background:#fff url(../images/search.png) center no-repeat;
 	  }
 	  .search-button-block{
 		width:20%;
@@ -135,7 +135,7 @@ body{
 .content{
 	width:100%;
 	display:block;
-	background: #fff url(images/fon_content.jpg) center top no-repeat;
+	background: #fff url(../images/fon_content.jpg) center top no-repeat;
 	height:900px;
 	margin:0 auto;
 	overflow:hidden;
@@ -161,7 +161,7 @@ body{
 			margin: 20px 20px 0 20px;			
 		}
 	    .menu li div:hover{
-		background: rgba(246, 186, 98, 0.7) url(images/cub.gif) left 8px top 8px no-repeat;
+		background: rgba(246, 186, 98, 0.7) url(../images/cub.gif) left 8px top 8px no-repeat;
 	    }
 	        .menu li a{	     
 			 width:1000px;
@@ -278,7 +278,7 @@ body{
 	.booking-block-select-room{
 		overflow: hidden;
 		width: 94%;
-		background: url(images/bg-strelka-select.png) no-repeat right transparent  ;
+		background: url(../images/bg-strelka-select.png) no-repeat right transparent  ;
 		text-align:center;
 		display: inline-block; 
 		padding: 8px 0 8px 0;
@@ -318,7 +318,7 @@ body{
 		padding: 0;
 		float:left;
 		display: inline-block; 
-		background: url(images/bg-strelka-select.png) no-repeat right transparent  ;
+		background: url(../images/bg-strelka-select.png) no-repeat right transparent  ;
 		text-align:center;		
 	}
 	.booking-block-select-people:first-child{
@@ -415,7 +415,7 @@ body{
 		padding-left: 20px;
 		padding-right: 20px;
 		float:left;
-		background:url(images/sort-top-act.gif) right center no-repeat;
+		background:url(../images/sort-top-act.gif) right center no-repeat;
 		cursor:pointer;
 	}
 	.booking-block-rezult-part{
@@ -433,7 +433,7 @@ body{
 		word-wrap:normal;
 	}
 	.booking-block-rezult-part:hover{
-		background: rgba(246, 186, 98, 0.4) url(images/booking.png) right 3px bottom 3px no-repeat;		
+		background: rgba(246, 186, 98, 0.4) url(../images/booking.png) right 3px bottom 3px no-repeat;		
 	}
 	.booking-block-part-img{
 		display:block;
@@ -441,7 +441,7 @@ body{
 		float:left;
 		width:70px;
 		height:70px;
-		background:url(images/room.jpg) center no-repeat;
+		background:url(../images/room.jpg) center no-repeat;
 	}
 
 	.booking-block-rezult-part p{
@@ -738,7 +738,7 @@ body{
 	}
 	.menu a#pull:after{
 		content:"";
-		background:url(images/icon-menu.png)  no-repeat;
+		background:url(../images/icon-menu.png)  no-repeat;
 		width:12px;
 		height:13px;
 		display:inline-block;
@@ -881,7 +881,7 @@ body{
 	}
 	.menu a#pull:after{
 		content:"";
-		background:url(images/icon-menu.png) right no-repeat;
+		background:url(../images/icon-menu.png) right no-repeat;
 		width:12px;
 		height:13px;
 		display:inline-block;
