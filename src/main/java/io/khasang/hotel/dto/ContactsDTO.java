@@ -12,7 +12,7 @@ import java.util.Set;
 public class ContactsDTO {
     private long id;
     private Set<PhoneDTO> phoneSet = new HashSet<>();
-    private ArrayList<AddressDTO>  addressList = new ArrayList<>();
+    private ArrayList<Address>  addressList = new ArrayList<>();
     private Set<MailDTO> mailSet = new HashSet<>();
     private Set<LinkDTO> linkSet = new HashSet<>();
 
@@ -21,7 +21,7 @@ public class ContactsDTO {
 
         for (Contacts contacts : contactsSet) {
             Set<PhoneDTO> phoneDTOS = new HashSet<>();
-            List<AddressDTO> addressDTOS = new ArrayList<>();
+            List<Address> addressDTOS = new ArrayList<>();
             Set<MailDTO> mailDTOS = new HashSet<>();
             Set<LinkDTO> linkDTOS = new HashSet<>();
 
@@ -34,7 +34,7 @@ public class ContactsDTO {
                 phoneDTOS.add(phoneDTO);
             }
             for (Address address : contacts.getAddressList()) {
-                AddressDTO addressDTO = new AddressDTO();
+                Address addressDTO = new Address();
                 addressDTO.setId(address.getId());
                 addressDTO.setStreet(address.getStreet());
                 addressDTO.setNumberStreet(address.getNumberStreet());
@@ -79,12 +79,12 @@ public class ContactsDTO {
         this.phoneSet = phoneSet;
     }
 
-    public ArrayList<AddressDTO> getAddressList() {
+    public ArrayList<Address> getAddressList() {
         return addressList;
     }
 
-    public void setAddressList(List<AddressDTO> addressList) {
-        this.addressList = (ArrayList<AddressDTO>) addressList;
+    public void setAddressList(List<Address> addressList) {
+        this.addressList = (ArrayList<Address>) addressList;
     }
 
     public Set<MailDTO> getMailSet() {

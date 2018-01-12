@@ -21,11 +21,4 @@ public interface ClientDao extends BasicDao<Client> {
      */
     Client getByLogin(String login);
 
-    /**
-     * method for receiving client by mail
-     *
-     * @param email - email of client
-     * @return client entity with specify email
-     */
-    Client getByEmail(String email);
 }

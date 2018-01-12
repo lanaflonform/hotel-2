@@ -1,18 +1,8 @@
-package io.khasang.hotel.entity;
+package io.khasang.hotel.dto;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "photo")
-public class Photo {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class PhotoDTO {
     private long id;
-    @Column(unique = true,name = "url")
     private String url;
-
-    public Photo() {
-    }
 
     public long getId() {
         return id;
