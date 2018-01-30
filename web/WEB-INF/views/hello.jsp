@@ -4,6 +4,6 @@
     <title>Title</title>
 </head>
 <body>
-<p>${name}</p>
+<p>${hello}</p>
 </body>
 </html>

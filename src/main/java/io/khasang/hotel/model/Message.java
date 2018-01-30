@@ -1,21 +1,20 @@
 package io.khasang.hotel.model;
 
 public class Message {
-    private String name;
+    private String parametr;
 
     public Message() {
     }
 
-    public Message(String name) {
-        this.name = name;
+    public Message(String parametr) {
+        this.parametr = parametr;
     }
 
-    public String getName() {
-
-        return name;
+    public String getParametr() {
+        return parametr;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setParametr(String parametr) {
+        this.parametr = parametr;
     }
 }
